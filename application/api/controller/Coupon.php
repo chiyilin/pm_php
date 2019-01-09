@@ -19,12 +19,17 @@ class Coupon extends Controller
     {
         $param = $request->param();
         $time = time();
-        $data = CouponModel::where([
+        $where = [
             'user_id' => $param['user_id'],
             'coupon_status' => 1,
             'can_use_start_time' => ['<=', $time],
             'can_use_expire_time' => ['>=', $time],
-        ])->select();
+        ];
+        if (!empty($param['need_money'])) {
+            $where['need_money'] = ['<=', $param['need_money']];
+        }
+
+        $data = CouponModel::where($where)->select();
         foreach ($data as $key => $value) {
             $data[$key]['can_use_start_time'] = date("Y-m-d H:i", $value['can_use_start_time']);
             $data[$key]['can_use_expire_time'] = date("Y-m-d H:i", $value['can_use_expire_time']);
