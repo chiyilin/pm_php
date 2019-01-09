@@ -162,7 +162,7 @@ class Cart extends Controller
         $input->SetTotal_fee($ProdListInfo['pay_money'] * 100);
         $input->SetTime_start(date("YmdHis", $time));
         $input->SetTime_expire(date("YmdHis", $time + 600));
-        $input->SetNotify_url(getHttpHost() . "/api/notify/videobuynotify");
+        $input->SetNotify_url(getHttpHost() . "/api/notify/buynotify");
         $input->SetTrade_type("JSAPI");
         $input->SetOpenid($userInfo['openid']);
         $order = \WxPayApi::unifiedOrder($config, $input);
@@ -246,7 +246,7 @@ class Cart extends Controller
         $input->SetTotal_fee($ProdListInfo['pay_money'] * 100);
         $input->SetTime_start(date("YmdHis", $time));
         $input->SetTime_expire(date("YmdHis", $time + 600));
-        $input->SetNotify_url(getHttpHost() . "/api/notify/videobuynotify");
+        $input->SetNotify_url(getHttpHost() . "/api/notify/buynotify");
         $input->SetTrade_type("JSAPI");
         $input->SetOpenid($userInfo['openid']);
         $order = \WxPayApi::unifiedOrder($config, $input);

@@ -14,7 +14,7 @@ use app\common\model\Article;
 use app\common\model\Collection;
 use app\common\model\Product;
 use app\common\model\CrontabSetting;
-
+use app\common\model\ProdList;
 
 use think\Config;
 
@@ -22,6 +22,16 @@ class Index extends Controller
 {
     public function test()
     {
+        $ProdList = new ProdList();
+        $prodListInfo = $ProdList->where([
+            'list_id' => 430,
+        ])->find();
+        $prodListInfo->is_pay = 2;
+        $prodListInfo->transaction_id = time();
+        $prodListInfo->list_pay_time = time();
+        $prodListInfo->save();
+        halt($prodListInfo->toArray());
+        exit();
         call_user_func('app\command\Hour::Prod');
         die();
         $time = time();
