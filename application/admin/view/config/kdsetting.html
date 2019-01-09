@@ -1,98 +1,58 @@
 <div class="x-body">
-
     <form class="layui-form layui-form-pane">
-
         <div class="layui-elem-quote">
-
-            <p>微信小程序设置：</p>
-
+            <p>快递100参数设置：</p>
         </div>
-
         <div class="layui-form-item">
-
+            <label class="layui-form-label">Customer</label>
+            <div class="layui-input-block">
+                <input type="text" name="customer" required="" value="{$data['customer']}" lay-verify="required"
+                       placeholder="请输入Customer(开户邮件中查看)"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">Key</label>
-
             <div class="layui-input-block">
-
-                <input type="text" name="appid" required="" value="{$data['key']}" lay-verify="required"
-
-                       placeholder="请输入AppID(小程序ID)"
-
+                <input type="text" name="key" required="" value="{$data['key']}" lay-verify="required"
+                       placeholder="请输入Key(开户邮件中查看)"
                        autocomplete="off" class="layui-input">
-
             </div>
-
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">Secret</label>
+            <div class="layui-input-block">
+                <input type="text" name="secret" required="" value="{$data['secret']}" lay-verify="required"
+                       placeholder="请输入Secret(开户邮件中查看)"
+                       autocomplete="off" class="layui-input">
+            </div>
         </div>
 
         <div class="layui-form-item">
-
-            <label class="layui-form-label">customer</label>
-
-            <div class="layui-input-block">
-
-                <input type="text" name="appsecret" required="" value="{$data['customer']}" lay-verify="required"
-
-                       placeholder="请输入AppSecret(小程序密钥)"
-
-                       autocomplete="off" class="layui-input">
-
-            </div>
-
-        </div>
-
-
-        <div class="layui-form-item">
-
             <button class="layui-btn" lay-submit="" lay-filter="formDemoPane">保存设置</button>
-
         </div>
-
     </form>
-
 </div>
-
 <script>
-
     layui.use(['form', 'layer'], function () {
-
         $ = layui.jquery;
-
         var form = layui.form
-
             , layer = layui.layer;
-
         form.on('submit(formDemoPane)', function (data) {
-
-            $.post("{:url('config/change')}", {data: data.field}, function (data) {
-
+            $.post("{:url('changeKdSetting')}", {data: data.field}, function (data) {
                 var jsonData = JSON.parse(data);
-
                 if (jsonData[0] == 200) {
-
                     layer.msg(jsonData[1], {time: 1000, icon: 6}, function () {
-
                         window.replace();
-
                     });
-
                 } else {
-
                     layer.msg(jsonData[1], {time: 1000, icon: 5}, function () {
 
-
                     });
-
                 }
-
                 return false;
-
             });
-
             return false;
-
-
         });
-
     });
-
 </script>

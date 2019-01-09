@@ -59,6 +59,17 @@ class Config extends Auth
     {
         $data = KdSetting::limit(1)->find();
         return $this->fetch(null, compact('data'));
+    }
 
+    public function changeKdSetting(Request $request)
+    {
+        $data = $request->post()['data'];
+        $updateData = [
+            'key' => $data['key'],
+            'secret' => $data['secret'],
+            'customer' => $data['customer'],
+        ];
+        $result = KdSetting::where(['kd_setting_id' => 1])->update($updateData);
+        return $msg = $result ? json_encode([200, '保存成功']) : json_encode([400, '保存失败']);
     }
 }
