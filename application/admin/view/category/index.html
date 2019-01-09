@@ -1,0 +1,182 @@
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="{:url('index/index')}">首页</a>
+        <a href="{:url('category/index')}">分类管理</a>
+        <a>
+          <cite>分类列表</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so layui-form-pane" action="{:url('category/add')}" method="post">
+            <input class="layui-input" placeholder="顶级分类名" name="category_name" required="" lay-verify="required">
+            <button class="layui-btn" lay-filter="add" lay-submit=""><i class="layui-icon"></i>增加</button>
+        </form>
+        <script>
+            layui.use(['form', 'layer'], function () {
+                $ = layui.jquery;
+                var form = layui.form
+                    , layer = layui.layer;
+                //监听提交
+                form.on('submit(add)', function (data) {
+                    console.log(data.field)
+                    $.post("{:url('category/add')}", {data: data.field}, function (data) {
+                        var jsonData = JSON.parse(data);
+                        var icon = jsonData[0] == 200 ? 6 : 5;
+                        layer.alert(jsonData[1], {icon: icon},function (res) {
+                            location.replace(location.href);
+                        });
+                        return false;
+                    })
+                    return false;
+
+                });
+            });
+        </script>
+    </div>
+    <blockquote class="layui-elem-quote">默认展示顶级分类，有子分类的前面加收缩图标<i class="layui-icon x-show" status='true'>&#xe623;</i>
+    </blockquote>
+    <xblock>
+        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+        <span class="x-right" style="line-height:40px">共有数据：{php}echo count($data);{/php} 条</span>
+    </xblock>
+    <table class="layui-table layui-form">
+        <thead>
+        <tr>
+            <th width="20">
+                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
+                        class="layui-icon">&#xe605;</i></div>
+            </th>
+            <th width="70">ID</th>
+            <th>栏目名</th>
+            <th width="50">排序</th>
+            <th width="50">状态</th>
+            <th width="220">操作</th>
+        </thead>
+        <tbody class="x-cate">
+        {foreach $data as $key=>$value}
+        <tr cate-id="{$value['category_id']}" fid="{$value['category_fid']}">
+            <td>
+                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id="{$value['category_id']}"><i
+                        class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td class="category_id">{$value['category_id']}</td>
+            <td>
+                {if condition="$value['category_level']==1"}
+                <i class="layui-icon x-show" status='true'>&#xe623;</i>
+                {elseif condition="$value['category_level']==2"}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="layui-icon x-show" status='true'>&#xe623;</i>
+                {else}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {/if}
+                {$value['category_name']}
+            </td>
+            <td>
+                <input type="number" class="layui-input x-sort" name="order" value="{$value['category_sort']}"
+                       onblur="editSort(this)">
+            </td>
+            <td>
+                <input type="checkbox" name="switch" class="category_status" lay-text="开启|停用" {if
+                       condition="$value['category_status']==1" } checked{/if} lay-skin="switch" lay-filter="ifKeyDemo">
+            </td>
+            <td class="td-manage">
+                {php}
+                $url=[];
+                $url[]=url('category/edit',['id'=>$value['category_id']]);
+                $url[]=url('category/addmaster',['fid'=>$value['category_id']]);
+                {/php}
+
+                <button class="layui-btn layui-btn layui-btn-xs" onclick="x_admin_show('编辑分类信息','{$url[0]}',500,400)"><i
+                        class="layui-icon">&#xe642;</i>编辑
+                </button>
+                {if condition="$value['category_level']!=3"}
+                <button class="layui-btn layui-btn-warm layui-btn-xs" onclick="x_admin_show('添加子栏目','{$url[1]}')"><i
+                        class="layui-icon">&#xe642;</i>添加子栏目
+                </button>
+                {/if}
+                <button class="layui-btn-danger layui-btn layui-btn-xs"
+                        onclick="member_del(this,{$value['category_id']})" href="javascript:;"><i class="layui-icon">&#xe640;</i>删除
+                </button>
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+</div>
+<style type="text/css">
+
+</style>
+<script>
+
+    layui.use(['form'], function () {
+        form = layui.form;
+
+    });
+
+
+    function member_del(obj, id) {
+        layer.confirm('确认要删除吗？', function (index) {
+            //发异步删除数据
+            $.post("{:url('category/del')}", {id: id}, function (data) {
+                $(obj).parents("tr").remove();
+                layer.msg('已删除!', {icon: 1, time: 1000});
+            });
+        });
+    }
+
+
+    function delAll(argument) {
+        var data = tableCheck.getData();
+        // console.log(data);return
+        layer.confirm('确认要删除吗？' + data, function (index) {
+            //捉到所有被选中的，发异步进行删除
+            $.post("{:url('category/delall')}", {id: data}, function (data) {
+                var jsonData = JSON.parse(data);
+                if (jsonData[0] == 200) {
+                    layer.msg(jsonData[1], {icon: 1});
+                }
+                if (jsonData[0] == 400) {
+                    layer.msg(jsonData[1], {icon: 2});
+                }
+                $(".layui-form-checked").not('.header').parents('tr').remove();
+            })
+
+        });
+    }
+
+    function editSort(obj) {
+        //索引
+        var index = $('.x-sort').index(obj);
+        //id
+        var id = $('.category_id').eq(index).text();
+        //新值
+        var value = obj.value;
+        $.get("{:url('category/editsort')}", {value: value, id: id}, function (data) {
+            var jsonData = JSON.parse(data);
+            var icon = jsonData[0] == 200 ? 1 : 2;
+            layer.msg(jsonData[1], {icon: icon, time: 1000});
+        });
+    }
+
+    layui.use('form', function () {  //如果只加载一个模块，可以不填数组。如：layui.use('form')
+        var form = layui.form //获取form模块
+        form.on('switch(ifKeyDemo)', function (data) {
+            var value = data.elem.checked ? 1 : 2;
+            // 获取当前控件
+            var selectIfKey = data.elem;
+            //索引
+            var index = $('.category_status').index(selectIfKey)
+            //id
+            var id = $('.category_id').eq(index).text();
+            $.get("{:url('category/editstatus')}", {value: value, id: id}, function (data) {
+                var jsonData = JSON.parse(data);
+                var icon = jsonData[0] == 200 ? 1 : 2;
+                layer.msg(jsonData[1], {icon: icon, time: 1000});
+            });
+        });
+    });
+</script>

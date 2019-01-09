@@ -1,0 +1,182 @@
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="{:url('productlist/index')}">订单管理</a>
+        <a>
+          <cite>订单列表</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so">
+            <input class="layui-input" placeholder="开始日期" name="start" id="start" lay-key="1"
+                   value="{php}if(!empty($search['start'])){echo $search['start'];}{/php}">
+            <input class="layui-input" placeholder="结束日期" name="end" id="end" lay-key="2"
+                   value="{php}if(!empty($search['end'])){echo $search['end'];}{/php}">
+            <input type="text" name="list_id"
+                   value="{php}if(!empty($search['list_id'])){echo $search['list_id'];}{/php}" placeholder="订单ID"
+                   class="layui-input">
+            <input type="text" name="nick_name"
+                   value="{php}if(!empty($search['nick_name'])){echo $search['nick_name'];}{/php}" placeholder="用户昵称"
+                   class="layui-input">
+            <input type="text" name="order_number"
+                   value="{php}if(!empty($search['order_number'])){echo $search['order_number'];}{/php}"
+                   placeholder="订单号" class="layui-input" style="width:200px">
+            <input type="text" name="transaction_id"
+                   value="{php}if(!empty($search['transaction_id'])){echo $search['transaction_id'];}{/php}"
+                   placeholder="微信支付单号" class="layui-input" style="width:300px">
+            <div class="layui-input-inline">
+                <select id="is_pay" name="is_pay">
+                    <option value="">订单状态</option>
+                    {foreach $status['is_pay'] as $k=>$v}
+                    <option value="{$k}" {php}if(!empty($search[
+                    "is_pay"])&&$search["is_pay"]==$k){echo ' selected';}{/php}>{$v['msg']}</option>
+                    {/foreach}
+                </select>
+            </div>
+
+            <div class="layui-input-inline">
+                <select id="list_type" name="list_type">
+                    <option value="">订单类型</option>
+                    {foreach $status['list_type'] as $k=>$v}
+                    <option value="{$k}" {php}if(!empty($search[
+                    'list_type'])&&$search['list_type']==$k){echo ' selected';}{/php}>{$v['msg']}</option>
+                    {/foreach}
+                </select>
+            </div>
+            <button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon"></i></button>
+        </form>
+    </div>
+    <xblock>
+        {php}$addUrl=url('user/add');{/php}
+        <button class="layui-btn" onclick="x_admin_show('导出表格','{$addUrl}')"><i class="layui-icon"></i>导出表格</button>
+        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+        <span class="x-right" style="line-height:40px">共有数据：{$data->total()} 条</span>
+    </xblock>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>
+                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
+                        class="layui-icon">&#xe605;</i></div>
+            </th>
+            <th>ID</th>
+            <th>商品信息</th>
+            <th>订单号</th>
+            <th>微信支付单号</th>
+            <th>用户</th>
+            <th>支付金额信息</th>
+            <th>是否支付</th>
+            <th>订单类型</th>
+            <th>时间</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+        {foreach $data as $key=>$value}
+        <tr>
+            <td>
+                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='{$value["list_id"]}'><i
+                        class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td>
+                {$value['list_id']}
+            </td>
+
+            <td>
+                <a href="{:url('product/index',['id'=>$value['product_info']['product_id'],'product_type'=>$value['list_type']])}">{$value['product_info']['product_name']}</a><br/>
+            </td>
+            <td>
+                {$value['order_number']}
+            </td>
+            <td>
+                {$value['transaction_id']}
+            </td>
+            <td>
+                <a href="{:url('user/index',['id'=>$value['user_id']])}">{$value['user']['nick_name']}</a>
+            </td>
+            <td>
+                商品总价：￥{$value['result_money']}<br/>
+                邮费应付价格：￥{$value['express_money']}<br/>
+                <!--优惠券立减金额：-￥{#$value['coupon_money']}<br/>-->
+                实付金额：￥{$value['pay_money']}<br/>
+            </td>
+            <td>
+                {foreach $status['is_pay'] as $k=>$v}
+                {if condition="$value['is_pay']==$k"}
+                <span class="layui-btn {$v['css']}  layui-btn-xs">{$v['msg']}</span>
+                {/if}
+                {/foreach}
+            </td>
+            <td>
+                {foreach $status['list_type'] as $k=>$v}
+                {if condition="$value['list_type']==$k"}
+                <span class="layui-btn {$v['css']}  layui-btn-xs">{$v['msg']}</span>
+                {/if}
+                {/foreach}
+            </td>
+            <td>
+                下单时间：{php}echo date('Y-m-d H:i:s',$value['add_time']);{/php}<br/>
+                {if condition="$value['pay_time']"}
+                付款时间：{php}echo date('Y-m-d H:i:s',$value['pay_time']);{/php}<br/>
+                {/if}
+            </td>
+            {php}
+            $operate=[];
+            $operate[]=url('editSendOut',['id'=>$value['between_id']]);
+            {/php}
+            <td class="td-manage">
+                {if condition="$value['is_pay']==2||$value['is_pay']==3||$value['is_pay']==4"}
+                <a title="编辑产品基本信息" onclick="x_admin_show('编辑快递信息','{$operate[0]}',600,400)" href="javascript:;">
+                    <i class="iconfont">&#xe69e;</i>
+                </a>
+                {/if}
+                <a title="删除" onclick="member_del(this,{$value['list_id']})" href="javascript:;">
+                    <i class="iconfont"></i>
+                </a>
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    {$page}
+</div>
+<script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+
+    /*订单-删除*/
+    function member_del(obj, id) {
+        layer.confirm('确认要删除吗？', function (index) {
+            //发异步删除数据
+            $.post("{:url('del')}", {id: id}, function (data) {
+                $(obj).parents("tr").remove();
+                layer.msg('已删除!', {icon: 1, time: 1000});
+            });
+        });
+    }
+
+    function delAll(argument) {
+        var data = tableCheck.getData();
+        // console.log(data);return
+        layer.confirm('确认要删除吗？' + data, function (index) {
+            //捉到所有被选中的，发异步进行删除
+            $.post("{:url('delall')}", {id: data}, function (data) {
+                var jsonData = JSON.parse(data);
+                var icon = jsonData[0] == 200 ? 1 : 2;
+                layer.msg(jsonData[1], {icon: icon});
+                $(".layui-form-checked").not('.header').parents('tr').remove();
+            })
+        });
+    }
+</script>

@@ -1,0 +1,55 @@
+<div class="x-body">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label for="tracking_number" class="layui-form-label">
+                <span class="x-red">*</span>{$express_info[$listInfo['express_id']]['name']}物流单号：
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="tracking_number" name="tracking_number" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input" placeholder="请填写正确的快递物流单号" value="{$listInfo['tracking_number']}">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>请填写正确的快递物流单号
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <input type="hidden" name="between_id" id="between_id" value="{$listInfo['between_id']}">
+            <button class="layui-btn" lay-filter="add" lay-submit="">
+                保存
+            </button>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form', 'layer'], function () {
+        $ = layui.jquery;
+        var form = layui.form
+            , layer = layui.layer;
+
+        //监听提交
+        form.on('submit(add)', function (data) {
+            console.log(data.field);
+            $.post("{:url('editsendout')}", {data: data.field}, function (data) {
+                var jsonData = JSON.parse(data);
+                if (jsonData[0] == 200) {
+                    layer.alert(jsonData[1], {icon: 6}, function () {
+                        // 获得frame索引
+                        var index = parent.layer.getFrameIndex(window.name);
+                        //关闭当前frame
+                        parent.layer.close(index);
+                    });
+                } else {
+                    layer.msg(jsonData[1], {time: 1000, icon: 5}, function () {
+
+                    });
+                }
+                return false;
+            });
+            return false;
+
+        });
+
+
+    });
+</script>

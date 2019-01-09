@@ -1,0 +1,239 @@
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="{:url('user/index')}">用户管理</a>
+        <a>
+          <cite>用户充值列表</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+
+    <!--<div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so layui-form-pane">
+            <input class="layui-input" placeholder="分类名" name="cate_name">
+            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon"></i>增加</button>
+        </form>
+    </div>-->
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so">
+            <input type="text" name="user_record_id" value="{php}if(!empty($search['user_record_id'])){echo $search['user_record_id'];}{/php}" placeholder="ID" class="layui-input">
+            <input type="text" name="user_id" value="{php}if(!empty($search['user_id'])){echo $search['user_id'];}{/php}" placeholder="用户ID" class="layui-input">
+            <input type="text" name="order_number" value="{php}if(!empty($search['order_number'])){echo $search['order_number'];}{/php}" placeholder="订单号" class="layui-input">
+            <input type="text" name="transaction_id" value="{php}if(!empty($search['transaction_id'])){echo $search['transaction_id'];}{/php}" placeholder="支付单号" class="layui-input">
+            <div class="layui-input-inline">
+
+                <select id="agent_id" name="agent_id">
+                    <option value="">所属代理商</option>
+                    <option value="0" {php}if(!empty($search['agent_id'])&&$search['agent_id']==0){echo ' selected';}{/php}>无代理商用户</option>
+                    {foreach $agentArr as $key=>$value}
+                        <option value="{$value.agent_id}" {php}if(!empty($search['agent_id'])&&$search['agent_id']==$value['agent_id']){echo ' selected';}{/php}>{$value.agent_name}</option>
+                    {/foreach}
+
+                </select>
+                
+            </div>
+            <div class="layui-input-inline">
+
+                <select id="is_pay" name="is_pay">
+                    <option value="">支付状态</option>
+                    
+                    <option value="2" {php}if(!empty($search['is_pay'])&&$search['is_pay']==2){echo ' selected';}{/php}>已支付</option>
+                    <option value="1" {php}if(!empty($search['is_pay'])&&$search['is_pay']==1){echo ' selected';}{/php}>未支付</option>
+                    
+
+                </select>
+                
+            </div>
+            
+            <button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon"></i></button>
+        </form>
+    </div>
+    <xblock>
+        {php}$addUrl=url('user/add');{/php}
+        <!--<button class="layui-btn" onclick="x_admin_show('添加用户','{$addUrl}')"><i class="layui-icon"></i>添加</button>-->
+        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+        <span class="x-right" style="line-height:40px">共有数据：{$data->total()} 条</span>
+    </xblock>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>
+                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+            </th>
+            <th>ID</th>
+            
+            <th>订单号</th>
+            <th>微信支付单号</th>
+            <th>代理商ID</th>
+            <th>用户ID</th>
+            
+            <th>实付金额</th>
+            <th>是否支付</th>
+            <th>服务名称</th>
+            <th>生效时间</th>
+            <th>到期时间</th>
+            <th>服务时间（月）</th>
+            <th>操作时间</th><!-- 
+            <th>操作</th> -->
+        </thead>
+        <tbody>
+        {foreach $data as $key=>$value}
+        <tr>
+
+            <td>
+                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='{$value['user_record_id']}'><i class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td>
+                {$value['user_record_id']}
+            </td>
+            <td>
+                {$value['order_number']}
+            </td>
+            <td>
+                {$value['transaction_id']}
+            </td>
+            <td>
+            {php}
+                if($value['agent']['agent_name']!=NULL){
+                echo $value['agent']['agent_name'];
+                }else{
+                   echo '暂无代理';
+                }
+                {/php}
+            </td>
+            <td>
+                {$value['user']['nick_name']}
+            </td>
+            <td>
+                ￥{$value['member_pay_money']}
+            </td>
+            <td>
+                {if condition="$value['is_pay']==1"}
+                    未支付
+                {else}
+                    已支付
+                {/if}
+                
+            </td>
+            <td>
+                {$value['service_name']}  
+            </td>
+            <td>
+                {php}echo date('Y-m-d H:i:s',$value['begin_time']);{/php}
+            </td>
+            <td>
+            {php}echo date('Y-m-d H:i:s',$value['end_time']);{/php}
+            </td>
+            
+            <td>
+                {$value['service_time']}
+            </td>
+            
+            
+            
+            <td>
+                {php}echo date('Y-m-d H:i:s',$value['user_record_add_time']);{/php}
+            </td>
+            {php}
+            $operate=[];
+            $operate[]=url('user/edit',['id'=>$value['user_record_id']]);
+            $operate[]=url('user/del',['id'=>$value['user_record_id']]);
+            {/php}
+            <!-- <td class="td-manage">
+                <a title="编辑" onclick="x_admin_show('编辑用户','{$operate[0]}')" href="javascript:;">
+                    <i class="layui-icon">&#xe642;</i>
+                </a>
+                <a title="删除" onclick="member_del(this,{$value['user_record_id']})" href="javascript:;">
+                    <i class="layui-icon">&#xe640;</i>
+                </a>
+            </td> -->
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    {$page}
+
+
+</div>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+
+    /*用户-停用*/
+    function member_stop(obj,id){
+        layer.confirm('确认要停用吗？',function(index){
+
+            if($(obj).attr('title')=='启用'){
+
+                //发异步把用户状态进行更改
+                $(obj).attr('title','停用')
+                $(obj).find('i').html('&#xe62f;');
+
+                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
+                layer.msg('已停用!',{icon: 5,time:1000});
+
+            }else{
+                $(obj).attr('title','启用')
+                $(obj).find('i').html('&#xe601;');
+
+                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
+                layer.msg('已启用!',{icon: 5,time:1000});
+            }
+
+        });
+    }
+
+    /*用户-删除*/
+    function member_del(obj,id){
+        layer.confirm('确认要删除吗？',function(index){
+            //发异步删除数据
+            $.post("{:url('del')}",{id:id},function(data){
+                $(obj).parents("tr").remove();
+                layer.msg('已删除!',{icon:1,time:1000});
+            });
+        });
+    }
+    function delAll (argument) {
+        var data = tableCheck.getData();
+        // console.log(data);return
+        layer.confirm('确认要删除吗？'+data,function(index){
+            //捉到所有被选中的，发异步进行删除
+            $.post("{:url('userrecharge/delall')}",{id:data},function(data){
+                var jsonData=JSON.parse(data);
+                var icon=jsonData[0]==200?1:2;
+                layer.msg(jsonData[1], {icon: icon});
+                $(".layui-form-checked").not('.header').parents('tr').remove();
+            })
+
+        });
+    }
+    layui.use('form', function(){  //如果只加载一个模块，可以不填数组。如：layui.use('form')
+        var form = layui.form //获取form模块
+        form.on('switch(ifKeyDemo)', function(data){
+            var value=data.elem.checked?1:2;
+            // 获取当前控件
+            var selectIfKey=data.elem;
+            //索引
+            var index=$('.user_is_lock').index(selectIfKey)
+            //id
+            var id=$('.user_id').eq(index).val();
+            $.get("{:url('user/editstatus')}",{value:value,id:id},function(data){
+                var jsonData=JSON.parse(data);
+                var icon=jsonData[0]==200?1:2;
+                layer.msg(jsonData[1],{icon:icon,time:1000});
+            });
+        });
+    });
+</script>

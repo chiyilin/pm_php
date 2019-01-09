@@ -1,0 +1,178 @@
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="{:url('index/index')}">首页</a>
+        <a>
+          <cite>Banner管理</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <!--<div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so layui-form-pane">
+            <input class="layui-input" placeholder="分类名" name="cate_name">
+            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon"></i>增加</button>
+        </form>
+    </div>-->
+    <xblock>
+        {php}$addUrl=url('banner/SynUpload');{/php}
+        <button class="layui-btn" onclick="x_admin_show('添加Banner','{$addUrl}')"><i class="layui-icon"></i>添加Banner</button>
+        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+        <span class="x-right" style="line-height:40px">共有数据：{$data->total()} 条</span>
+    </xblock>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th width="50">
+                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+            </th>
+            <th width="50">ID</th>
+            <th width="200">Banner 图片</th>
+            <th width="200">跳转地址</th>
+            <th width="200">跳转路径</th>
+            <th width="10">排序</th>
+            <th width="50">是否展示</th>
+            <th width="50">添加时间</th>
+            <th width="50">操作</th>
+        </thead>
+        <tbody>
+        {foreach $data as $key=>$value}
+        <tr>
+            <td>
+                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='{$value['banner_id']}'><i class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td>
+                {$value['banner_id']}
+            </td>
+
+            <td>
+                <img src="/{$value['url']}" style="width:100%" >
+            </td>
+            <td>
+                {php}if(!empty($value['path_index'])){
+                echo $page[$value['path_index']]['desc'];
+                }{/php}
+            </td>
+            <td>
+                {$value['path']}
+                {php}
+
+                if(!empty($value['ext'])){
+                $extArr=unserialize($value['ext']);
+                $str='';
+                foreach($extArr as $k=>$v){
+                if($k==0){
+                $str.='?';
+                }else{
+                $str.='&';
+                }
+                $str.=$page[$value['path_index']]['ext'][$k].'='.$v;
+                }
+                echo $str;
+                }
+                {/php}
+            </td>
+            <td>
+                <input type="number" class="layui-input x-sort" name="order" value="{$value['sort']}" onblur="editSort(this)">
+                <input type="hidden" class="banner_id" name="banner_id" value="{$value['banner_id']}">
+            </td>
+            <td>
+                <form class="layui-form">
+                    <input type="checkbox" name="switch" class="display" lay-text="展示|隐藏"  {if condition="$value['display']==1"} checked {/if} lay-skin="switch" lay-filter="ifKeyDemo">
+                </form>
+            </td>
+            <td>
+                {php}echo date('Y-m-d H:i:s',$value['add_time']);{/php}
+            </td>
+            {php}
+$operate=url('page',['id'=>$value['banner_id'],'index'=>$value['path_index']]);
+
+            {/php}
+            <td class="td-manage">
+                <a title="修改/查看" onclick="x_admin_show('链接管理','{$operate}')" href="javascript:;">
+                    <i class="iconfont">&#xe69e;</i>
+                </a>
+
+                <a title="删除" onclick="member_del(this,{$value['banner_id']})" href="javascript:;">
+                    <i class="iconfont">&#xe69d;</i>
+                </a>
+            </td>
+        </tr>
+        {/foreach}
+</tbody>
+</table>
+{$data->render()}
+</div>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+
+    function editSort(obj){
+        //索引
+        var index=$('.x-sort').index(obj);
+        //id
+        var id=$('.banner_id').eq(index).val();
+        //新值
+        var value=obj.value;
+        $.get("{:url('banner/editsort')}",{value:value,id:id},function(data){
+            var jsonData=JSON.parse(data);
+            var icon=jsonData[0]==200?1:2;
+            layer.msg(jsonData[1],{icon:icon,time:1000});
+        });
+    }
+    function member_del(obj,id){
+        layer.confirm('确认要删除吗？',function(index){
+            //发异步删除数据
+            $.post("{:url('banner/del')}",{id:id},function(data){
+                $(obj).parents("tr").remove();
+                layer.msg('已删除!',{icon:1,time:1000});
+            });
+        });
+    }
+    function delAll (argument) {
+        var data = tableCheck.getData();
+        // console.log(data);return
+        layer.confirm('确认要删除吗？'+data,function(index){
+            //捉到所有被选中的，发异步进行删除
+            $.post("{:url('banner/delall')}",{id:data},function(data){
+                var jsonData=JSON.parse(data);
+                if(jsonData[0]==200){
+                    layer.msg(jsonData[1], {icon: 1});
+                }
+                if(jsonData[0]==400){
+                    layer.msg(jsonData[1], {icon: 2});
+                }
+                $(".layui-form-checked").not('.header').parents('tr').remove();
+            })
+
+        });
+    }
+    layui.use('form', function(){  //如果只加载一个模块，可以不填数组。如：layui.use('form')
+        var form = layui.form //获取form模块
+        form.on('switch(ifKeyDemo)', function(data){
+            var value=data.elem.checked?1:2;
+            // 获取当前控件
+            var selectIfKey=data.elem;
+            //索引
+            var index=$('.display').index(selectIfKey)
+            //id
+            var id=$('.banner_id').eq(index).val();
+            $.get("{:url('banner/editstatus')}",{value:value,id:id},function(data){
+                var jsonData=JSON.parse(data);
+                var icon=jsonData[0]==200?1:2;
+                layer.msg(jsonData[1],{icon:icon,time:1000});
+            });
+        });
+    });
+</script>

@@ -1,0 +1,150 @@
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="{:url('deposit/index')}">提现管理</a>
+        <a>
+          <cite>提现列表</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so">
+
+            <!--<button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon"></i></button>-->
+        </form>
+    </div>
+    <xblock>
+        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+        <span class="x-right" style="line-height:40px">共有数据：{$data->total()} 条</span>
+    </xblock>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th style="width: 40px">
+                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
+                        class="layui-icon">&#xe605;</i></div>
+            </th>
+            <th style="width: 60px">ID</th>
+            <th>用户</th>
+            <th>提现金额</th>
+            <th>状态</th>
+            <th style="width: 140px">申请时间</th>
+            <th style="width: 40px">操作</th>
+        </thead>
+        <tbody>
+        {foreach $data as $key=>$value}
+        <tr>
+            <td>
+                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='{$value['deposit_id']}'><i class="layui-icon">&#xe605;</i>
+</div>
+</td>
+<td>
+    {$value['deposit_id']}
+</td>
+<td>
+    {$value['user']['nick_name']}
+</td>
+<td>
+    {$value['money']}
+</td>
+<td>
+    {php}
+    switch($value['deposit_status']){
+        case 1:
+        echo '待审核';
+        break;
+        case 2:
+        echo '已通过';
+        break;
+        case 3:
+        echo '已驳回';
+        break;
+    }
+    {/php}
+</td>
+<td>
+    {php}echo date('Y-m-d H:i:s',$value['deposit_add_time']);{/php}
+</td>
+<td class="td-manage">
+    <a title="通过" onclick="sure(this,{$value['deposit_id']},2)" href="javascript:;">
+        <i class="iconfont">&#xe6ad;</i>
+    </a>
+    <a title="驳回" onclick="sure(this,{$value['deposit_id']},3)" href="javascript:;">
+        <i class="iconfont">&#xe69a;</i>
+    </a>
+    <a title="删除" onclick="member_del(this,{$value['deposit_id']})" href="javascript:;">
+        <i class="iconfont">&#xe69d;</i>
+    </a>
+</td>
+</tr>
+{/foreach}
+</tbody>
+</table>
+{$data->render()}
+</div>
+<script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+    function sure(obj,id,status) {
+        layer.confirm('确认吗？', function (index) {
+            //发异步删除数据
+            $.post("{:url('sure')}", {id: id,status:status}, function (data) {
+                var data=JSON.parse(data);
+                var msg=data.msg;
+                var icon=data.status!=1?1:2;
+                // $(obj).parents("tr").remove();
+                layer.msg(msg, {icon: icon, time: 2000});
+                // layer.confirm(data, {
+                //     btn: ['重要','奇葩'] //按钮
+                // }, function(){
+                //     layer.msg('的确很重要', {icon: 1});
+                // }, function(){
+                //     layer.msg('也可以这样', {
+                //         time: 20000, //20s后自动关闭
+                //         btn: ['明白了', '知道了']
+                //     });
+                // });
+            });
+        });
+    }
+
+    /*用户-删除*/
+    function member_del(obj, id) {
+        layer.confirm('确认要删除吗？', function (index) {
+            //发异步删除数据
+            $.post("{:url('del')}", {id: id}, function (data) {
+                $(obj).parents("tr").remove();
+                layer.msg('已删除!', {icon: 1, time: 3000});
+
+            });
+        });
+    }
+
+    function delAll(argument) {
+        var data = tableCheck.getData();
+        // console.log(data);return
+        layer.confirm('确认要删除吗？' + data, function (index) {
+            //捉到所有被选中的，发异步进行删除
+            $.post("{:url('delall')}", {id: data}, function (data) {
+                var jsonData = JSON.parse(data);
+                var icon = jsonData[0] == 200 ? 1 : 2;
+                layer.msg(jsonData[1], {icon: icon});
+                $(".layui-form-checked").not('.header').parents('tr').remove();
+            })
+
+        });
+    }
+</script>

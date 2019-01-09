@@ -1,0 +1,37 @@
+<div>
+    {$data['entrust_content']}
+</div>
+<div class="layui-fluid" id="LAY-component-grid-speed-dial">
+    <div class="layui-row layui-col-space1">
+        {foreach $data['image'] as $key=>$value}
+        <div class="layui-col-xs4">
+            <!-- 填充内容 -->
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <img src="/{$value['url']}" style="width: 343px;" class="layer-photos-demo">
+                </div>
+            </div>
+        </div>
+        {/foreach}
+    </div>
+</div>
+<script>
+    layui.use(['form', 'layer', 'upload', 'laydate'], function () {
+        $ = layui.jquery;
+
+        var form = layui.form
+            , layer = layui.layer
+            , upload = layui.upload
+            , laydate = layui.laydate
+        console.log(layer)
+        $('.layer-photos-demo').click(function () {
+            console.log(1)
+            layer.photos({
+                photos: '.layui-card-body'
+                , anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+            });
+        });
+
+    });
+</script>
+

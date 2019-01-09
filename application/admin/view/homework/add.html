@@ -1,0 +1,74 @@
+<div class="x-body">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label for="homework_name" class="layui-form-label">
+                <span class="x-red">*</span>作业名称：
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" name="homework_name" id="homework_name" style="width: 400px;" required=""
+                       lay-verify="required" autocomplete="off" class="layui-input" placeholder="请填写产品名称">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="homework_content" class="layui-form-label">
+                <span class="x-red">*</span>作业内容：
+            </label>
+            <div class="layui-input-inline">
+                <textarea id="homework_content" name="homework_content" required="" lay-verify="required"
+                          style="width:400px;height:400px;"
+                          autocomplete="off" class="layui-input" placeholder="请填写作业内容"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="product_name" class="layui-form-label">
+                <span class="x-red">*</span>对应产品：
+            </label>
+            <div class="layui-input-inline">
+                <select id="product_name" name="product_name" class="layui-input">
+                    <option value="">请选择产品</option>
+                    {foreach $product as $key=>$value}
+                    <option value="{$value['product_id']}">{$value['product_name']}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+            </label>
+            <button class="layui-btn" lay-filter="add" lay-submit="" id="submit">
+                添加
+            </button>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form', 'layer'], function () {
+        $ = layui.jquery;
+        var form = layui.form
+            , layer = layui.layer
+
+        //监听提交
+        form.on('submit(add)', function (data) {
+            // console.log(data.field);
+            $.post("{:url('homework/add')}", {data: data.field}, function (data) {
+                var jsonData = JSON.parse(data);
+                console.log(jsonData)
+                if (jsonData[0] == 200) {
+                    layer.alert(jsonData[1], {icon: 6}, function () {
+                        // 获得frame索引
+                        var index = parent.layer.getFrameIndex(window.name);
+                        //关闭当前frame
+                        parent.layer.close(index);
+                    });
+                } else {
+                    layer.msg(jsonData[1], {time: 1000, icon: 5}, function () {
+
+                    });
+                }
+                return false;
+            });
+            return false;
+
+        });
+    });
+</script>

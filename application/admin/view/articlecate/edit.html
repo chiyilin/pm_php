@@ -1,0 +1,73 @@
+<div class="x-body">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label for="cate_name" class="layui-form-label">
+                <span class="x-red">*</span>分类名称
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="cate_name" name="cate_name" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input" value="{$data['cate_name']}">
+                <input type="hidden" name="cate_id" value="{$data['cate_id']}">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red"></span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="cate_sort" class="layui-form-label">
+                <span class="x-red" >*</span>排序
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" id="cate_sort" name="cate_sort" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input" value="{$data['cate_sort']}">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red"></span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="cate_status" class="layui-form-label">
+                <span class="x-red">*</span>状态
+            </label>
+            <div class="layui-input-inline">
+                <input id="cate_status" name="cate_status" type="checkbox" name="switch" {if condition="$data['cate_status']==1"} checked {/if} class="layui-input" lay-text="开启|停用"  lay-skin="switch" lay-filter="ifKeyDemo">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red"></span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+            </label>
+            <button  class="layui-btn" lay-filter="add" lay-submit="">
+                修改分类信息
+            </button>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form','layer'], function(){
+        $ = layui.jquery;
+        var form = layui.form
+            ,layer = layui.layer;
+        //监听提交
+        form.on('submit(add)', function(data){
+            console.log(data.field)
+            $.post("{:url('edit')}",{data:data.field},function(data){
+                var jsonData=JSON.parse(data);
+                var icon=jsonData[0]==200?6:5;
+                layer.alert(jsonData[1], {icon: icon},function () {
+                    // 获得frame索引
+                    var index = parent.layer.getFrameIndex(window.name);
+                    //关闭当前frame
+                    parent.layer.close(index);
+                });
+                return false;
+            })
+            return false;
+
+        });
+
+
+    });
+</script>

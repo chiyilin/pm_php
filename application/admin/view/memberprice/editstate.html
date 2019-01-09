@@ -1,0 +1,161 @@
+<script src="__STATIC__/admin/appeditor/jquery.min.js"></script>
+<script charset="utf-8" src="__STATIC__/admin/appeditor/appeditor.min.js"></script>
+<link  rel="stylesheet" href="__STATIC__/admin/appeditor/appeditor.css">
+<style>
+    .cpc-diary-edit .editor-list{
+        margin-left: 0px;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<div class="x-body">
+    <form class="layui-form">
+        <div class="layui-col-lg6">
+            <label class="layui-form-label"><span class="x-red">*</span>标题：</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" id="title" required=""
+                       lay-verify="required" autocomplete="off" class="layui-input" placeholder="请填写说明标题" value="{$data['title']}">
+            </div>
+        </div>
+        <!--<div class="layui-form-item" style="padding-top:30px ">-->
+            <!--<label for="content" class="layui-form-label">-->
+                <!--<span class="x-red">*</span>正文：-->
+            <!--</label>-->
+            <!--<div class="layui-input-inline">-->
+                <!--<textarea id="content" name="content" required="" lay-verify="required"-->
+                          <!--style="width:400px;height:400px;"-->
+                          <!--autocomplete="off" class="layui-input" placeholder="请填写说明正文">{$data['content']}</textarea>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="layui-col-lg8 layui-form-item">
+            <label class="layui-form-label"><span class="x-red">*</span>产品简介：</label>
+            <div class="layui-input-block">
+                <div id="editor">{$data['content']}</div>
+            </div>
+        </div>
+        <!--<div class="layui-form-item">
+            <label for="layer_name" class="layui-form-label">
+                <span class="x-red">*</span>产品简介：
+            </label>
+            <div class="layui-input-inline">
+                <div id="editor_id"></div>
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red"></span>
+            </div>
+        </div>-->
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+            </label>
+            <input type="hidden" name="id" id="id" value="{$data['id']}">
+            <button class="layui-btn" lay-filter="add" lay-submit="" id="submit">
+                保存
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
+<script type="text/javascript" src="__STATIC__/admin/wangEditor-3.1.1/release/wangEditor.min.js"></script>
+<script>
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    // 通过 url 参数配置 debug 模式。url 中带有 wangeditor_debug_mode=1 才会开启 debug 模式
+    editor.customConfig.debug = true;
+    // 自定义菜单配置
+    editor.customConfig.menus = [
+        'head',  // 标题
+        'bold',  // 粗体
+        'fontSize',  // 字号
+        'fontName',  // 字体
+        'italic',  // 斜体
+        'underline',  // 下划线
+        'strikeThrough',  // 删除线
+        'foreColor',  // 文字颜色
+        'backColor',  // 背景颜色
+        'link',  // 插入链接
+        'list',  // 列表
+        'justify',  // 对齐方式
+        'quote',  // 引用
+        'emoticon',  // 表情
+        'image',  // 插入图片
+        'table',  // 表格
+        'video',  // 插入视频
+        'code',  // 插入代码
+        'undo',  // 撤销
+        'redo'  // 重复
+    ];
+    // 下面两个配置，使用其中一个即可显示“上传图片”的tab。但是两者不要同时使用！！！
+    // editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
+    editor.customConfig.uploadImgServer = '{:url("imageUpload")}'  // 上传图片到服务器
+    editor.customConfig.uploadFileName = 'file[]'
+    editor.create()
+    layui.use(['form', 'layer','upload'], function () {
+        $ = layui.jquery;
+
+        var form = layui.form
+            , layer = layui.layer
+            ,upload=layui.upload
+        var uploadInst = upload.render({
+            elem: '#LAY_avatarUpload',
+            url: "{:url('SynUpload')}",
+            before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    // $('#cover').attr('src', result); //图片链接（base64）
+                    $('#cover').css('display','block');
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code != 200){
+                    return layer.msg('上传失败');
+                }else{
+                    console.log(res.data)
+                    $('#cover').attr('src', '/'+res.data);
+                    $('#cover_src').val(res.data);
+                }
+                //上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+
+        //监听提交
+        form.on('submit(add)', function (data) {
+
+            $.post("{:url('memberprice/editstate')}", {data: data.field, details: editor.txt.html()}, function (data) {
+                var jsonData = JSON.parse(data);
+                console.log(jsonData)
+                if (jsonData[0] == 200) {
+                    layer.alert(jsonData[1], {icon: 6}, function () {
+                        // 获得frame索引
+                        var index = parent.layer.getFrameIndex(window.name);
+                        //关闭当前frame
+                        parent.layer.close(index);
+                    });
+                } else {
+                    layer.msg(jsonData[1], {time: 1000, icon: 5}, function () {
+
+                    });
+                }
+                return false;
+            });
+            return false;
+
+        });
+        $('#cover').click(function () {
+            layer.photos({
+                photos: '#layer-photos-demo'
+                ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+            });
+        });
+
+    });
+</script>
