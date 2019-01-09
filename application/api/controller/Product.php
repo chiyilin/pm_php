@@ -74,6 +74,7 @@ class Product extends Controller
     {
         $time = time();
         $param = $request->param();
+//        $param = $request->param();
         //商品信息
         $prodInfo = ProductModel::where(['product_id' => ["in", input('param.id/a')]])->select();
         $prodCountMoney = array_sum(array_column($prodInfo->toArray(), 'product_money'));
