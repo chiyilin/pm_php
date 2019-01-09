@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use app\common\model\Config as ConfigModel;
+use app\common\model\KdSetting;
 use think\Request;
 use app\common\model\Setting;
 
@@ -49,5 +50,15 @@ class Config extends Auth
         ];
         $result = Setting::where(['id' => 1])->update($updateData);
         return $msg = $result ? json_encode([200, '保存成功']) : json_encode([400, '保存失败']);
+    }
+
+    /**
+     * 快递100参数设置
+     */
+    public function kdSetting()
+    {
+        $data = KdSetting::limit(1)->find();
+        return $this->fetch(null, compact('data'));
+
     }
 }
