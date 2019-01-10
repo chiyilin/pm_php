@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use app\common\model\Config as ConfigModel;
+use app\common\model\CouponSetting;
 use app\common\model\KdSetting;
 use think\Request;
 use app\common\model\Setting;
@@ -71,5 +72,19 @@ class Config extends Auth
         ];
         $result = KdSetting::where(['kd_setting_id' => 1])->update($updateData);
         return $msg = $result ? json_encode([200, '保存成功']) : json_encode([400, '保存失败']);
+    }
+
+    /**
+     * 系统优惠券设置
+     */
+
+    public function couponSetting()
+    {
+        $data = CouponSetting::order(['add_time' => 'desc'])->paginate();
+//        halt($data->toArray());
+        return $this->fetch(null, [
+            'data' => $data,
+            'page' => $data->render(),
+        ]);
     }
 }
