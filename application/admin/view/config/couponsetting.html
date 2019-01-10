@@ -10,11 +10,11 @@
 </div>
 <div class="x-body">
     <xblock>
-        {php}$addUrl=url('SynUpload');{/php}
+        {php}$addUrl=url('couponAdd');{/php}
         <button class="layui-btn" onclick="x_admin_show('添加优惠券','{$addUrl}')"><i class="layui-icon"></i>添加优惠券
         </button>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <span class="x-right" style="line-height:40px">共有数据： 条</span>
+        <span class="x-right" style="line-height:40px">共有数据： {$data->count()} 条</span>
     </xblock>
     <table class="layui-table">
         <thead>
@@ -23,29 +23,35 @@
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
                         class="layui-icon">&#xe605;</i></div>
             </th>
-
             <th width="50">ID</th>
             <th width="200">优惠券面值</th>
             <th width="200">赠送门槛金额</th>
+            <th width="200">使用门槛金额</th>
             <th width="200">有效期（天）</th>
             <th width="10">状态</th>
-            <th width="50">添加时间</th>
+            <th width="100">添加时间</th>
             <th width="50">操作</th>
         </thead>
         <tbody>
         {foreach $data as $key=>$value}
         <tr>
-
             <td>
                 <div class="layui-unselect layui-form-checkbox" lay-skin="primary"
                      data-id='{$value["coupon_setting_id"]}'><i
                         class="layui-icon">&#xe605;</i>
                 </div>
             </td>
+            <input type="hidden" name="coupon_setting_id" class="coupon_setting_id"
+                   value="{$value['coupon_setting_id']}">
+            <td>{$value['coupon_setting_id']}</td>
+            <td>￥{$value['money']}</td>
+            <td>￥{$value['get_this_money']}</td>
+            <td>￥{$value['need_money']}</td>
 
+            <td>{$value['useful_life']}</td>
             <td>
                 <form class="layui-form">
-                    <input type="checkbox" name="switch" class="display" lay-text="展示|隐藏" {if
+                    <input type="checkbox" name="switch" class="display" lay-text="开启|关闭" {if
                            condition="$value['status']==1" }
                            checked {/if} lay-skin="switch" lay-filter="ifKeyDemo">
                 </form>
@@ -54,13 +60,12 @@
                 {php}echo date('Y-m-d H:i:s',$value['add_time']);{/php}
             </td>
             {php}
-            $operate=url('page',['id'=>$value['coupon_setting_id']]);
+            $operate=url('couponedit',['id'=>$value['coupon_setting_id']]);
             {/php}
             <td class="td-manage">
-                <a title="修改/查看" onclick="x_admin_show('链接管理','{$operate}')" href="javascript:;">
+                <a title="修改" onclick="x_admin_show('修改','{$operate}')" href="javascript:;">
                     <i class="iconfont">&#xe69e;</i>
                 </a>
-
                 <a title="删除" onclick="member_del(this,{$value['coupon_setting_id']})" href="javascript:;">
                     <i class="iconfont">&#xe69d;</i>
                 </a>
@@ -86,24 +91,11 @@
         });
     });
 
-    function editSort(obj) {
-        //索引
-        var index = $('.x-sort').index(obj);
-        //id
-        var id = $('.coupon_setting_id').eq(index).val();
-        //新值
-        var value = obj.value;
-        $.get("{:url('banner/editsort')}", {value: value, id: id}, function (data) {
-            var jsonData = JSON.parse(data);
-            var icon = jsonData[0] == 200 ? 1 : 2;
-            layer.msg(jsonData[1], {icon: icon, time: 1000});
-        });
-    }
 
     function member_del(obj, id) {
         layer.confirm('确认要删除吗？', function (index) {
             //发异步删除数据
-            $.post("{:url('banner/del')}", {id: id}, function (data) {
+            $.post("{:url('couponDel')}", {id: id}, function (data) {
                 $(obj).parents("tr").remove();
                 layer.msg('已删除!', {icon: 1, time: 1000});
             });
@@ -112,10 +104,11 @@
 
     function delAll(argument) {
         var data = tableCheck.getData();
-        // console.log(data);return
+        console.log(data);
+        // return false;
         layer.confirm('确认要删除吗？' + data, function (index) {
             //捉到所有被选中的，发异步进行删除
-            $.post("{:url('banner/delall')}", {id: data}, function (data) {
+            $.post("{:url('couponDelAll')}", {id: data}, function (data) {
                 var jsonData = JSON.parse(data);
                 if (jsonData[0] == 200) {
                     layer.msg(jsonData[1], {icon: 1});
@@ -139,7 +132,7 @@
             var index = $('.display').index(selectIfKey)
             //id
             var id = $('.coupon_setting_id').eq(index).val();
-            $.get("{:url('banner/editstatus')}", {value: value, id: id}, function (data) {
+            $.get("{:url('couponEditStatus')}", {value: value, id: id}, function (data) {
                 var jsonData = JSON.parse(data);
                 var icon = jsonData[0] == 200 ? 1 : 2;
                 layer.msg(jsonData[1], {icon: icon, time: 1000});

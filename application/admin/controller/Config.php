@@ -87,4 +87,72 @@ class Config extends Auth
             'page' => $data->render(),
         ]);
     }
+
+    public function couponAdd(Request $request)
+    {
+        if ($request->isPost()) {
+            $param = $request->param()['data'];
+            $result = CouponSetting::create([
+                'need_money' => $param['need_money'],
+                'get_this_money' => $param['get_this_money'],
+                'money' => $param['money'],
+                'useful_life' => $param['useful_life'],
+                'status' => !empty($param['status']) ? 1 : 2,
+                'add_time' => time(),
+            ]);
+            return $result ? json_encode([200, '添加成功！']) : json_encode([400, '添加失败！']);
+        }
+        return $this->fetch(null);
+    }
+
+    public function couponEdit(Request $request)
+    {
+        if ($request->isPost()) {
+            $param = $request->param()['data'];
+            $result = CouponSetting::where([
+                'coupon_setting_id' => $param['coupon_setting_id']
+            ])->update([
+                'need_money' => $param['need_money'],
+                'get_this_money' => $param['get_this_money'],
+                'money' => $param['money'],
+                'useful_life' => $param['useful_life'],
+                'status' => !empty($param['status']) ? 1 : 2,
+                'add_time' => time(),
+            ]);
+            return $result ? json_encode([200, '保存成功！']) : json_encode([400, '保存失败！']);
+        }
+        $config = CouponSetting::find($request->param()['id']);
+        return $this->fetch(null, compact('config'));
+    }
+
+    public function couponEditStatus()
+    {
+        $param = input('param.');
+        $BannerModel = new CouponSetting();
+        $result = $BannerModel->save(
+            [
+                'status' => $param['value']
+            ], [
+                'coupon_setting_id' => $param['id']
+            ]
+        );
+        return $result ? json_encode([200, '修改成功！']) : json_encode([400, '修改失败！']);
+    }
+
+    public function couponDel()
+    {
+        $id = input('param.id');
+        $result = CouponSetting::destroy($id);
+        return $msg = $result ? '删除成功' : '删除失败';
+    }
+
+
+    public function couponDelAll()
+    {
+        $id = input('param.id/a');
+        if (empty($id)) return '请选中后操作！';
+        $idArr = implode(',', $id);
+        $result = CouponSetting::where('coupon_setting_id', 'in', $idArr)->delete();
+        return $msg = $result ? json_encode([200, '删除成功']) : json_encode([400, '删除失败']);
+    }
 }

@@ -1,0 +1,156 @@
+<div class="x-body">
+
+    <form class="layui-form ">
+
+        <div class="layui-elem-quote">
+
+            <p>系统优惠券信息设置：</p>
+
+        </div>
+        <div class="layui-form-item">
+
+            <label class="layui-form-label">优惠券金额：</label>
+
+            <div class="layui-input-block">
+
+                <input type="number" name="money" required="" value="{$config['money']}"
+
+                       lay-verify="required"
+
+                       placeholder="使用门槛金额，单位（元）"
+
+                       autocomplete="off" class="layui-input">
+
+                <div class="layui-form-mid layui-word-aux">指用户使用该优惠券门槛金额，单位（元）</div>
+
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+
+            <label class="layui-form-label">使用门槛金额：</label>
+
+            <div class="layui-input-block">
+
+                <input type="number" name="need_money" required="" value="{$config['need_money']}"
+
+                       lay-verify="required"
+
+                       placeholder="使用门槛金额，单位（元）"
+
+                       autocomplete="off" class="layui-input">
+
+                <div class="layui-form-mid layui-word-aux">指用户使用该优惠券门槛金额，单位（元）</div>
+
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+
+            <label class="layui-form-label">获得门槛金额：</label>
+
+            <div class="layui-input-block">
+
+                <input type="number" name="get_this_money" required="" value="{$config['get_this_money']}"
+
+                       lay-verify="required"
+
+                       placeholder="获得门槛金额，单位（元）"
+
+                       autocomplete="off" class="layui-input">
+
+                <div class="layui-form-mid layui-word-aux">指用户订单累计金额达到此金额之后才可获得此优惠券，单位（元）</div>
+
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+
+            <label class="layui-form-label">有效天数：</label>
+
+            <div class="layui-input-block">
+
+                <input type="number" name="useful_life" required="" value="{$config['useful_life']}"
+
+                       lay-verify="required"
+
+                       placeholder="有效天数，单位（元）"
+
+                       autocomplete="off" class="layui-input">
+
+                <div class="layui-form-mid layui-word-aux">指用户获得此优惠券后可以使用的有效天数，单位（元）</div>
+
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+
+            <label class="layui-form-label">是否启用：</label>
+
+            <div class="layui-input-block">
+
+                <input type="checkbox" name="status" class="display layui-input" lay-text="开启|关闭" {if
+                       condition="$config['status']==1" }
+                       checked {/if} lay-skin="switch" lay-filter="ifKeyDemo">
+
+            </div>
+            <div class="layui-form-mid layui-word-aux">关闭后系统不会向满足条件的用户赠送此优惠券，单位（元）</div>
+
+        </div>
+
+
+        <div class="layui-form-item">
+            <input type="hidden" name="coupon_setting_id" id="coupon_setting_id" value="{$config['coupon_setting_id']}">
+            <button class="layui-btn" lay-submit="" lay-filter="formDemoPane">保存</button>
+
+        </div>
+
+    </form>
+
+</div>
+
+<script>
+
+    layui.use(['form', 'layer'], function () {
+
+        $ = layui.jquery;
+
+        var form = layui.form
+
+            , layer = layui.layer;
+
+        form.on('submit(formDemoPane)', function (data) {
+
+            $.post("{:url()}", {data: data.field}, function (data) {
+
+                var jsonData = JSON.parse(data);
+
+                if (jsonData[0] == 200) {
+
+                    layer.msg(jsonData[1], {time: 1000, icon: 6}, function () {
+
+                        window.replace();
+
+                    });
+
+                } else {
+
+                    layer.msg(jsonData[1], {time: 1000, icon: 5}, function () {
+
+
+                    });
+
+                }
+
+                return false;
+
+            });
+
+            return false;
+
+
+        });
+
+    });
+
+</script>
