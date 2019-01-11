@@ -91,8 +91,7 @@
             , upload = layui.upload
         //监听提交
         form.on('submit(add)', function (data) {
-            console.log(data.field)
-            return false;
+            console.log(data.field);
             $.post("{:url('category/addmaster')}", {data: data.field}, function (data) {
                 var jsonData = JSON.parse(data);
                 var icon = jsonData[0] == 200 ? 6 : 5;
@@ -103,7 +102,7 @@
                     parent.layer.close(index);
                 });
                 return false;
-            })
+            });
             return false;
 
         });

@@ -106,7 +106,7 @@ class Category extends Auth
     }
 
     //新增分类
-    public function add()
+    public function add2()
     {
         if (!$this->request->isPost()) {
             return json_encode([400, '请求失败']);
@@ -147,14 +147,32 @@ class Category extends Auth
             ]);
             return $msg = $result ? json_encode([200, '添加成功']) : json_encode([400, '添加失败']);
         }
-        $data = CategoryModel::get(input('param.fid'));
-        if (!$data) {
-            return;
-        }
         $Category = CategoryModel::get(input('param.fid'));
         return $this->fetch('', [
             'category' => $Category
         ]);
+    }
+
+    /**
+     * 添加顶级分类
+     * @return false|mixed|string
+     */
+    public function add()
+    {
+        if ($this->request->isPost()) {
+            $param = $this->request->param()['data'];
+            $cate = new CategoryModel();
+            $result = $cate->save([
+                'category_name' => $param['category_name'],
+                'category_group_sort' => CategoryModel::max('category_group_sort') + 1,
+                'category_icon' => $param['category_icon'],
+                'category_status' => !empty($param['category_status']) ? 1 : 2,
+                'category_sort' => $param['category_sort'],
+                'category_time' => time(),
+            ]);
+            return $msg = $result ? json_encode([200, '添加成功']) : json_encode([400, '添加失败']);
+        }
+        return $this->fetch();
     }
 
     public function edit()
@@ -168,6 +186,7 @@ class Category extends Auth
 //                'category_fid' => $param['category_fid'],
                 'category_status' => !empty($param['category_status']) ? 1 : 2,
                 'category_sort' => $param['category_sort'],
+                'category_icon' => $param['category_icon'],
             ], [
                 'category_id' => $param['category_id'],
             ]);

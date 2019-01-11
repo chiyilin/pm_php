@@ -11,10 +11,10 @@
 </div>
 <div class="x-body">
     <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so layui-form-pane" action="{:url('category/add')}" method="post">
-            <input class="layui-input" placeholder="顶级分类名" name="category_name" required="" lay-verify="required">
-            <button class="layui-btn" lay-filter="add" lay-submit=""><i class="layui-icon"></i>增加</button>
-        </form>
+        <!--<form class="layui-form layui-col-md12 x-so layui-form-pane" action="{:url('category/add')}" method="post">-->
+        <!--<input class="layui-input" placeholder="顶级分类名" name="category_name" required="" lay-verify="required">-->
+        <!--<button class="layui-btn" lay-filter="add" lay-submit=""><i class="layui-icon"></i>增加</button>-->
+        <!--</form>-->
         <script>
             layui.use(['form', 'layer'], function () {
                 $ = layui.jquery;
@@ -26,7 +26,7 @@
                     $.post("{:url('category/add')}", {data: data.field}, function (data) {
                         var jsonData = JSON.parse(data);
                         var icon = jsonData[0] == 200 ? 6 : 5;
-                        layer.alert(jsonData[1], {icon: icon},function (res) {
+                        layer.alert(jsonData[1], {icon: icon}, function (res) {
                             location.replace(location.href);
                         });
                         return false;
@@ -40,6 +40,11 @@
     <blockquote class="layui-elem-quote">默认展示顶级分类，有子分类的前面加收缩图标<i class="layui-icon x-show" status='true'>&#xe623;</i>
     </blockquote>
     <xblock>
+        {php}
+        $url=url('add');
+        {/php}
+        <button class="layui-btn" onclick="x_admin_show('编辑分类信息','{$url}',600,400)"><i class="layui-icon"></i>增加
+        </button>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
         <span class="x-right" style="line-height:40px">共有数据：{php}echo count($data);{/php} 条</span>
     </xblock>
@@ -73,6 +78,9 @@
                 {else}
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 {/if}
+                {if condition="$value['category_icon']"}
+                <img src="/{$value['category_icon']}">
+                {/if}
                 {$value['category_name']}
             </td>
             <td>
@@ -90,11 +98,12 @@
                 $url[]=url('category/addmaster',['fid'=>$value['category_id']]);
                 {/php}
 
-                <button class="layui-btn layui-btn layui-btn-xs" onclick="x_admin_show('编辑分类信息','{$url[0]}',500,400)"><i
+                <button class="layui-btn layui-btn layui-btn-xs" onclick="x_admin_show('编辑分类信息','{$url[0]}',600,400)"><i
                         class="layui-icon">&#xe642;</i>编辑
                 </button>
                 {if condition="$value['category_level']!=3"}
-                <button class="layui-btn layui-btn-warm layui-btn-xs" onclick="x_admin_show('添加子栏目','{$url[1]}')"><i
+                <button class="layui-btn layui-btn-warm layui-btn-xs"
+                        onclick="x_admin_show('添加子栏目','{$url[1]}',600,400)"><i
                         class="layui-icon">&#xe642;</i>添加子栏目
                 </button>
                 {/if}

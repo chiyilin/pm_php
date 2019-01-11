@@ -6,8 +6,7 @@
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="category_name" name="category_name" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input" value="{$data['category_name']}">
-                <input type="hidden" name="category_id" value="{$data['category_id']}">
+                       autocomplete="off" class="layui-input" value="">
             </div>
             <div class="layui-form-mid layui-word-aux">
                 <span class="x-red"></span>
@@ -20,17 +19,13 @@
             <div class="layui-input-inline">
                 <div class="layui-upload">
                     <input type="text" style="display: none" name="category_icon" id="category_icon" autocomplete="off"
-                           class="layui-input" value="{$data['category_icon']}">
+                           class="layui-input">
                     <button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload"><i
                             class="layui-icon"></i>上传图片
                     </button>
                     <div class="layui-upload-list">
                         <div id="layer-photos-demo">
-                            {if condition="$data['category_icon']"}
-                            <img id="cover" src="/{$data['category_icon']}" style="width: 100px;">
-                            {else}
                             <img id="cover" src="" style="width: 100px;display: none">
-                            {/if}
                         </div>
                     </div>
                 </div>
@@ -38,13 +33,15 @@
             <div class="layui-form-mid layui-word-aux"><a href="https://www.iconfont.cn/"
                                                           target="_blank">推荐使用阿里矢量图标库</a></div>
         </div>
+
+
         <div class="layui-form-item">
             <label for="category_sort" class="layui-form-label">
                 <span class="x-red">*</span>排序
             </label>
             <div class="layui-input-inline">
-                <input type="number" id="category_sort" name="category_sort" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input" value="{$data['category_sort']}">
+                <input type="number" id="category_sort" name="category_sort" class="layui-input" value=""
+                       placeholder="请填写产品排序，可不填">
             </div>
             <div class="layui-form-mid layui-word-aux">
                 <span class="x-red"></span>
@@ -57,9 +54,8 @@
                 <span class="x-red">*</span>状态
             </label>
             <div class="layui-input-inline">
-                <input id="category_status" name="category_status" type="checkbox" name="switch" {if
-                       condition="$data['category_status']==1" } checked {/if} class="layui-input" lay-text="开启|停用"
-                lay-skin="switch" lay-filter="ifKeyDemo">
+                <input id="category_status" name="category_status" type="checkbox" name="switch" checked
+                       class="layui-input" lay-text="开启|停用" lay-skin="switch" lay-filter="ifKeyDemo">
             </div>
             <div class="layui-form-mid layui-word-aux">
                 <span class="x-red"></span>
@@ -69,18 +65,34 @@
             <label for="L_repass" class="layui-form-label">
             </label>
             <button class="layui-btn" lay-filter="add" lay-submit="">
-                修改分类信息
+                添加顶级分类
             </button>
         </div>
     </form>
 </div>
 <script>
-    layui.use(['form', 'layer', "upload"], function () {
+    layui.use(['form', 'layer', 'upload'], function () {
         $ = layui.jquery;
         var form = layui.form
             , layer = layui.layer
             , upload = layui.upload
         //监听提交
+        form.on('submit(add)', function (data) {
+            console.log(data.field);
+            $.post("{:url('add')}", {data: data.field}, function (data) {
+                var jsonData = JSON.parse(data);
+                var icon = jsonData[0] == 200 ? 6 : 5;
+                layer.alert(jsonData[1], {icon: icon}, function () {
+                    // 获得frame索引
+                    var index = parent.layer.getFrameIndex(window.name);
+                    //关闭当前frame
+                    parent.layer.close(index);
+                });
+                return false;
+            });
+            return false;
+
+        });
         var uploadInst = upload.render({
             elem: '#LAY_avatarUpload',
             url: "{:url('SynUpload')}",
@@ -111,23 +123,5 @@
                 });
             }
         });
-        form.on('submit(add)', function (data) {
-            console.log(data.field)
-            $.post("{:url('category/edit')}", {data: data.field}, function (data) {
-                var jsonData = JSON.parse(data);
-                var icon = jsonData[0] == 200 ? 6 : 5;
-                layer.alert(jsonData[1], {icon: icon}, function () {
-                    // 获得frame索引
-                    var index = parent.layer.getFrameIndex(window.name);
-                    //关闭当前frame
-                    parent.layer.close(index);
-                });
-                return false;
-            })
-            return false;
-
-        });
-
-
     });
 </script>
