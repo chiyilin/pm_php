@@ -14,11 +14,47 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="category_sort" class="layui-form-label">
-                <span class="x-red" >*</span>排序
+            <label for="category_icon" class="layui-form-label">
+                分类图标：
             </label>
             <div class="layui-input-inline">
-                <input type="number" id="category_sort" name="category_sort" class="layui-input" value="" placeholder="请填写产品排序，可不填">
+                <div class="layui-upload">
+                    <input type="text" style="display: none" name="category_icon" id="category_icon" autocomplete="off"
+                           class="layui-input">
+                    <button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload"><i
+                            class="layui-icon"></i>上传图片
+                    </button>
+                    <div class="layui-upload-list">
+                        <div id="layer-photos-demo">
+                            <img id="cover" src="" style="width: 100px;display: none">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-mid layui-word-aux"><a href="https://www.iconfont.cn/"
+                                                          target="_blank">推荐使用阿里矢量图标库</a></div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="categor_fid" class="layui-form-label">
+                <span class="x-red">*</span>上级分类
+            </label>
+            <div class="layui-input-inline">
+                <select id="category_fid" name="category_fid" lay-verify="required" autocomplete="off"
+                        class="layui-input">
+                    <option value="{$category['category_id']}">{$category['category_name']}</option>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="category_sort" class="layui-form-label">
+                <span class="x-red">*</span>排序
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" id="category_sort" name="category_sort" class="layui-input" value=""
+                       placeholder="请填写产品排序，可不填">
             </div>
             <div class="layui-form-mid layui-word-aux">
                 <span class="x-red"></span>
@@ -27,22 +63,12 @@
 
 
         <div class="layui-form-item">
-            <label for="categor_fid" class="layui-form-label">
-                <span class="x-red">*</span>上级分类
-            </label>
-            <div class="layui-input-inline">
-                <select id="category_fid" name="category_fid" lay-verify="required" autocomplete="off" class="layui-input">
-                    <option value="{$category['category_id']}">{$category['category_name']}</option>
-
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
             <label for="category_status" class="layui-form-label">
                 <span class="x-red">*</span>状态
             </label>
             <div class="layui-input-inline">
-                <input id="category_status" name="category_status" type="checkbox" name="switch"  checked  class="layui-input" lay-text="开启|停用"  lay-skin="switch" lay-filter="ifKeyDemo">
+                <input id="category_status" name="category_status" type="checkbox" name="switch" checked
+                       class="layui-input" lay-text="开启|停用" lay-skin="switch" lay-filter="ifKeyDemo">
             </div>
             <div class="layui-form-mid layui-word-aux">
                 <span class="x-red"></span>
@@ -51,24 +77,26 @@
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label">
             </label>
-            <button  class="layui-btn" lay-filter="add" lay-submit="">
+            <button class="layui-btn" lay-filter="add" lay-submit="">
                 添加
             </button>
         </div>
     </form>
 </div>
 <script>
-    layui.use(['form','layer'], function(){
+    layui.use(['form', 'layer', 'upload'], function () {
         $ = layui.jquery;
         var form = layui.form
-            ,layer = layui.layer;
+            , layer = layui.layer
+            , upload = layui.upload
         //监听提交
-        form.on('submit(add)', function(data){
+        form.on('submit(add)', function (data) {
             console.log(data.field)
-            $.post("{:url('category/addmaster')}",{data:data.field},function(data){
-                var jsonData=JSON.parse(data);
-                var icon=jsonData[0]==200?6:5;
-                layer.alert(jsonData[1], {icon: icon},function () {
+            return false;
+            $.post("{:url('category/addmaster')}", {data: data.field}, function (data) {
+                var jsonData = JSON.parse(data);
+                var icon = jsonData[0] == 200 ? 6 : 5;
+                layer.alert(jsonData[1], {icon: icon}, function () {
                     // 获得frame索引
                     var index = parent.layer.getFrameIndex(window.name);
                     //关闭当前frame
@@ -78,6 +106,36 @@
             })
             return false;
 
+        });
+        var uploadInst = upload.render({
+            elem: '#LAY_avatarUpload',
+            url: "{:url('SynUpload')}",
+            before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    // $('#cover').attr('src', result); //图片链接（base64）
+                    $('#cover').css('display', 'block');
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code != 200) {
+                    return layer.msg('上传失败');
+                } else {
+                    console.log(res.data)
+                    $('#cover').attr('src', '/' + res.data);
+                    $('#category_icon').val(res.data);
+                }
+                //上传成功
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
         });
     });
 </script>

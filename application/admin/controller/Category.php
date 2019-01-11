@@ -9,6 +9,7 @@
 namespace app\admin\controller;
 
 use app\common\model\Category as CategoryModel;
+use think\Image;
 
 class Category extends Auth
 {
@@ -50,6 +51,25 @@ class Category extends Auth
             ]
         );
         return $result ? json_encode([200, '修改成功！']) : json_encode([400, '修改失败！']);
+    }
+
+    public function SynUpload()
+    {
+        $file = request()->file('file');
+        if (!$file) {
+            return $this->fetch();
+        }
+        $path = 'uploads/cate';
+//        $path=ROOT_PATH.'extend/wxpay/cert';
+        $info = $file->move($path);
+        $resImageInfo = $path . '/' . $info->getSaveName();
+        $image = Image::open($resImageInfo);
+        $image->thumb(500, 500)->save($resImageInfo);
+        if ($info) {
+            return $this->result($resImageInfo, 200, '成功');
+        } else {
+            return $this->result($file->getError(), 400, '失败');
+        }
     }
 
     //修改分类状态
@@ -118,6 +138,7 @@ class Category extends Auth
             $result = $cate->save([
                 'category_name' => $param['category_name'],
                 'category_fid' => $param['category_fid'],
+                'category_icon' => $param['category_icon'],
                 'category_level' => $fidInfo['category_level'] + 1,
                 'category_group_sort' => $param['category_group_sort'],
                 'category_status' => !empty($param['category_status']) ? 1 : 2,
