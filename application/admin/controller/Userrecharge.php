@@ -11,7 +11,7 @@ namespace app\admin\controller;
 use app\common\model\User as UserModel;
 use think\Config;
 use app\agent\model\Agent;
-use app\common\model\UserRecord;
+use app\common\model\UserRecharge;
 
 class Userrecharge extends Auth
 {
@@ -61,9 +61,9 @@ class Userrecharge extends Auth
         //   `user_record_add_time` int(10) NOT NULL COMMENT '操作时间',
         //   PRIMARY KEY (`user_record_id`)
         // ) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
-        $UserRecord=UserRecord::with('user,agent')->where($where)->order('user_record_add_time desc')->paginate($this->basicConfig['paginate']);
+        $UserRecord=UserRecharge::with('user,agent')->where($where)->order('user_record_add_time desc')->paginate($this->basicConfig['paginate']);
         $agentArr=Agent::field('agent_id,agent_name')->select()->toArray();
-        // dump($UserRecord);
+        // dump($UserRecharge);
         return $this->fetch('',[
             'data'=>$UserRecord,
             'page'=>$UserRecord->render(),
@@ -145,7 +145,7 @@ class Userrecharge extends Auth
      * 删除用户
      */
     public function del(){
-        $result=UserRecord::destroy(input('param.id'));
+        $result=UserRecharge::destroy(input('param.id'));
         return $msg=$result?'删除成功':'删除失败';
     }
     /**
@@ -156,7 +156,7 @@ class Userrecharge extends Auth
         if(empty($id)) return '请选中后操作！';
 
         $idArr=implode(',',$id);
-        $result=UserRecord::destroy($idArr);
+        $result=UserRecharge::destroy($idArr);
         return $msg=$result?json_encode([200,'删除成功']):json_encode([400,'删除失败']);
     }
 }

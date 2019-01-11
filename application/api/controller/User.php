@@ -277,7 +277,7 @@ class User extends Controller
 //         $data['begin_time']=$userInfo['member_end_time']==0?time():$userInfo->member_end_time;
 //         $data['end_time']=$data['begin_time']+$memberPriceInfo['time'];
 //         $userInfo->member_end_time=$data['end_time'];
-//         $res=UserRecord::create($data);
+//         $res=UserRecharge::create($data);
 //         $WxPay=new WxPay();
 //         $param=[
 //             'fee'=>$memberPriceInfo['price'],
@@ -308,7 +308,7 @@ class User extends Controller
 //      * 查看会员充值记录
 //      */
 //     public function rechargeHistory(){
-//         $res=UserRecord::where([
+//         $res=UserRecharge::where([
 //             'user_id'=>input('param.user_id'),'is_pay'=>2
 //         ])
 //             ->field('begin_time,end_time,member_pay_money,user_record_add_time,service_name')
@@ -332,13 +332,13 @@ class User extends Controller
 //         $WxPayApi=new \WxPayApi();
 //         $res=$WxPayApi->orderQuery($input);
 //         if(!empty($res['trade_state'])){
-//             $res=UserRecord::where(['is_pay'=>1,'order_number'=>input('param.order')])
+//             $res=UserRecharge::where(['is_pay'=>1,'order_number'=>input('param.order')])
 //                 ->update([
 //                     'is_pay'=>2,
 //                     'transaction_id'=>$res['transaction_id']
 //                 ]);
 //             if($res){
-//                 $UserRecordInfo=UserRecord::where(['is_pay'=>2,'order_number'=>input('param.order')])->find();
+//                 $UserRecordInfo=UserRecharge::where(['is_pay'=>2,'order_number'=>input('param.order')])->find();
 //                 UserModel::update(['member_end_time'=>$UserRecordInfo['end_time']],['user_id'=>$UserRecordInfo['user_id']]);
 //             }
 //         }

@@ -50,7 +50,7 @@ class Login extends Controller
             'nick_name' => $param['nick_name'],
             'face' => $param['face'],
             'user_sex' => $param['sex'],
-            'lines' => $Setting['default_lines'],
+            'user_lines' => $Setting['default_lines'],
             'user_add_time' => time(),
         ];
         $result = User::update($data, ['openid' => $param['openid']]);

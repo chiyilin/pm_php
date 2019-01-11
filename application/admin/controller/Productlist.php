@@ -7,7 +7,7 @@ use app\common\model\User as UserModel;
 use app\common\model\Product;
 
 use app\common\model\ProdList;
-use app\common\model\UserRecord;
+use app\common\model\UserRecharge;
 use think\Config;
 use think\Request;
 
@@ -161,7 +161,7 @@ class Productlist extends Auth
         }
 
 
-        $data = UserRecord::with('user,member')->where($where)->order('user_record_add_time desc')->paginate($this->basicConfig['paginate']);
+        $data = UserRecharge::with('user,member')->where($where)->order('user_record_add_time desc')->paginate($this->basicConfig['paginate']);
 
         $fxs = Config::get('miniapp')['fxs'];
 //        dump($data->toArray());

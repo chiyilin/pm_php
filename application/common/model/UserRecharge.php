@@ -11,7 +11,7 @@ namespace app\common\model;
 
 use think\Model;
 
-class UserRecord extends Model
+class UserRecharge extends Model
 {
 	public function user(){
 		return $this->hasOne('User','user_id','user_id');
