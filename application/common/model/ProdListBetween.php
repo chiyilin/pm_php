@@ -15,7 +15,7 @@ class ProdListBetween extends Model
 {
     public function product()
     {
-        return $this->hasMany('Product', 'product_id', 'product_id');
+        return $this->hasOne('Product', 'product_id', 'product_id');
     }
 
     public function user()

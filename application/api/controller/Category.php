@@ -61,25 +61,27 @@ class Category extends Controller
         $param = $request->param();
         $config = Config::get('config');
         $prodFace = $config['face'];
-        $cateInfo = CategoryModel::where([
-            'category_fid' => $param['category_id'],
-            'category_status' => 1
-        ])->order([
-            'category_group_sort' => 'desc',
-            'category_sort' => 'desc'
-        ])->field('category_id,category_name,category_level')->select()->toArray();
-        if ($cateInfo) {
-            $cateIdArr = array_column($cateInfo, 'category_id');
-            if ($cateInfo[0]['category_level'] == 3) {
-                array_push($cateIdArr, $param['category_id']);
-            }
+        if ($param) {
             $cateInfo = CategoryModel::where([
-                'category_fid' => ['in', $cateIdArr],
+                'category_fid' => $param['category_id'],
                 'category_status' => 1
             ])->order([
                 'category_group_sort' => 'desc',
                 'category_sort' => 'desc'
-            ])->field('category_id,category_name')->select()->toArray();
+            ])->field('category_id,category_name,category_level')->select()->toArray();
+            if ($cateInfo) {
+                $cateIdArr = array_column($cateInfo, 'category_id');
+                if ($cateInfo[0]['category_level'] == 3) {
+                    array_push($cateIdArr, $param['category_id']);
+                }
+                $cateInfo = CategoryModel::where([
+                    'category_fid' => ['in', $cateIdArr],
+                    'category_status' => 1
+                ])->order([
+                    'category_group_sort' => 'desc',
+                    'category_sort' => 'desc'
+                ])->field('category_id,category_name')->select()->toArray();
+            }
         }
         $data = [
             //商品品相
@@ -91,7 +93,7 @@ class Category extends Controller
                 3 => '价格低的',
             ],
             //分类信息
-            'cateInfo' => $cateInfo,
+            'cateInfo' => !empty($cateInfo) ? $cateInfo : null,
         ];
         $this->result($data, 200, 'success');
     }
@@ -165,14 +167,20 @@ class Category extends Controller
         $param = $request->param();
         $where = [];
         $where['product_status'] = 1;
-        $idArr = !empty($param['currentCate']) ? $param['currentCate'] : [$param['category_id']];
-        $where['cate_id_first|cate_id_second|cate_id_third'] = ['in', $idArr];
+        if (!empty($param['currentCate'])) {
+            $where['cate_id_first|cate_id_second|cate_id_third'] = ['in', $param['currentCate']];
+        } elseif (!empty($param['category_id'])) {
+            $where['cate_id_first|cate_id_second|cate_id_third'] = ['in', [$param['category_id']]];
+        } elseif (!empty($param['searchKey'])) {
+            $where['product_name'] = ['in', $param['searchKey']];
+        }
         if (!empty($param['currentFace'])) {
             $where['product_face'] = ['in', $param['currentFace']];
         }
         if (!empty($param['searchKey'])) {
             $where['product_name'] = ['like', '%' . $param['searchKey'] . '%'];
         }
+//        halt($where);
         for ($i = 1; $i <= 4; $i++) {
             $time = time();
             switch ($i) {

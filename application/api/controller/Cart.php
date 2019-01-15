@@ -8,6 +8,7 @@
 
 namespace app\api\controller;
 
+use app\common\model\Setting;
 use phpDocumentor\Reflection\Types\Object_;
 use think\Config;
 use think\Controller;
@@ -31,10 +32,14 @@ class Cart extends Controller
         $param = $request->param();
         //待支付、待发货、待收货
         if ($param['current'] == 0) {
+            $setting = Setting::limit(1)->find();
             $data = UserGetProd::with('product')->where([
                 'user_id' => $param['user_id'],
                 'is_pay' => ['<', 2],
             ])->select();
+            foreach ($data as $key => $value) {
+                $data[$key]['end_pay_str'] = date('Y年m月d日 H时i分', $value['add_time'] + $setting['valid_day'] * 86400);
+            }
         } elseif ($param['current'] == 1) {
             $data = ProdListBetween::where([
                 'user_id' => $param['user_id'],
@@ -267,13 +272,29 @@ class Cart extends Controller
         $where['between_id'] = ['in', $param['between_id']];
         $where['user_id'] = $param['user_id'];
         if ($param['current'] == 1) {
+            //已付款商品申请发货
             $where['is_pay'] = 2;
             $update['is_pay'] = 3;
         } elseif ($param['current'] == 2) {
+            //发货商品确认收货
             $where['is_pay'] = ['in', '3,4'];
             $update['is_pay'] = 5;
             $update['on_hand_time'] = time();
         }
+        $data = ProdListBetween::where($where)->update($update);
+        $data ? $this->result([], 200, '操作成功') : $this->result([], 400, '操作失败！');
+    }
+
+    /**
+     * 付款成功后委托处理
+     */
+    public function applyEntrust(Request $request)
+    {
+        $where = $update = [];
+        $param = $request->param();
+        $where['between_id'] = ['in', $param['between_id']];
+        $where['user_id'] = $param['user_id'];
+        $update['is_pay'] = 6;
         $data = ProdListBetween::where($where)->update($update);
         $data ? $this->result([], 200, '操作成功') : $this->result([], 400, '操作失败！');
     }

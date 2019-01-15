@@ -44,8 +44,8 @@ class Product extends Controller
             $query->where(['user_id' => input('param.user_id')]);
         }])->limit(1)->find($param['id']);
         $data['product_face'] = $face[$data['product_face']];
-        $data['product_start_time'] = date('Y.m.d H:i', $data['product_start_time']);
-        $data['product_end_time'] = date('Y.m.d H:i', $data['product_end_time']);
+        $data['product_start_time_str'] = date('Y.m.d H:i', $data['product_start_time']);
+        $data['product_end_time_str'] = date('Y.m.d H:i', $data['product_end_time']);
 //        halt($data->toArray());
         //如果是竞价商品则查看最近一条出价记录。
         if ($data['product_type'] == 1) {

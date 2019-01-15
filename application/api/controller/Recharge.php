@@ -35,15 +35,6 @@ class Recharge extends Controller
      */
     public function unifiedOrder(Request $request)
     {
-
-//          `order_number` char(20) NOT NULL COMMENT '订单号',
-//          `transaction_id` char(28) DEFAULT NULL COMMENT '微信支付单号',
-//          `user_id` int(10) NOT NULL COMMENT '用户ID',
-//          `is_pay` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否支付(1、未支付；2、已经支付）',
-//          `lines` decimal(10,2) NOT NULL COMMENT '竞拍额度充值数量',
-//          `total_price` decimal(10,2) NOT NULL COMMENT '付款金额',
-//          `pay_time` int(10) NOT NULL,
-//          `add_time` int(10) NOT NULL COMMENT '操作时间',
         $param = $request->param();
         $time = time();
         $userInfo = User::where(['user_id' => $param['user_id']])->limit(1)->find();
@@ -76,23 +67,4 @@ class Recharge extends Controller
         $this->result($jsApiParameters, 200, 'success');
     }
 
-    public function test()
-    {
-        $time = time();
-        $UserRecharge = new UserRecharge();
-        $UserRechargeInfo = $UserRecharge->where([
-            'user_recharge_id' => 133,
-            'is_pay' => 1,
-        ])->limit(1)->find();
-        if (!$UserRechargeInfo) {
-            return false;
-        }
-        $UserRechargeInfo->is_pay = 2;
-        $UserRechargeInfo->pay_time = $time;
-        $UserRechargeRes = $UserRechargeInfo->save();
-        if ($UserRechargeRes) {
-            User::where(['user_id' => $UserRechargeInfo['user_id']])->setInc('user_lines', $UserRechargeInfo['lines']);
-        }
-        return true;
-    }
 }

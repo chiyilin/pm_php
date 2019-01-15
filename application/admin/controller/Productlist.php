@@ -119,7 +119,7 @@ class Productlist extends Auth
         $param = $request->param();
         if ($request->isPost()) {
             $data = $param['data'];
-            $result = ProdListBetween::where(['between_id' => $data['between_id']])->update(['tracking_number' => $data['tracking_number'], 'is_pay' => 5]);
+            $result = ProdListBetween::where(['between_id' => $data['between_id']])->update(['tracking_number' => $data['tracking_number'], 'is_pay' => 4]);
             return $msg = $result ? json_encode([200, '保存成功！']) : json_encode([400, '保存失败！']);
         } else {
             $listInfo = ProdListBetween::where(['between_id' => $param['id'], 'is_pay' => ['in', '2,3,4']])->limit(1)->find();

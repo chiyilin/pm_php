@@ -17,6 +17,7 @@ use app\common\model\UserMessage;
 use app\common\model\ConfigFx;
 use app\common\model\State;
 use app\common\model\UserGetProd;
+use app\common\model\ProdListBetween;
 
 use think\Request;
 
@@ -34,9 +35,9 @@ class User extends Controller
             //代付款（已得标未付款）
             'countGetProd' => UserGetProd::where(['user_id' => $user_id, 'is_pay' => 1])->count(),
             //已经支付的订单
-            'countExpressProd' => ProdList::where(['user_id' => $user_id, 'is_pay' => 2])->count(),
+            'countExpressProd' => ProdListBetween::where(['user_id' => $user_id, 'is_pay' => ['in','2,3']])->count(),
             //待收货订单
-            'countConfirmProd' => ProdList::where(['user_id' => $user_id, 'is_pay' => 3])->count(),
+            'countConfirmProd' => ProdListBetween::where(['user_id' => $user_id, 'is_pay' => 4])->count(),
         ];
         $this->result(compact('userinfo', 'myProdInfo'), 200, 'success');
     }

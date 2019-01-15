@@ -15,8 +15,8 @@
                    value="{php}if(!empty($search['start'])){echo $search['start'];}{/php}">
             <input class="layui-input" placeholder="结束日期" name="end" id="end" lay-key="2"
                    value="{php}if(!empty($search['end'])){echo $search['end'];}{/php}">
-            <input type="text" name="list_id"
-                   value="{php}if(!empty($search['list_id'])){echo $search['list_id'];}{/php}" placeholder="订单ID"
+            <input type="text" name="between_id"
+                   value="{php}if(!empty($search['between_id'])){echo $search['between_id'];}{/php}" placeholder="订单ID"
                    class="layui-input">
             <input type="text" name="nick_name"
                    value="{php}if(!empty($search['nick_name'])){echo $search['nick_name'];}{/php}" placeholder="用户昵称"
@@ -77,11 +77,11 @@
         {foreach $data as $key=>$value}
         <tr>
             <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='{$value["list_id"]}'><i
+                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='{$value["between_id"]}'><i
                         class="layui-icon">&#xe605;</i></div>
             </td>
             <td>
-                {$value['list_id']}
+                {$value['between_id']}
             </td>
 
             <td>
@@ -132,7 +132,7 @@
                     <i class="iconfont">&#xe69e;</i>
                 </a>
                 {/if}
-                <a title="删除" onclick="member_del(this,{$value['list_id']})" href="javascript:;">
+                <a title="删除" onclick="member_del(this,{$value['between_id']})" href="javascript:;">
                     <i class="iconfont"></i>
                 </a>
             </td>
