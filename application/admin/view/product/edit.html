@@ -4,7 +4,8 @@
             <label class="layui-form-label"><span class="x-red">*</span>产品名称：</label>
             <div class="layui-input-block">
                 <input type="text" name="product_name" id="product_name" required=""
-                       lay-verify="required" autocomplete="off" class="layui-input" placeholder="请填写产品名称">
+                       lay-verify="required" autocomplete="off" class="layui-input" placeholder="请填写产品名称"
+                       value="{$data['product_name']}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -14,13 +15,16 @@
             <div class="layui-input-inline">
                 <div class="layui-upload">
                     <input type="text" style="display: none" name="cover_src" id="cover_src" required=""
-                           lay-verify="required" autocomplete="off" class="layui-input">
+                           lay-verify="required" autocomplete="off" class="layui-input"
+                           value="{$data['product_cover']}">
+                    <input type="hidden" name="product_id" value="{$data['product_id']}">
+                    <input type="hidden" name="product_type" value="{$data['product_type']}">
                     <button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload"><i
                             class="layui-icon"></i>上传图片
                     </button>
                     <div class="layui-upload-list">
                         <div id="layer-photos-demo">
-                            <img id="cover" src="" style="width: 100px;display: none">
+                            <img id="cover" src="/{$data['product_cover']}" style="width: 100px;">
                         </div>
                     </div>
                 </div>
@@ -37,8 +41,8 @@
                 <select id="cate_id_first" name="cate_id_first" required="" lay-verify="required"
                         lay-filter="cate_id_first" autocomplete="off" class="layui-input">
                     <option value="">请选择分类</option>
-                    {foreach $product_category as $key=>$value}
-                    <option value="{$value['category_id']}">{$value['category_name']}</option>
+                    {foreach $firstCate as $key=>$value}
+                    <option value="{$value['category_id']}" {if condition="$data['cate_id_first']==$value['category_id']" } selected {/if}>{$value['category_name']}</option>
                     {/foreach}
                 </select>
             </div>
@@ -48,12 +52,18 @@
                 <select id="cate_id_second" name="cate_id_second" required="" lay-verify="required"
                         lay-filter="cate_id_second" autocomplete="off" class="layui-input">
                     <option value="">请选择商品二级分类</option>
+                    {foreach $secondCate as $key=>$value}
+                    <option value="{$value['category_id']}" {if condition="$data['cate_id_second']==$value['category_id']" } selected {/if}>{$value['category_name']}</option>
+                    {/foreach}
                 </select>
             </div>
             <div class="layui-input-inline">
                 <select id="cate_id_third" name="cate_id_third" required="" lay-verify="required"
                         lay-filter="cate_id_third" autocomplete="off" class="layui-input">
                     <option value="">请选择商品三级分类</option>
+                    {foreach $thirdCate as $key=>$value}
+                    <option value="{$value['category_id']}" {if condition="$data['cate_id_third']==$value['category_id']" } selected {/if}>{$value['category_name']}</option>
+                    {/foreach}
                 </select>
             </div>
             <div class="layui-form-mid layui-word-aux">单件商品只能归属于某一分类下。</div>
@@ -67,7 +77,8 @@
                         class="layui-input">
                     <option value="">藏品品相</option>
                     {foreach $face as $key=>$value}
-                    <option value="{$key}">{$value}</option>
+                    <option value="{$key}" {if condition="$data['product_face']" } selected {
+                    /if}>{$value}</option>
                     {/foreach}
                 </select>
             </div>
@@ -80,7 +91,8 @@
                 <select id="collection_id" name="collection_id" autocomplete="off" class="layui-input">
                     <option value="">藏品专场</option>
                     {foreach $collection as $key=>$value}
-                    <option value="{$value['collection_id']}">{$value['collection_name']}</option>
+                    <option value="{$value['collection_id']}" {if condition="$data['collection_id']" } selected {
+                    /if}>{$value['collection_name']}</option>
                     {/foreach}
                 </select>
             </div>
@@ -90,7 +102,8 @@
             <label class="layui-form-label"><span class="x-red">*</span>注意事项：</label>
             <div class="layui-input-block">
                 <input type="text" name="product_zysx" id="product_zysx" required=""
-                       lay-verify="required" autocomplete="off" class="layui-input" placeholder="请填写产品注意事项">
+                       lay-verify="required" autocomplete="off" class="layui-input" placeholder="请填写产品注意事项"
+                       value="{$data['product_zysx']}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -99,18 +112,20 @@
             </label>
             <div class="layui-input-inline">
                 <input type="text" name="product_money" id="product_money" required=""
-                       lay-verify="required" autocomplete="off" class="layui-input" placeholder="请填写商品价格">
+                       lay-verify="required" autocomplete="off" class="layui-input" placeholder="请填写商品价格"
+                       value="{$data['product_money']}">
             </div>
             <div class="layui-form-mid layui-word-aux">本商品的价格，单位（元），结果保留两位小数。</div>
         </div>
-        {if condition="$type==1"}
+        {if condition="$data['product_type']==1"}
         <div class="layui-form-item">
             <label for="product_times" class="layui-form-label">
                 <span class="x-red">*</span>加价幅度：
             </label>
             <div class="layui-input-inline">
                 <input type="text" name="product_times" id="product_times" required=""
-                       lay-verify="required" autocomplete="off" class="layui-input" placeholder="请填写商品加价幅度">
+                       lay-verify="required" autocomplete="off" class="layui-input" placeholder="请填写商品加价幅度"
+                       value="{$data['product_times']}">
             </div>
             <div class="layui-form-mid layui-word-aux">本商品的加价幅度，单位（元），结果保留两位小数。</div>
         </div>
@@ -120,15 +135,14 @@
                 <div class="layui-input-inline">
                     <input type="text" name="product_start_time" id="product_start_time" lay-verify="required"
                            placeholder="yyyy-MM-dd HH:mm:ss"
-                           autocomplete="off" class="layui-input" readonly>
+                           autocomplete="off" class="layui-input" value="{$data['product_start_time']}" readonly>
                 </div>
                 <div class="layui-form-mid">-</div>
                 <div class="layui-input-inline">
                     <input type="text" name="product_end_time" id="product_end_time" lay-verify="required"
                            placeholder="yyyy-MM-dd HH:mm:ss"
-                           autocomplete="off" class="layui-input" readonly>
+                           autocomplete="off" class="layui-input" value="{$data['product_end_time']}" readonly>
                 </div>
-
             </div>
         </div>
         {/if}
@@ -139,7 +153,8 @@
             <div class="layui-input-block">
                 <textarea id="cover_introduce" name="cover_introduce" required="" lay-verify="required"
                           style="width:500px;height:80px;"
-                          autocomplete="off" class="layui-input" placeholder="请填写封面简介"></textarea>
+                          autocomplete="off" class="layui-input"
+                          placeholder="请填写封面简介">{$data['cover_introduce']}</textarea>
             </div>
         </div>
 
@@ -147,7 +162,7 @@
         <div class="layui-col-lg8 layui-form-item">
             <label class="layui-form-label"><span class="x-red">*</span>产品简介：</label>
             <div class="layui-input-block">
-                <div id="editor"></div>
+                <div id="editor">{$data['product_introduce']}</div>
             </div>
         </div>
         <div class="layui-form-item">
@@ -156,7 +171,7 @@
             </label>
             <div class="layui-input-inline">
                 <input id="product_share_index" name="product_share_index" type="checkbox" class="layui-input"
-                       lay-text="开启|停用" lay-skin="switch" lay-filter="ifKeyDemo">
+                       lay-text="开启|停用" lay-skin="switch" lay-filter="ifKeyDemo" {if condition="$data['product_share_index']==2" } checked {/if}>
             </div>
             <div class="layui-form-mid layui-word-aux">
                 <span class="x-red"></span>
@@ -168,7 +183,7 @@
             </label>
             <div class="layui-input-inline">
                 <input id="product_collection_share" name="product_collection_share" type="checkbox" class="layui-input"
-                       lay-text="开启|停用" lay-skin="switch" lay-filter="ifKeyDemo">
+                       lay-text="开启|停用" lay-skin="switch" lay-filter="ifKeyDemo" {if condition="$data['product_collection_share']==2" } checked {/if}>
             </div>
             <div class="layui-form-mid layui-word-aux">
                 <span class="x-red"></span>
@@ -179,8 +194,8 @@
                 是否上架：
             </label>
             <div class="layui-input-inline">
-                <input id="product_status" name="product_status" type="checkbox" checked="" class="layui-input"
-                       lay-text="上架|下架" lay-skin="switch" lay-filter="ifKeyDemo">
+                <input id="product_status" name="product_status" type="checkbox" class="layui-input"
+                       lay-text="上架|下架" lay-skin="switch" lay-filter="ifKeyDemo" {if condition="$data['product_status']==1" } checked {/if}>
             </div>
             <div class="layui-form-mid layui-word-aux">
                 <span class="x-red"></span>
@@ -189,9 +204,8 @@
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label">
             </label>
-            <input type="hidden" name="product_type" id="product_type" value="{$type}">
             <button class="layui-btn" lay-filter="add" lay-submit="" id="submit">
-                添加
+                保存
             </button>
         </div>
     </form>
@@ -280,14 +294,10 @@
 
         //监听提交
         form.on('submit(add)', function (data) {
-            // var details=[];
-            // $("input[type=hidden]").each(function(){
-            //     details.push($(this).val());
-            // })
-            console.log(data.field)
-            $.post("{:url('product/add')}", {data: data.field, details: editor.txt.html()}, function (data) {
+            console.log(data.field);
+            // return false;
+            $.post("{:url('edit')}", {data: data.field, details: editor.txt.html()}, function (data) {
                 var jsonData = JSON.parse(data);
-                console.log(jsonData)
                 if (jsonData[0] == 200) {
                     layer.alert(jsonData[1], {icon: 6}, function () {
                         // 获得frame索引

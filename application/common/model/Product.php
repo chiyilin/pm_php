@@ -18,9 +18,19 @@ class Product extends Model
         return $this->hasMany('ProductBanner', 'product_id', 'product_id');
     }
 
-    public function category()
+    public function firstCate()
     {
-        return $this->hasOne('Category', 'category_id', 'product_category_id');
+        return $this->hasOne('Category', 'category_id', 'cate_id_first');
+    }
+
+    public function secondCate()
+    {
+        return $this->hasOne('Category', 'category_id', 'cate_id_second');
+    }
+
+    public function thirdCate()
+    {
+        return $this->hasOne('Category', 'category_id', 'cate_id_third');
     }
 
     public function userOfferPrice()

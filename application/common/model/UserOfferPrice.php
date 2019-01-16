@@ -17,4 +17,9 @@ class UserOfferPrice extends Model
     {
         return $this->hasOne('User', 'user_id', 'user_id');
     }
+
+    public function product()
+    {
+        return $this->hasOne('Product', 'product_id', 'product_id');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace app\api\controller;
 
+use app\common\model\UserOfferPrice;
 use think\Config;
 use think\Controller;
 use app\common\model\ProdList;
@@ -35,7 +36,7 @@ class User extends Controller
             //代付款（已得标未付款）
             'countGetProd' => UserGetProd::where(['user_id' => $user_id, 'is_pay' => 1])->count(),
             //已经支付的订单
-            'countExpressProd' => ProdListBetween::where(['user_id' => $user_id, 'is_pay' => ['in','2,3']])->count(),
+            'countExpressProd' => ProdListBetween::where(['user_id' => $user_id, 'is_pay' => ['in', '2,3']])->count(),
             //待收货订单
             'countConfirmProd' => ProdListBetween::where(['user_id' => $user_id, 'is_pay' => 4])->count(),
         ];
@@ -122,7 +123,6 @@ class User extends Controller
      */
     public function collection()
     {
-//        halt(input('param.'));
         $res = UserCollection::with(['product' => function ($query) {
             $query->field('product_name,product_id,product_cover,product_money,cover_introduce,product_zysx');
         }])->where('user_id', input('user_id'))
@@ -130,16 +130,38 @@ class User extends Controller
             ->limit((input('param.limit/a')[0] - 1) * input('param.limit/a')[1], input('param.limit/a')[1])
             ->select();
         $this->result($res, 200, 'success');
-//        halt($res->toArray());
+    }
 
-
-        if (count($res) == '') {
-            $data = '';
-        }
-        for ($i = 0; $i < count($res); $i++) {
-            $data[$i] = Product::with('product_banner')->where('product_id', $res[$i]['product_id'])->find();
+    /**
+     * 我的交易（竞买、关注、委托）
+     */
+    public function myTransaction(Request $request)
+    {
+        $param = $request->param();
+        if ($param['currentTab'] == 0) {
+            $data = UserOfferPrice::with([
+                'product' => function ($query) {
+                    $query->field('product_name,product_id,product_cover,product_zysx');
+                }])->where([
+                'user_id' => $param['user_id'],
+            ])->order(['offer_add_time' => 'desc', 'offer_money' => 'desc'])->select();
+        } elseif ($param['currentTab'] == 1) {
+            $data = UserCollection::with(['product' => function ($query) {
+                $query->field('product_name,product_id,product_cover,product_money,cover_introduce,product_zysx');
+            }])->where('user_id', input('user_id'))
+                ->field('collection_id,product_id')
+                ->limit((input('param.limit/a')[0] - 1) * input('param.limit/a')[1], input('param.limit/a')[1])
+                ->select();
+        } elseif ($param['currentTab'] == 2) {
+            $data = ProdListBetween::with(['product' => function ($query) {
+                $query->field('product_name,product_id,product_cover,product_zysx');
+            }])->where([
+                'user_id' => $param['user_id'],
+                'is_pay' => 6
+            ])->select();
         }
         $this->result($data, 200, 'success');
+
     }
 
     /**
