@@ -26,7 +26,7 @@ class Offerprice extends Controller
     {
         $param = $request->param();
         $userInfo = User::where(['user_id' => $param['user_id']])->limit(1)->find();
-        if ($userInfo['lines'] < $param['offer_money']) {
+        if ($userInfo['user_lines'] < $param['offer_money']) {
             $this->result('', 400, '竞拍额度不足！');
         }
         //产品信息
@@ -68,7 +68,7 @@ class Offerprice extends Controller
     {
         $param = $request->param();
         $userInfo = User::where(['user_id' => $param['user_id']])->limit(1)->find();
-        if ($userInfo['lines'] < $param['offer_money']) {
+        if ($userInfo['user_lines'] < $param['offer_money']) {
             $this->result('', 400, '竞拍额度不足！');
         }
         $nowMoney = UserOfferAgent::where([

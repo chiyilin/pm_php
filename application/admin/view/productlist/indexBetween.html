@@ -50,7 +50,7 @@
         </form>
     </div>
     <xblock>
-        {php}$addUrl=url('user/add');{/php}
+        {php}$addUrl=url('printf');{/php}
         <button class="layui-btn" onclick="x_admin_show('导出表格','{$addUrl}')"><i class="layui-icon"></i>导出表格</button>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
         <span class="x-right" style="line-height:40px">共有数据：{$data->total()} 条</span>

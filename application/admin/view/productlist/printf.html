@@ -37,17 +37,22 @@
                     {/foreach}
                 </select>
             </div>
+            <!--<div id="demo"></div>-->
             <!--<button class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon"></i></button>-->
             <input type="submit" class="layui-btn" value="导出">
         </form>
     </div>
 </div>
 <script>
-    layui.use(['laydate', 'form'], function () {
+    layui.use(['laydate', 'form', 'layedit'], function () {
         var laydate = layui.laydate;
         var form = layui.form;
-
+        var layedit = layui.layedit;
+        var demo = layedit.build('demo');
+        // console.log(demo);
         form.on('submit(search)', function (data) {
+            console.log(layedit.getContent(demo));
+            return false;
             console.log(data.field);
             // $.post("{:url()}", {data: data.field}, function (data) {
             //     var jsonData = JSON.parse(data);

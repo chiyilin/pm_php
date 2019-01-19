@@ -2,25 +2,17 @@
 <script charset="utf-8" src="__STATIC__/admin/appeditor/appeditor.min.js"></script>
 <link rel="stylesheet" href="__STATIC__/admin/appeditor/appeditor.css">
 <style>
-    #layer_introduce, #layer_adept, #layer_exp {
-        width: 440px;
-        height: 180px
-    }
-</style>
-<style>
-    .cpc-diary-edit .editor-list {
-        margin-left: 0px;
-        margin: 0;
-        padding: 0;
+    .w-e-text-container{
+        z-index: 1;
     }
 </style>
 <div class="x-body">
-    <form class="layui-form">
+    <form class="layui-form layui-col-lg6">
         <div class="layui-form-item">
             <label for="article_title" class="layui-form-label">
                 <span class="x-red">*</span>文章标题：
             </label>
-            <div class="layui-input-inline">
+            <div class="layui-input-block">
                 <input type="text" id="article_title" name="article_title" required="" lay-verify="required"
                        autocomplete="off" class="layui-input">
             </div>
@@ -29,37 +21,10 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="cover_src" class="layui-form-label">
-                <span class="x-red">*</span>文章封面：
-            </label>
-            <div class="layui-input-inline">
-                <div class="layui-upload">
-                    <input type="text" style="display: none" name="cover_src" id="cover_src" required=""
-                           lay-verify="required" autocomplete="off" class="layui-input">
-                    <button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload"><i
-                            class="layui-icon"></i>上传图片
-                    </button>
-                    <div class="layui-upload-list">
-                        <div id="layer-photos-demo">
-                            <img id="cover" src="" style="width: 100px;display: none">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-form-mid layui-word-aux">推荐尺寸：288x162px</div>
-        </div>
-        <div class="layui-col-lg8 layui-form-item">
-            <label class="layui-form-label"><span class="x-red">*</span>文章详情：</label>
-            <div class="layui-input-block">
-                <div id="editor"></div>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
             <label for="article_title" class="layui-form-label">
                 <span class="x-red">*</span>文章分类：
             </label>
-            <div class="layui-input-inline">
+            <div class="layui-input-block">
                 <select name="article_cate" required="" lay-verify="required" autocomplete="off" class="layui-input">
                     <option value="">--请选择文章所属分类--</option>
                     {foreach $ArticleCateModel as $key=>$value}
@@ -72,6 +37,36 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label for="cover_src" class="layui-form-label">
+                <span class="x-red">*</span>文章封面：
+            </label>
+            <div class="layui-input-block">
+                <div class="layui-upload">
+                    <input type="text" style="display: none" name="cover_src" id="cover_src" required=""
+                           lay-verify="required" autocomplete="off" class="layui-input">
+                    <button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload"><i
+                            class="layui-icon"></i>上传图片
+                    </button>
+                    <div class="layui-upload-list">
+                        <div id="layer-photos-demo">
+                            <img id="cover" src="" style="width: 100px;display: none">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-mid layui-word-aux">推荐尺寸：288x162px</div>
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="x-red">*</span>文章详情：</label>
+            <div class="layui-input-block">
+                <div id="editor"></div>
+            </div>
+        </div>
+
+
+
+        <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label">
             </label>
 
@@ -83,7 +78,7 @@
 </div>
 
 <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
-<script type="text/javascript" src="__STATIC__/admin/wangEditor-3.1.1/release/wangEditor.min.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/wangEditor-3.1.1/release/wangEditor.js"></script>
 <script>
     var E = window.wangEditor
     var editor = new E('#editor')

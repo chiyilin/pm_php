@@ -62,7 +62,7 @@ class Productlist extends Auth
     /**
      * 订单首页
      */
-    public function index1()
+    public function indexBetween()
     {
         $where = $search = [];
         if (input('param.nick_name')) {

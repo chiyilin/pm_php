@@ -54,23 +54,7 @@
                 }{/php}
             </td>
             <td>
-                {$value['path']}
-                {php}
-
-                if(!empty($value['ext'])){
-                $extArr=unserialize($value['ext']);
-                $str='';
-                foreach($extArr as $k=>$v){
-                if($k==0){
-                $str.='?';
-                }else{
-                $str.='&';
-                }
-                $str.=$page[$value['path_index']]['ext'][$k].'='.$v;
-                }
-                echo $str;
-                }
-                {/php}
+                {$value['path']}{$value['ext_str']}
             </td>
             <td>
                 <input type="number" class="layui-input x-sort" name="order" value="{$value['sort']}" onblur="editSort(this)">
@@ -90,7 +74,7 @@ $operate=url('page',['id'=>$value['banner_id'],'index'=>$value['path_index']]);
             {/php}
             <td class="td-manage">
                 <a title="修改/查看" onclick="x_admin_show('链接管理','{$operate}')" href="javascript:;">
-                    <i class="iconfont">&#xe69e;</i>
+                    <i class="iconfont"></i>
                 </a>
 
                 <a title="删除" onclick="member_del(this,{$value['banner_id']})" href="javascript:;">

@@ -165,7 +165,7 @@ class Category extends Auth
             $result = $cate->save([
                 'category_name' => $param['category_name'],
                 'category_group_sort' => CategoryModel::max('category_group_sort') + 1,
-                'category_icon' => $param['category_icon'],
+//                'category_icon' => $param['category_icon'],
                 'category_status' => !empty($param['category_status']) ? 1 : 2,
                 'category_sort' => $param['category_sort'],
                 'category_time' => time(),
@@ -186,7 +186,7 @@ class Category extends Auth
 //                'category_fid' => $param['category_fid'],
                 'category_status' => !empty($param['category_status']) ? 1 : 2,
                 'category_sort' => $param['category_sort'],
-                'category_icon' => $param['category_icon'],
+//                'category_icon' => $param['category_icon'],
             ], [
                 'category_id' => $param['category_id'],
             ]);

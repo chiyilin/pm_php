@@ -13,14 +13,26 @@
                        value="{$data['collection_name']}">
             </div>
         </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label"><span class="x-red">*</span>专场封面描述：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="cover_desc" id="cover_desc" required=""
+                           lay-verify="required" autocomplete="off" class="layui-input" placeholder="专场封面描述"
+                           value="{$data['cover_desc']}">
+                </div>
+            </div>
+        </div>
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label"><span class="x-red">*</span>所属分类：</label>
-                <div class="layui-input-inline" >
+                <div class="layui-input-inline">
                     <select name="category_id" id="category_id" class="layui-input" required="" lay-verify="required">
                         <option value="">--请选择--</option>
                         {foreach $cate as $key=>$value}
-                        <option value="{$value['category_id']}" {if condition="$data['category_id']==$value['category_id']"} selected{/if}>{$value['category_name']}</option>
+                        <option value="{$value['category_id']}" {if
+                                condition="$data['category_id']==$value['category_id']" } selected{/if}>{$value['category_name']}</option>
                         {/foreach}
                     </select>
                 </div>
@@ -52,13 +64,13 @@
                 <div class="layui-input-inline">
                     <input type="text" name="collection_start_time" id="collection_start_time" lay-verify="required"
                            placeholder="yyyy-MM-dd"
-                           autocomplete="off" class="layui-input" value="{$data['collection_start_time']}">
+                           autocomplete="off" class="layui-input" value="{$data['collection_start_time']}" readonly>
                 </div>
                 <div class="layui-form-mid">-</div>
                 <div class="layui-input-inline">
                     <input type="text" name="collection_end_time" id="collection_end_time"
                            lay-verify="required" placeholder="yyyy-MM-dd"
-                           autocomplete="off" class="layui-input" value="{$data['collection_end_time']}">
+                           autocomplete="off" class="layui-input" value="{$data['collection_end_time']}" readonly>
                 </div>
             </div>
         </div>
@@ -97,7 +109,7 @@
     </form>
 </div>
 <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
-<script type="text/javascript" src="__STATIC__/admin/wangEditor-3.1.1/release/wangEditor.min.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/wangEditor-3.1.1/release/wangEditor.js"></script>
 <script>
     var E = window.wangEditor
     var editor = new E('#editor')

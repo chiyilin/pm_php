@@ -1,5 +1,5 @@
 <!-- 左侧菜单开始 -->
-<div class="left-nav">
+<div class="left-nav" style="bottom: 0px;">
     <div id="side-nav">
         <ul id="nav">
 
@@ -103,12 +103,12 @@
                             <cite>一口价产品列表</cite>
                         </a>
                     </li>
-                    <li>
-                        <a _href="{:url('prodlistcomment/index')}">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>产品评论</cite>
-                        </a>
-                    </li>
+                    <!--<li>-->
+                    <!--<a _href="{:url('prodlistcomment/index')}">-->
+                    <!--<i class="iconfont">&#xe6a7;</i>-->
+                    <!--<cite>产品评论</cite>-->
+                    <!--</a>-->
+                    <!--</li>-->
                 </ul>
             </li>
             <li>
@@ -119,15 +119,9 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="{:url('productlist/index')}">
+                        <a _href="{:url('productlist/indexBetween')}">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite>
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="{:url('productlist/recode')}">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>会员充值记录</cite>
                         </a>
                     </li>
                 </ul>
@@ -200,9 +194,15 @@
                         </a>
                     </li>
                     <li>
+                        <a _href="{:url('config/kdSetting')}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>快递100参数</cite>
+                        </a>
+                    </li>
+                    <li>
                         <a _href="{:url('nav/index')}">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>首页导航设置</cite>
+                            <cite>自定义导航设置</cite>
                         </a>
                     </li>
                     <li>
@@ -217,14 +217,9 @@
                             <cite>数据设置</cite>
                         </a>
                     </li>
-                    <li>
-                        <a _href="{:url('config/kdSetting')}">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>快递100参数</cite>
-                        </a>
-                    </li>
                 </ul>
             </li>
+
         </ul>
     </div>
 </div>

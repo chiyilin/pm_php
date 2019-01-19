@@ -26,32 +26,43 @@ class Banner extends Auth
 //                dump($bannerInfo['path_index']);
                 if (!empty($bannerInfo['path_index'])) {
                     $this->assign('ext', $bannerInfo['path_index']);
-                    if($bannerInfo['path_index']==input('param.index')){
+                    if ($bannerInfo['path_index'] == input('param.index')) {
                         $this->assign('extInfo', unserialize($bannerInfo['ext']));
-                    }else{
+                    } else {
                         $this->assign('extInfo', null);
                     }
-                }else{
+                } else {
                     $this->assign('extInfo', null);
                 }
                 $this->assign('banner_id', input('param.id'));
             }
-            if (input('param.index')||input('param.index')==0) {
+            if (input('param.index') || input('param.index') == 0) {
                 $this->assign('ext', input('param.index'));
             }
         }
         if (request()->isPost()) {
             $data = request()->post()['data'];
             $pathInfo = $page[$data['page']];
-
-            $updateData=[
-                'ext' => null,
+            $updateData = [
+                'ext' => '',
+                'ext_str' => '',
                 'path_index' => $data['page'],
                 'path' => $pathInfo['addr'],
             ];
 
-            if(!empty(request()->post()['details'])){
-                $updateData['ext']=serialize(request()->post()['details']);
+            if (!empty(request()->post()['details'])) {
+                $details = request()->post()['details'];
+                $extStr = '';
+                foreach ($pathInfo['ext'] as $key => $value) {
+                    if ($key == 0) {
+                        $extStr .= '?';
+                    } else {
+                        $extStr .= '&';
+                    }
+                    $extStr .= $value . '=' . $details[$key];
+                }
+                $updateData['ext'] = serialize($details);
+                $updateData['ext_str'] = $extStr;
             }
 //            $extStr='';
 //            foreach ($pathInfo['ext'] as $key=>$value){
@@ -62,7 +73,7 @@ class Banner extends Auth
 //                }
 //                $extStr.=$value.'='.$ext[$key];
 //            }
-            $res=BannerModel::where('banner_id', $data['banner_id'])->update($updateData);
+            $res = BannerModel::where('banner_id', $data['banner_id'])->update($updateData);
             return $res ? json_encode([200, '操作成功！']) : json_encode([400, '操作失败！']);
 //            $this->assign('ext',input('param.index'));
         }
@@ -81,7 +92,7 @@ class Banner extends Auth
         $page = Config::get('page');
         // dump($config);
         return $this->fetch('', [
-            'page'=>$page,
+            'page' => $page,
             'data' => BannerModel::order('sort')->paginate($config['paginate']),
         ]);
     }

@@ -2,6 +2,7 @@
 
 namespace app\api\controller;
 
+use app\common\model\Nav;
 use app\common\model\UserOfferPrice;
 use think\Config;
 use think\Controller;
@@ -40,7 +41,9 @@ class User extends Controller
             //待收货订单
             'countConfirmProd' => ProdListBetween::where(['user_id' => $user_id, 'is_pay' => 4])->count(),
         ];
-        $this->result(compact('userinfo', 'myProdInfo'), 200, 'success');
+        //自定义导航
+        $navData = Nav::where(['nav_type' => 2, 'display' => 1])->order(['sort' => 'desc'])->field('cover_src,nav_title,path,ext_str')->select();
+        $this->result(compact('userinfo', 'myProdInfo', 'navData'), 200, 'success');
     }
 
     /**

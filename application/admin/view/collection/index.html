@@ -36,8 +36,10 @@
             <!--<div class="layui-unselect layui-form-checkbox"  style="float: left" lay-skin="primary" data-id='{$value['collection_id']}' ><i class="layui-icon">&#xe605;</i></div>-->
             <img src="/{$value['collection_cover']}" alt="" class="caller-fl" style="width:80px">
                 <div class="caller-main caller-fl">
-                    <!--<em>tips</em>-->
-                    <p><strong>{$value['collection_name']}</strong></p>
+                    <em>{$value['collection_name']}</em>
+                    <p><strong>{$value['cover_desc']}</strong></p>
+                    <!--<p class="layui-btn layui-btn-xs layui-btn-danger" style="display: inline">{$value['cover_desc']}</p>-->
+
                     <p class="caller-adds" style="width: 800px;word-wrap:break-word"><i class="iconfont">&#xe829;</i>：{$value['collection_start_time']}-{$value['collection_end_time']}</p>
                 </div>
                 <div class="caller-fr">
