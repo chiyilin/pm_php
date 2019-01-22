@@ -9,6 +9,7 @@
 namespace app\api\controller;
 
 
+use app\common\model\UserLinesRecord;
 use think\Controller;
 use app\common\model\UserOfferPrice;
 use app\common\model\UserOfferAgent;
@@ -47,16 +48,38 @@ class Offerprice extends Controller
             'offer_money' => $param['offer_money'],
             'offer_add_time' => time(),
         ]);
+        //为创建普通出价的用户添加一条竞拍额度使用流水记录
+        UserLinesRecord::create([
+            'user_id' => $param['user_id'],
+            'offer_id' => $result['offer_id'],
+            'product_id' => $param['product_id'],
+            'type' => 2,
+            'money' => -$param['offer_money'],
+            'record_add_time' => time(),
+        ]);
+        //对应用户减去相应的竞拍额度
+        User::where(['user_id' => $param['user_id']])->setDec('user_lines', $param['offer_money']);
         //目前最高代理价
         $agentInfo = UserOfferAgent::where(['product_id' => $param['product_id']])->order(['offer_money' => 'desc'])->limit(1)->find();
         if ($agentInfo['offer_money'] >= ($param['offer_money'] + $prodInfo['product_times'])) {
-            UserOfferPrice::create([
+            $agentRes = UserOfferPrice::create([
                 'user_id' => $agentInfo['user_id'],
                 'product_id' => $param['product_id'],
                 'is_agent' => 2,
                 'offer_money' => $param['offer_money'] + $prodInfo['product_times'],
                 'offer_add_time' => time(),
             ]);
+            //为创建普通出价的用户添加一条竞拍额度使用流水记录
+            UserLinesRecord::create([
+                'user_id' => $agentInfo['user_id'],
+                'offer_id' => $agentRes['offer_id'],
+                'product_id' => $param['product_id'],
+                'type' => 2,
+                'money' => -$agentRes['offer_money'],
+                'record_add_time' => time(),
+            ]);
+            //对应用户减去相应的竞拍额度
+            User::where(['user_id' => $agentInfo['user_id']])->setDec('user_lines', $agentRes['offer_money']);
         }
         $this->result($result, 200, 'success');
     }

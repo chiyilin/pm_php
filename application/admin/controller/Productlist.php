@@ -65,6 +65,19 @@ class Productlist extends Auth
     public function indexBetween()
     {
         $where = $search = [];
+        if (!empty($param['start'])) {
+            $where['add_time'] = ['>=', strtotime($param['start'])];
+            $search['start'] = $param['start'];
+        }
+        if (!empty($param['end'])) {
+            $where['add_time'] = ['<=', strtotime($param['end'])];
+            $search['end'] = $param['end'];
+        }
+        if (!empty($param['end']) && !empty($param['start'])) {
+            $where['add_time'] = ['between', [strtotime($param['start']), strtotime($param['end'])]];
+            $search['end'] = $param['end'];
+            $search['start'] = $param['start'];
+        }
         if (input('param.nick_name')) {
             $res = UserModel::where('nick_name', 'like', '%' . input('param.nick_name') . '%')->column('user_id');
             $where['user_id'] = ['in', $res];
@@ -140,10 +153,17 @@ class Productlist extends Auth
             $where = [];
 //            ?start=&end=&between_id=&user_id=&order_number=&transaction_id=&is_pay=&list_type=
             if (!empty($param['start'])) {
-                $where['start'] = strtotime($param['start']);
+                $where['add_time'] = ['>=', strtotime($param['start'])];
+                $search['start'] = $param['start'];
             }
             if (!empty($param['end'])) {
-                $where['end'] = strtotime($param['end']);
+                $where['add_time'] = ['<=', strtotime($param['end'])];
+                $search['end'] = $param['end'];
+            }
+            if (!empty($param['end']) && !empty($param['start'])) {
+                $where['add_time'] = ['between', [strtotime($param['start']), strtotime($param['end'])]];
+                $search['end'] = $param['end'];
+                $search['start'] = $param['start'];
             }
             if (!empty($param['between_id'])) {
                 $where['between_id'] = $param['between_id'];

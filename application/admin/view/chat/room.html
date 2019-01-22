@@ -1,0 +1,32 @@
+<button onclick="send()">123</button>
+<script>
+    var wsServer = 'ws://192.168.146.133:9501';
+    var websocket = new WebSocket(wsServer);
+    websocket.onopen = function (evt) {
+        console.log("Connected to WebSocket server.");
+    };
+
+    websocket.onclose = function (evt) {
+        console.log("Disconnected");
+    };
+
+    websocket.onmessage = function (evt) {
+        console.log('Retrieved data from server: ' + evt.data);
+    };
+
+    websocket.onerror = function (evt, e) {
+        console.log('Error occured: ' + evt.data);
+    };
+
+    function send() {
+        var sendData = {
+            content: 123,
+            date: Date.parse(new Date()) / 100,
+            type: 'text',
+            user_id: null,
+            nick_name: '主持人',
+            face: 'https://ss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/wisegame/wh%3D68%2C68/sign=b613bef7a0345982c5dfed9434d80795/8644ebf81a4c510ff837c8996d59252dd52aa545.jpg',
+        }
+        websocket.send(JSON.stringify(sendData))
+    }
+</script>

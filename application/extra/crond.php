@@ -10,8 +10,8 @@ $crond_list = array(
     //每分钟
     '*' => [
         'app\command\Minutes::checkList',
-        /*'app\command\Hour::Prod',
-        'app\command\Minutes::firstTest',
+        'app\command\Hour::Prod',
+        /*'app\command\Minutes::firstTest',
         'app\command\Minutes::secondTest',
         'app\command\Minutes::clearProdList',*/
     ],

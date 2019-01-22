@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-12-26 13:02:48
+Date: 2019-01-22 17:16:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,7 +35,7 @@ CREATE TABLE `qp_admin` (
 -- ----------------------------
 -- Records of qp_admin
 -- ----------------------------
-INSERT INTO `qp_admin` VALUES ('36', 'admin', '13210628679', '4297f44b13955235245b2497399d7a93', '1', '1545790623', '127.0.0.1', '1', '1535363738');
+INSERT INTO `qp_admin` VALUES ('36', 'admin', '13210628679', '4297f44b13955235245b2497399d7a93', '1', '1548121912', '127.0.0.1', '1', '1535363738');
 INSERT INTO `qp_admin` VALUES ('37', 'admin2', '15163444790', 'e10adc3949ba59abbe56e057f20f883e', '1', '1537414588', '::1', '1', '1535365628');
 INSERT INTO `qp_admin` VALUES ('38', 'admin3', '18688886666', 'e10adc3949ba59abbe56e057f20f883e', '1', '0', '', '1', '1539334037');
 INSERT INTO `qp_admin` VALUES ('39', 'admin4', '17588886666', 'e10adc3949ba59abbe56e057f20f883e', '1', '1539338660', '::1', '1', '1539334252');
@@ -49,19 +49,18 @@ DROP TABLE IF EXISTS `qp_article`;
 CREATE TABLE `qp_article` (
   `article_id` int(10) NOT NULL AUTO_INCREMENT,
   `article_cover` char(255) NOT NULL COMMENT '文章封面',
+  `cover_desc` char(255) NOT NULL,
   `article_title` varchar(100) NOT NULL COMMENT '文章标题',
   `article_details` text NOT NULL COMMENT '文章内容',
   `article_cate` tinyint(1) NOT NULL COMMENT '文章所属类型',
   `article_time` int(10) NOT NULL COMMENT '发布时间',
   PRIMARY KEY (`article_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qp_article
 -- ----------------------------
-INSERT INTO `qp_article` VALUES ('52', 'uploads/articleCover/201811/b462a952f027387bc3512c576f0f1ede.jpg', '中医进家，幸福开花：免费学习取证《高级中医理疗师》11月11日开课', '<p><img src=\"https://class.chdmhz.com/uploads/productImg/201812/573865587542396819b1b64d9a9d6335.jpg\"><img src=\"https://class.chdmhz.com/uploads/productImg/201812/fa5c35715c75653334678d6debc49757.jpg\"><img src=\"https://class.chdmhz.com/uploads/productImg/201812/541b808e57f372dce8113eb6ea1613f6.jpg\"><img src=\"https://class.chdmhz.com/uploads/productImg/201812/ac1f32a363a4932d298889ae0ea67c09.jpg\"><img src=\"https://class.chdmhz.com/uploads/productImg/201812/fc6532e4cb4ce8718e1ac17a58f0a272.jpg\"><img src=\"https://class.chdmhz.com/uploads/productImg/201812/71821ff5d00c54645b76c5deab1fd1de.jpg\"><br></p><p><br></p>', '6', '1541408676');
-INSERT INTO `qp_article` VALUES ('53', 'uploads/articleCover/201811/02759ccb4aa21be6eb4ffad0b9abe5e6.jpg', '11.162018年名家精华钜礼：《六壬神课金口诀基础实战精华班》11月18日隆重开课', '<p><img src=\"https://class.chdmhz.com/uploads/productImg/201812/573865587542396819b1b64d9a9d6335.jpg\"><img src=\"https://class.chdmhz.com/uploads/productImg/201812/fa5c35715c75653334678d6debc49757.jpg\"><img src=\"https://class.chdmhz.com/uploads/productImg/201812/541b808e57f372dce8113eb6ea1613f6.jpg\"><img src=\"https://class.chdmhz.com/uploads/productImg/201812/ac1f32a363a4932d298889ae0ea67c09.jpg\"><img src=\"https://class.chdmhz.com/uploads/productImg/201812/fc6532e4cb4ce8718e1ac17a58f0a272.jpg\"><img src=\"https://class.chdmhz.com/uploads/productImg/201812/71821ff5d00c54645b76c5deab1fd1de.jpg\"><br></p><p><br></p>', '5', '1542421689');
-INSERT INTO `qp_article` VALUES ('54', 'uploads/articleCover/201812/c5383df0eb81073b123d761d067fc6fb.jpg', '1', '<p>北京医宗金鉴中医技术研究院 院长</p><p>&nbsp;百年信康健康科技（北京）有限公司 董事长</p><p>&nbsp;中国中医科学研究院人体5S健康管理中心首席导师</p><p>全国科技人才培养工程培训中心 主任&nbsp;</p><p>陈海东梅花针人体规律学 研究创始人</p><p>&nbsp;陈海东梅花针爱心大使走进因病致贫家庭活动发起人 1979年生，祖籍安徽六安，自幼学医，少时得家师真传特色中医手法正骨、梅花针、胎息灸、寻经放血术、汤药秘方。从事临床实践20余年，调理康复患者数以千计，具有丰富中医临床辩证调理经验。1999年在中国中医研究院中国传统医学科技推广交流中心高级针灸,推拿调理班学习。 2002年被北京仁德洲中医药科学研究院聘为副院长，主任研究员。2003年在北京成立医学机构【北京世纪杏林脊椎矫正医学研究院】。 2004年在中华人民共和国卫生部职业技能鉴定指导中心，获得高级康复保健师。2005年在青岛成立了个人医学机构【青岛三奇堂人体脊柱平衡研究院】，专门从事颈椎病、腰椎病、胸椎病的调理和研究，硕果累累。&nbsp;&nbsp;<br></p><p><br></p>', '6', '1544493750');
+INSERT INTO `qp_article` VALUES ('55', 'uploads/articleCover/201901/a697853fe3103482f812c9765818094c.jpg', '', '使用教程！', '<p>这是使用教程</p>', '7', '1547777805');
 
 -- ----------------------------
 -- Table structure for `qp_article_cate`
@@ -74,13 +73,16 @@ CREATE TABLE `qp_article_cate` (
   `cate_sort` int(10) DEFAULT '1' COMMENT '分类排序（正序）',
   `add_time` int(10) DEFAULT NULL,
   PRIMARY KEY (`cate_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_article_cate
 -- ----------------------------
-INSERT INTO `qp_article_cate` VALUES ('5', '简介', '1', '1', '1541408022');
-INSERT INTO `qp_article_cate` VALUES ('6', '教程', '1', '1', '1541408028');
+INSERT INTO `qp_article_cate` VALUES ('7', '教程', '1', '1', '1547774844');
+INSERT INTO `qp_article_cate` VALUES ('8', '介绍', '1', '1', '1547774858');
+INSERT INTO `qp_article_cate` VALUES ('9', '哈哈啊', '1', '1', '1547775596');
+INSERT INTO `qp_article_cate` VALUES ('10', '最新活动', '1', '1', '1547775615');
+INSERT INTO `qp_article_cate` VALUES ('11', '321123231', '1', '1', '1547777893');
 
 -- ----------------------------
 -- Table structure for `qp_banner`
@@ -91,18 +93,21 @@ CREATE TABLE `qp_banner` (
   `url` varchar(300) NOT NULL,
   `display` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1、展示；2、隐藏',
   `path_index` int(10) DEFAULT NULL,
-  `path` char(100) DEFAULT NULL,
-  `ext` char(255) DEFAULT NULL,
+  `path` char(100) NOT NULL,
+  `ext` char(255) NOT NULL,
+  `ext_str` char(50) NOT NULL,
   `sort` tinyint(2) NOT NULL DEFAULT '1' COMMENT 'Banner排序（正序排列）',
   `add_time` int(10) NOT NULL,
   PRIMARY KEY (`banner_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=194 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=196 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_banner
 -- ----------------------------
-INSERT INTO `qp_banner` VALUES ('193', 'uploads/banner/201812/a8eca367606644b289f1cfa4f2c4a13f.jpg', '1', null, null, null, '1', '1545122705');
-INSERT INTO `qp_banner` VALUES ('192', 'uploads/banner/201812/6889949760eddb69b0074ab56b55a4e2.jpg', '1', null, null, null, '1', '1545122705');
+INSERT INTO `qp_banner` VALUES ('193', 'uploads/banner/201812/a8eca367606644b289f1cfa4f2c4a13f.jpg', '1', '2', '/pages/transaction/transaction', '', '', '1', '1545122705');
+INSERT INTO `qp_banner` VALUES ('192', 'uploads/banner/201812/6889949760eddb69b0074ab56b55a4e2.jpg', '1', '2', '/pages/transaction/transaction', '', '', '1', '1545122705');
+INSERT INTO `qp_banner` VALUES ('194', 'uploads/banner/201901/0f4cbcf44f1bbd84dbfec43f8c9a3d1c.jpg', '1', null, '', '', '', '1', '1547691807');
+INSERT INTO `qp_banner` VALUES ('195', 'uploads/banner/201901/5c094a49a67aff15ef36f97a91b63b8a.png', '1', null, '', '', '', '1', '1547691838');
 
 -- ----------------------------
 -- Table structure for `qp_category`
@@ -111,39 +116,43 @@ DROP TABLE IF EXISTS `qp_category`;
 CREATE TABLE `qp_category` (
   `category_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '商品分类表',
   `category_name` varchar(50) NOT NULL,
-  `category_sort` int(10) NOT NULL COMMENT '排序（正序）',
+  `category_icon` char(200) DEFAULT NULL,
+  `category_sort` int(10) NOT NULL COMMENT '排序',
   `category_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1：正常、2；关闭',
   `category_group_sort` tinyint(1) NOT NULL,
   `category_level` tinyint(1) NOT NULL DEFAULT '1',
   `category_fid` int(10) NOT NULL,
   `category_time` int(10) NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_category
 -- ----------------------------
-INSERT INTO `qp_category` VALUES ('48', '解放区邮票', '0', '1', '1', '3', '45', '1544694531');
-INSERT INTO `qp_category` VALUES ('47', '民国邮票', '0', '1', '1', '3', '45', '1544694511');
-INSERT INTO `qp_category` VALUES ('46', '清代邮票', '0', '1', '1', '3', '45', '1544694493');
-INSERT INTO `qp_category` VALUES ('45', '清民居邮票', '0', '1', '1', '2', '34', '1544694481');
-INSERT INTO `qp_category` VALUES ('44', '新中国邮票', '0', '1', '1', '2', '34', '1544694468');
-INSERT INTO `qp_category` VALUES ('39', '其他', '0', '1', '6', '1', '0', '1544694257');
-INSERT INTO `qp_category` VALUES ('37', '艺术', '2', '1', '4', '1', '0', '1544694247');
-INSERT INTO `qp_category` VALUES ('38', '文献', '1', '1', '5', '1', '0', '1544694253');
-INSERT INTO `qp_category` VALUES ('36', '书画', '3', '1', '3', '1', '0', '1544694241');
-INSERT INTO `qp_category` VALUES ('35', '钱币', '4', '1', '2', '1', '0', '1544694234');
-INSERT INTO `qp_category` VALUES ('34', '邮品', '5', '1', '1', '1', '0', '1544694229');
-INSERT INTO `qp_category` VALUES ('49', '全集年票', '0', '1', '1', '3', '44', '1544694558');
-INSERT INTO `qp_category` VALUES ('50', '小型/全章', '0', '1', '1', '3', '44', '1544694573');
-INSERT INTO `qp_category` VALUES ('51', '纪特邮票', '0', '1', '1', '3', '44', '1544694604');
-INSERT INTO `qp_category` VALUES ('52', '编年新邮', '0', '1', '1', '3', '44', '1544694623');
-INSERT INTO `qp_category` VALUES ('53', '“文”字头邮票', '0', '1', '1', '3', '44', '1544694667');
-INSERT INTO `qp_category` VALUES ('54', '普改航欠军', '0', '1', '1', '3', '44', '1544694698');
-INSERT INTO `qp_category` VALUES ('55', '编号邮票', '0', '1', '1', '3', '44', '1544694895');
-INSERT INTO `qp_category` VALUES ('56', '小本票', '0', '1', '1', '3', '44', '1544694949');
-INSERT INTO `qp_category` VALUES ('57', '封片简', '0', '1', '1', '2', '34', '1544694979');
-INSERT INTO `qp_category` VALUES ('58', '清代封片简', '0', '1', '1', '3', '57', '1544694998');
+INSERT INTO `qp_category` VALUES ('48', '解放区邮票', null, '0', '1', '1', '3', '45', '1544694531');
+INSERT INTO `qp_category` VALUES ('47', '民国邮票', null, '0', '1', '1', '3', '45', '1544694511');
+INSERT INTO `qp_category` VALUES ('46', '清代邮票', null, '0', '1', '1', '3', '45', '1544694493');
+INSERT INTO `qp_category` VALUES ('45', '清民居邮票', null, '0', '1', '1', '2', '34', '1544694481');
+INSERT INTO `qp_category` VALUES ('44', '新中国邮票', null, '0', '1', '1', '2', '34', '1544694468');
+INSERT INTO `qp_category` VALUES ('39', '其他', null, '0', '1', '6', '1', '0', '1544694257');
+INSERT INTO `qp_category` VALUES ('37', '艺术', null, '2', '1', '4', '1', '0', '1544694247');
+INSERT INTO `qp_category` VALUES ('38', '文献', null, '1', '1', '5', '1', '0', '1544694253');
+INSERT INTO `qp_category` VALUES ('36', '书画', null, '3', '1', '3', '1', '0', '1544694241');
+INSERT INTO `qp_category` VALUES ('35', '钱币', null, '4', '1', '2', '1', '0', '1544694234');
+INSERT INTO `qp_category` VALUES ('34', '邮品', null, '5', '1', '1', '1', '0', '1544694229');
+INSERT INTO `qp_category` VALUES ('49', '全集年票', null, '0', '1', '1', '3', '44', '1544694558');
+INSERT INTO `qp_category` VALUES ('50', '小型/全章', null, '0', '1', '1', '3', '44', '1544694573');
+INSERT INTO `qp_category` VALUES ('51', '纪特邮票', null, '0', '1', '1', '3', '44', '1544694604');
+INSERT INTO `qp_category` VALUES ('52', '编年新邮', null, '0', '1', '1', '3', '44', '1544694623');
+INSERT INTO `qp_category` VALUES ('53', '“文”字头邮票', null, '0', '1', '1', '3', '44', '1544694667');
+INSERT INTO `qp_category` VALUES ('54', '普改航欠军', null, '0', '1', '1', '3', '44', '1544694698');
+INSERT INTO `qp_category` VALUES ('55', '编号邮票', null, '0', '1', '1', '3', '44', '1544694895');
+INSERT INTO `qp_category` VALUES ('56', '小本票', null, '0', '1', '1', '3', '44', '1544694949');
+INSERT INTO `qp_category` VALUES ('57', '封片简', null, '0', '1', '1', '2', '34', '1544694979');
+INSERT INTO `qp_category` VALUES ('58', '清代封片简', null, '0', '1', '1', '3', '57', '1544694998');
+INSERT INTO `qp_category` VALUES ('59', '现代钱币', null, '0', '1', '2', '2', '35', '1546652657');
+INSERT INTO `qp_category` VALUES ('60', '人民币', null, '0', '1', '2', '3', '59', '1546652670');
+INSERT INTO `qp_category` VALUES ('61', 'haha', 'uploads/cate/201901/1376e60baf0eedfeb917f6ec5c17af6d.png', '12', '1', '3', '2', '36', '1547171195');
 
 -- ----------------------------
 -- Table structure for `qp_collection`
@@ -153,6 +162,7 @@ CREATE TABLE `qp_collection` (
   `collection_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '专场表',
   `collection_name` varchar(50) NOT NULL COMMENT '专场名',
   `collection_cover` varchar(300) NOT NULL COMMENT '专场封面',
+  `cover_desc` char(50) NOT NULL,
   `category_id` int(10) NOT NULL,
   `collection_start_time` int(10) NOT NULL,
   `collection_end_time` int(10) NOT NULL,
@@ -161,17 +171,18 @@ CREATE TABLE `qp_collection` (
   `collection_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1、展示；2、不展示',
   `collection_add_time` int(10) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`collection_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_collection
 -- ----------------------------
-INSERT INTO `qp_collection` VALUES ('51', '12.150001', 'uploads/collection/201812/6d0707be358578798137e61079d6973e.jpg', '35', '1544803200', '1544889600', '<p>12312<img src=\"http://qp.test/uploads/collectionImg/201812/a678c1302ef282d59b072622a0bab894.jpg\" style=\"max-width: 100%;\"></p><p><br></p>', '0', '1', '1544845025');
-INSERT INTO `qp_collection` VALUES ('52', '哈哈哈哈哈', 'uploads/collection/201812/03922f7887f891e5128bc1d246b691be.jpg', '0', '1544544000', '1545062400', '<p><span style=\"font-weight: bold;\">专场啊！</span><br></p><p><br></p>', '0', '1', '1544853329');
-INSERT INTO `qp_collection` VALUES ('53', '1.1', 'uploads/collection/201812/f493d52032287a531b14b99b2865e12a.jpg', '0', '1546272000', '1546358400', '<p>213</p><p><br></p>', '0', '1', '1544855379');
-INSERT INTO `qp_collection` VALUES ('54', '2.1', 'uploads/collection/201812/58470d8d8301cb38f2f0fe957897fe5a.png', '0', '1548950400', '1550764800', '<p>1</p><p><br></p>', '0', '1', '1544855451');
-INSERT INTO `qp_collection` VALUES ('55', '这个结束了', 'uploads/collection/201812/12b319077de054a9208adaa8a349b096.jpg', '0', '1543680000', '1544457600', '<p>结束了这个</p>', '0', '1', '1544861940');
-INSERT INTO `qp_collection` VALUES ('56', '12.17', 'uploads/collection/201812/b3e77e4f614aacce66689878d64b1e7c.jpg', '37', '1544976000', '1545235200', '<p>123</p>', '0', '1', '1545025781');
+INSERT INTO `qp_collection` VALUES ('51', '12.150001', 'uploads/collection/201812/6d0707be358578798137e61079d6973e.jpg', '', '35', '1544803200', '1544889600', '<p>12312<img src=\"http://qp.test/uploads/collectionImg/201812/a678c1302ef282d59b072622a0bab894.jpg\" style=\"max-width: 100%;\"></p><p><br></p>', '0', '1', '1544845025');
+INSERT INTO `qp_collection` VALUES ('52', '哈哈哈哈哈', 'uploads/collection/201812/03922f7887f891e5128bc1d246b691be.jpg', '', '34', '1544544000', '1545062400', '<p><span style=\"font-weight: bold;\">专场啊！</span><br></p><p><br></p>', '0', '1', '1544853329');
+INSERT INTO `qp_collection` VALUES ('53', '1.1', 'uploads/collection/201812/f493d52032287a531b14b99b2865e12a.jpg', '', '36', '1546272000', '1546358400', '<p>213</p><p><br></p>', '0', '1', '1544855379');
+INSERT INTO `qp_collection` VALUES ('54', '2.1', 'uploads/collection/201812/58470d8d8301cb38f2f0fe957897fe5a.png', '', '38', '1548950400', '1550764800', '<p>1</p><p><br></p>', '0', '1', '1544855451');
+INSERT INTO `qp_collection` VALUES ('55', '这个结束了', 'uploads/collection/201812/12b319077de054a9208adaa8a349b096.jpg', '', '39', '1543680000', '1544457600', '<p>结束了这个</p>', '0', '1', '1544861940');
+INSERT INTO `qp_collection` VALUES ('56', '12.17', 'uploads/collection/201812/b3e77e4f614aacce66689878d64b1e7c.jpg', '', '37', '1544976000', '1545235200', '<p>123</p>', '0', '1', '1545025781');
+INSERT INTO `qp_collection` VALUES ('57', '1', 'uploads/collection/201901/7e7c0588cb76a05720fb795259ad73db.jpg', '1213123123', '38', '1547740800', '1548864000', '<p>123</p><p><br></p>', '0', '1', '1547782076');
 
 -- ----------------------------
 -- Table structure for `qp_config`
@@ -192,6 +203,53 @@ CREATE TABLE `qp_config` (
 INSERT INTO `qp_config` VALUES ('1', 'wx6ca7934dacd6334e', '57673a8d4f7ac2c0cd8cc44df9d5322f', '1494620392', 'bainianchenshi1chenshimeihuazhen');
 
 -- ----------------------------
+-- Table structure for `qp_coupon`
+-- ----------------------------
+DROP TABLE IF EXISTS `qp_coupon`;
+CREATE TABLE `qp_coupon` (
+  `coupon_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `way` tinyint(1) DEFAULT '1' COMMENT '1、管理员手动赠送；2、系统自动赠送',
+  `coupon_setting_id` int(10) DEFAULT NULL COMMENT '系统优惠券设置ID',
+  `need_money` decimal(10,2) DEFAULT '0.00' COMMENT '需要满足消费金额才能使用的',
+  `money` decimal(10,2) DEFAULT '0.00',
+  `can_use_expire_time` int(11) unsigned NOT NULL DEFAULT '0',
+  `can_use_start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '可以使用时间',
+  `coupon_status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '是否使用：1、未使用 2、已使用',
+  `add_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`coupon_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=402 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of qp_coupon
+-- ----------------------------
+INSERT INTO `qp_coupon` VALUES ('398', '2721', '1', null, '1.00', '1.00', '4294967295', '1546401304', '1', '10');
+INSERT INTO `qp_coupon` VALUES ('399', '2721', '1', null, '2.00', '2.00', '4294967295', '1546401304', '1', '12');
+INSERT INTO `qp_coupon` VALUES ('400', null, '2', '8', '10.00', '9.99', '1547713037', '1547108237', '1', '1547108237');
+INSERT INTO `qp_coupon` VALUES ('401', '2721', '2', '8', '10.00', '9.99', '1547713078', '1547108278', '1', '1547108278');
+
+-- ----------------------------
+-- Table structure for `qp_coupon_setting`
+-- ----------------------------
+DROP TABLE IF EXISTS `qp_coupon_setting`;
+CREATE TABLE `qp_coupon_setting` (
+  `coupon_setting_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '优惠券设置表',
+  `get_this_money` decimal(10,2) NOT NULL COMMENT '赠送门槛金额',
+  `need_money` decimal(10,2) NOT NULL COMMENT '使用门槛金额',
+  `money` decimal(10,2) NOT NULL COMMENT '优惠券面额',
+  `useful_life` int(3) NOT NULL COMMENT '有效天数，单位（天）',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1、正常；2关闭',
+  `add_time` int(10) NOT NULL,
+  PRIMARY KEY (`coupon_setting_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of qp_coupon_setting
+-- ----------------------------
+INSERT INTO `qp_coupon_setting` VALUES ('7', '9999.01', '1000.01', '100.01', '8', '2', '1547103906');
+INSERT INTO `qp_coupon_setting` VALUES ('8', '10.00', '10.00', '9.99', '7', '1', '1547108033');
+
+-- ----------------------------
 -- Table structure for `qp_crontab_setting`
 -- ----------------------------
 DROP TABLE IF EXISTS `qp_crontab_setting`;
@@ -207,7 +265,7 @@ CREATE TABLE `qp_crontab_setting` (
 -- ----------------------------
 -- Records of qp_crontab_setting
 -- ----------------------------
-INSERT INTO `qp_crontab_setting` VALUES ('1', '2018-12-16 14:00:05', '1', '0', '[\"app\\\\command\\\\Test::firstTest\"]');
+INSERT INTO `qp_crontab_setting` VALUES ('1', '2018-12-26 13:54:08', '1', '0', '[\"app\\\\command\\\\Test::setting\"]');
 
 -- ----------------------------
 -- Table structure for `qp_entrust`
@@ -222,13 +280,14 @@ CREATE TABLE `qp_entrust` (
   `entrust_content` text NOT NULL,
   `add_time` int(10) NOT NULL,
   PRIMARY KEY (`entrust_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_entrust
 -- ----------------------------
 INSERT INTO `qp_entrust` VALUES ('37', '0', '池艺林', '17600604129', '1', '123', '1545274919');
 INSERT INTO `qp_entrust` VALUES ('39', '2721', '12.20', '15163444791', '1', '123546', '1545286291');
+INSERT INTO `qp_entrust` VALUES ('40', '2721', '池艺林', '18888888888', '1', '123', '1547798607');
 
 -- ----------------------------
 -- Table structure for `qp_entrust_image`
@@ -241,7 +300,7 @@ CREATE TABLE `qp_entrust_image` (
   `url` varchar(255) NOT NULL,
   `add_time` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_entrust_image
@@ -265,6 +324,24 @@ INSERT INTO `qp_entrust_image` VALUES ('20', '38', '7', 'uploads/weituo/201812/b
 INSERT INTO `qp_entrust_image` VALUES ('21', '38', '8', 'uploads/weituo/201812/d59ee6c6d7112ffd4cdf623d36dcf446.jpg', '1545275000');
 INSERT INTO `qp_entrust_image` VALUES ('22', '38', '9', 'uploads/weituo/201812/4f4981c3f3bf08e98074049949315bf1.jpg', '1545275000');
 INSERT INTO `qp_entrust_image` VALUES ('23', '39', '1', 'uploads/weituo/201812/89564c02539a00e7423c779a00908cb9.jpg', '1545286291');
+INSERT INTO `qp_entrust_image` VALUES ('24', '40', '1', 'uploads/weituo/201901/e48ef306d06b83a0044ea27ea10df4ba.jpg', '1547798607');
+
+-- ----------------------------
+-- Table structure for `qp_kd_setting`
+-- ----------------------------
+DROP TABLE IF EXISTS `qp_kd_setting`;
+CREATE TABLE `qp_kd_setting` (
+  `kd_setting_id` tinyint(1) NOT NULL AUTO_INCREMENT,
+  `key` char(50) NOT NULL,
+  `customer` char(100) NOT NULL,
+  `secret` char(100) NOT NULL,
+  PRIMARY KEY (`kd_setting_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of qp_kd_setting
+-- ----------------------------
+INSERT INTO `qp_kd_setting` VALUES ('1', 'HqoIXdJK8609', 'E78A2D80047B3FD188F365DCF215DDA2', '2c85205c0d39440dbfa4c26abc126513');
 
 -- ----------------------------
 -- Table structure for `qp_member_price`
@@ -294,28 +371,36 @@ INSERT INTO `qp_member_price` VALUES ('14', 'VIP3', '0.03', '1', '第一章节�
 -- ----------------------------
 DROP TABLE IF EXISTS `qp_nav`;
 CREATE TABLE `qp_nav` (
-  `nav_id` int(10) NOT NULL AUTO_INCREMENT,
-  `cover_src` char(255) NOT NULL,
-  `nav_title` char(20) NOT NULL,
-  `path_index` int(10) DEFAULT NULL,
-  `path` char(255) DEFAULT NULL,
-  `ext` char(255) DEFAULT NULL,
+  `nav_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '自定义导航表',
+  `cover_src` char(255) NOT NULL COMMENT '封面图片',
+  `nav_title` char(20) NOT NULL COMMENT '名称',
+  `path_index` int(10) DEFAULT NULL COMMENT '跳转路径',
+  `path` char(255) NOT NULL,
+  `ext` char(255) NOT NULL,
+  `ext_str` char(50) NOT NULL,
   `display` tinyint(1) DEFAULT '1',
   `nav_type` tinyint(1) DEFAULT '1',
-  `add_time` int(10) NOT NULL,
   `sort` int(5) NOT NULL DEFAULT '1',
+  `add_time` int(10) NOT NULL,
   PRIMARY KEY (`nav_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_nav
 -- ----------------------------
-INSERT INTO `qp_nav` VALUES ('5', 'uploads/nav/201812/ba75f9475afe787ce1a4b6f05bdf29f0.jpg', '新闻公告', '16', '/pages/article/list/list', null, '1', '1', '1543917310', '1');
-INSERT INTO `qp_nav` VALUES ('6', 'uploads/nav/201812/fe5aa584fee512c80e9423d7a73bf5bf.jpg', '播放记录', '15', '/pages/mine/history/history', null, '1', '1', '1543917327', '1');
-INSERT INTO `qp_nav` VALUES ('7', 'uploads/nav/201812/96098e402e4a4697109511ebaea784a7.jpg', '报名报考', '12', '/pages/mhzindex/examination/examination', 'a:1:{i:0;s:1:\"0\";}', '1', '1', '1543917360', '1');
-INSERT INTO `qp_nav` VALUES ('8', 'uploads/nav/201812/efe564f72aaf2b9e9516002b9bc4bd65.jpg', '我的课程', '22', '/pages/mine/MySubject/MySubject', null, '1', '1', '1543917391', '1');
-INSERT INTO `qp_nav` VALUES ('11', 'uploads/nav/201812/c1fad8dcb874aa2e95c95c202cb6a9be.jpg', '报名', '12', '/pages/mhzindex/examination/examination', 'a:1:{i:0;s:1:\"0\";}', '1', '2', '1544090353', '1');
-INSERT INTO `qp_nav` VALUES ('12', 'uploads/nav/201812/a9989b48e2c1ae3f5fc9ba59616bcd75.jpg', '报考', '12', '/pages/mhzindex/examination/examination', 'a:1:{i:0;s:1:\"1\";}', '1', '2', '1544090371', '1');
+INSERT INTO `qp_nav` VALUES ('17', 'uploads/nav/201901/3dc00cde4a8feab1764466bc90bb8b21.jpg', '钱币', null, '', '', '', '1', '1', '1', '1547693828');
+INSERT INTO `qp_nav` VALUES ('18', 'uploads/nav/201901/f2c54bdb46fef90e24c59b835c46d2ef.jpg', '邮品', null, '', '', '', '1', '1', '1', '1547693849');
+INSERT INTO `qp_nav` VALUES ('19', 'uploads/nav/201901/9f7992b713edff9723fddff51c90bd43.jpg', '一口价', null, '', '', '', '1', '1', '1', '1547694015');
+INSERT INTO `qp_nav` VALUES ('20', 'uploads/nav/201901/00eddf42a7325ea0959dd8290ee8d9f9.jpg', '即拍', null, '', '', '', '1', '1', '1', '1547694043');
+INSERT INTO `qp_nav` VALUES ('21', 'uploads/nav/201901/d4027d7cc4fbea4391af236937dbfdbc.jpg', '杂项', null, '', '', '', '1', '1', '1', '1547694058');
+INSERT INTO `qp_nav` VALUES ('22', 'uploads/nav/201901/da31be7da6f0fc62e31a1e29ee4c4b5d.jpg', '我的关注', '7', '/pages/mine/attention/attention', '', '', '1', '2', '1', '1547706753');
+INSERT INTO `qp_nav` VALUES ('23', 'uploads/nav/201901/0121099decdd8164607dc00c6fda7c02.jpg', '优惠卡券', '9', '/pages/mine/card/card', '', '', '1', '2', '1', '1547706771');
+INSERT INTO `qp_nav` VALUES ('24', 'uploads/nav/201901/205fef6f087f633573ae4f8cff8d1bb6.jpg', '交易记录', '6', '/pages/mine/TransactionRecords/TransactionRecords', '', '', '1', '2', '1', '1547706784');
+INSERT INTO `qp_nav` VALUES ('25', 'uploads/nav/201901/31c33620afb2f9bc8b500d43ed7fc9a3.jpg', '入住即拍', null, '', '', '', '1', '2', '1', '1547706811');
+INSERT INTO `qp_nav` VALUES ('26', 'uploads/nav/201901/cb093b6dfaa34837b63cd6ed92432ca6.jpg', '使用教程', null, '', '', '', '1', '2', '1', '1547706827');
+INSERT INTO `qp_nav` VALUES ('27', 'uploads/nav/201901/89222629a382e02ed81dd6ecd4c6160e.jpg', '藏品保障', null, '', '', '', '1', '2', '1', '1547706842');
+INSERT INTO `qp_nav` VALUES ('28', 'uploads/nav/201901/74d28f21e512cae1e46d43dfc7bca8a1.jpg', '帮助中心', null, '', '', '', '1', '2', '1', '1547706855');
+INSERT INTO `qp_nav` VALUES ('29', 'uploads/nav/201901/014bf695b929cc6bcad855045954354f.jpg', '关于我们', null, '', '', '', '1', '2', '1', '1547706868');
 
 -- ----------------------------
 -- Table structure for `qp_product`
@@ -328,35 +413,33 @@ CREATE TABLE `qp_product` (
   `cover_introduce` char(255) DEFAULT NULL COMMENT '产品封面介绍',
   `product_introduce` text NOT NULL COMMENT '产品简介',
   `product_money` decimal(10,2) DEFAULT NULL COMMENT '产品价格',
-  `cate_id_first` int(11) DEFAULT NULL COMMENT '课程一级分类',
-  `cate_id_second` int(11) DEFAULT NULL COMMENT '产品二级分类',
-  `cate_id_third` int(11) DEFAULT NULL,
+  `cate_id_first` int(11) DEFAULT NULL COMMENT '一级分类',
+  `cate_id_second` int(11) DEFAULT NULL COMMENT '二级分类',
+  `cate_id_third` int(11) DEFAULT NULL COMMENT '三级分类',
+  `collection_id` int(10) DEFAULT NULL,
+  `product_collection_share` tinyint(1) NOT NULL DEFAULT '1' COMMENT '专场精品推荐（1、不推荐；2、推荐）',
+  `express_info` text COMMENT '邮费信息',
   `product_face` tinyint(1) NOT NULL,
   `product_zysx` varchar(255) NOT NULL,
   `product_times` decimal(10,2) DEFAULT NULL,
   `product_sort` int(10) NOT NULL DEFAULT '1' COMMENT '产品排序',
   `product_type` tinyint(1) DEFAULT '1' COMMENT '1、竞价；2、一口价',
   `product_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态（1、在售；2、下架）',
+  `product_end` tinyint(1) DEFAULT '1' COMMENT '拍卖是否结束（1、未结束；2、已结束）',
   `product_share_index` tinyint(1) DEFAULT '1' COMMENT '1、不推荐；2、推荐',
   `product_start_time` int(10) DEFAULT NULL COMMENT '竞价开始时间',
   `product_end_time` int(10) DEFAULT NULL COMMENT '竞价结束时间',
   `product_time` int(10) NOT NULL COMMENT '产品添加时间',
   PRIMARY KEY (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=131 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_product
 -- ----------------------------
-INSERT INTO `qp_product` VALUES ('116', '12.17', 'uploads/productCover/201812/b1fab28450fa5c6140c70b49277ecb27.jpg', '暂无', '<p>312</p>', '99.99', '34', '45', null, '1', '注意事项', '20.00', '1', '1', '1', null, '1544976000', '1544976005', '1545034143');
-INSERT INTO `qp_product` VALUES ('117', '12.21', 'uploads/productCover/201812/5ecb32539ec7c7b2cfae162c4dfc7e39.jpg', '封面简介', '<p>哈哈哈？<img src=\"http://qp.test/uploads/productImg/201812/ef9e7ed807a4eda3789ec2f82f1e7dbe.jpg\" style=\"max-width: 100%;\"></p>', '999.00', '34', '45', '48', '1', '注意事项', '100.00', '1', '2', '1', null, '1545321600', '1545321600', '1545376111');
-INSERT INTO `qp_product` VALUES ('118', '这是一件拍卖商品', 'uploads/productCover/201812/e438316b933f3d7598ded55c06fb3c3b.jpg', '213', '<p>哈哈哈</p>', '100.00', '34', '45', '48', '1', '152132', '20.00', '1', '1', '1', null, '1544457600', '1546012800', '1545443252');
-INSERT INTO `qp_product` VALUES ('119', '一口价商品', 'uploads/productCover/201812/c07b97497818bc1e1fe9a31b269089c8.jpg', '20', '<p>312</p>', '100.00', '34', '45', '48', '2', '哈哈哈', null, '1', '1', '1', null, null, null, '1545443299');
-INSERT INTO `qp_product` VALUES ('120', '又一个一口价商品', 'uploads/productCover/201812/c0e4ea44588d4980d21d72d33fcfc290.jpg', '456', '<p>123</p>', '123.00', '34', '45', '48', '1', '123', null, '1', '2', '1', null, null, null, '1545443398');
-INSERT INTO `qp_product` VALUES ('121', '12.25', 'uploads/productCover/201812/c47a00b47d356c459087befb614f03f8.png', '213', '<p>1</p>', '99.00', '34', '45', '48', '1', '0123', null, '1', '1', '1', '1', null, null, '1545718149');
-INSERT INTO `qp_product` VALUES ('122', '哈哈', 'uploads/productCover/201812/f87a252ee8fda77732aee866b8f171e3.png', '1', '<p>1&nbsp;&nbsp;&nbsp;&nbsp;</p>', '1.00', '34', '45', '47', '1', '1', null, '1', '1', '1', '1', null, null, '1545718217');
-INSERT INTO `qp_product` VALUES ('123', '哈哈', 'uploads/productCover/201812/f87a252ee8fda77732aee866b8f171e3.png', '1', '<p>1&nbsp;&nbsp;&nbsp;&nbsp;</p>', '1.00', '34', '45', '47', '1', '1', null, '1', '1', '1', '1', null, null, '1545718228');
-INSERT INTO `qp_product` VALUES ('124', '9999', 'uploads/productCover/201812/8d7c70ec8839ee7ffebe816d3633de7c.png', '1', '<p>1&nbsp;&nbsp;&nbsp;&nbsp;1</p>', '1.00', '34', '45', '48', '1', '1', null, '1', '1', '1', '2', null, null, '1545718373');
-INSERT INTO `qp_product` VALUES ('125', '888', 'uploads/productCover/201812/8d7c70ec8839ee7ffebe816d3633de7c.png', '1', '<p>1&nbsp;&nbsp;&nbsp;&nbsp;1</p>', '1.00', '34', '45', '48', '1', '1', null, '1', '1', '2', '1', null, null, '1545718383');
+INSERT INTO `qp_product` VALUES ('127', '拍卖中34 45 48', 'uploads/productCover/201812/ed52dc41becdfc062eaa0764595d482c.jpg', '2', '<p>2</p><p><br></p>', '1.00', '34', '44', '51', '56', '2', '', '3', '1', '312.00', '1', '1', '1', '1', '2', '1546358400', '1548400532', '1545962366');
+INSERT INTO `qp_product` VALUES ('128', '元旦预览专场', 'uploads/productCover/201812/9c7a2fc6adc725516f4a92fbdc116f8a.jpg', '1', '<p>1</p><p><br></p>', '1.00', '34', '57', '58', '56', '2', null, '3', '1', '5.00', '1', '1', '1', '2', '2', '1546358400', '1', '1545962411');
+INSERT INTO `qp_product` VALUES ('129', '一口价柚子', 'uploads/productCover/201812/4889f254cafba86dd3dc954fd4abf18a.jpg', '1', '<p>1</p>', '1.00', '34', '57', '58', '52', '1', '', '1', '1', null, '1', '2', '1', '1', '1', null, null, '1545962445');
+INSERT INTO `qp_product` VALUES ('130', '民国邮票', 'uploads/productCover/201812/eb3566bac47c9c766c20133b41335ca6.jpg', '1', '<p>1&nbsp; &nbsp; 1</p>', '1.00', '34', '45', '47', '51', '1', '[{\"money\":\"999\",\"name\":\"\\u987a\\u4e30\\u5230\\u4ed8\",\"description\":\"\\u8bf7\\u586b\\u5199\\u987a\\u4e30\\u5230\\u4ed8\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"12\",\"name\":\"Ems\",\"description\":\"\\u8bf7\\u586b\\u5199Ems\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"0\",\"name\":\"\\u4e0a\\u95e8\\u81ea\\u63d0\",\"description\":\"\\u8bf7\\u586b\\u5199\\u4e0a\\u95e8\\u81ea\\u63d0\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"15\",\"name\":\"\\u5176\\u4ed6\\u5feb\\u9012\",\"description\":\"\\u8bf7\\u586b\\u5199\\u5176\\u4ed6\\u5feb\\u9012\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"60\",\"name\":\"\\u6682\\u5b58\",\"description\":\"\\u8bf7\\u586b\\u5199\\u6682\\u5b58\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null}]', '1', '1', null, '1', '2', '1', '2', '1', null, null, '1546065696');
 
 -- ----------------------------
 -- Table structure for `qp_product_banner`
@@ -371,13 +454,16 @@ CREATE TABLE `qp_product_banner` (
   `add_time` int(10) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=759 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=762 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_product_banner
 -- ----------------------------
 INSERT INTO `qp_product_banner` VALUES ('757', '37', 'uploads/productBanner/201810/f7d41857913cb81ad5284a7ca6b49c59.jpg', '1', '1', '1540880509');
 INSERT INTO `qp_product_banner` VALUES ('758', '116', 'uploads/productBanner/201812/2860d43d83f8b09234c8fc6318e47af1.jpg', '1', '1', '1545035574');
+INSERT INTO `qp_product_banner` VALUES ('759', '128', 'uploads/productBanner/201901/ace7c83191f4ca9865063f4b2114df31.jpg', '1', '1', '1546659391');
+INSERT INTO `qp_product_banner` VALUES ('760', '130', 'uploads/productBanner/201901/a362f9408799f5aaae7f84e050e9a814.jpg', '1', '1', '1546659412');
+INSERT INTO `qp_product_banner` VALUES ('761', '130', 'uploads/productBanner/201901/0521cd75f01728dc3778c4a3fd6fb04a.jpg', '1', '1', '1546659427');
 
 -- ----------------------------
 -- Table structure for `qp_prod_list`
@@ -386,40 +472,81 @@ DROP TABLE IF EXISTS `qp_prod_list`;
 CREATE TABLE `qp_prod_list` (
   `list_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '订单id',
   `user_id` int(10) NOT NULL COMMENT '用户id',
-  `product_id` int(10) DEFAULT '0' COMMENT '产品ID',
-  `taoc_id` int(11) DEFAULT '0' COMMENT '套餐id',
   `order_number` char(30) NOT NULL COMMENT '订单号',
   `transaction_id` char(28) DEFAULT NULL COMMENT '微信支付凭证',
+  `express_id` int(10) DEFAULT NULL,
+  `express_money` decimal(10,2) DEFAULT NULL COMMENT '邮费价格',
+  `product_money` decimal(10,2) NOT NULL COMMENT '产品应付价格（竞价商品时为竞得价）',
   `pay_money` decimal(10,2) NOT NULL COMMENT '实际支付金额',
-  `prepay_id` text,
-  `is_pay` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否支付（1、未支付；2、已支付（未评价）；3、已评价）',
+  `coupon_money` decimal(10,2) DEFAULT NULL COMMENT '优惠券优惠价格',
+  `is_pay` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否支付（1、未支付；2、已支付（待发货）；3、申请发货中；4、已发货；5、已确认收货）',
+  `coupon_id` int(10) DEFAULT NULL COMMENT '优惠券ID',
+  `pay_requset_info` text COMMENT '拉起支付的信息',
+  `list_type` tinyint(1) DEFAULT NULL COMMENT '订单类型（1、竞拍订单；2、一口价订单）',
   `list_add_time` int(10) NOT NULL COMMENT '订单生成时间',
+  `list_pay_time` int(10) DEFAULT NULL,
   PRIMARY KEY (`list_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=329 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=443 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_prod_list
 -- ----------------------------
-INSERT INTO `qp_prod_list` VALUES ('309', '2678', '100', null, '2018121015444347292678', '4200000230201812101617258604', '0.01', 'wx10173849539273e11ce2c29f0608977623', '2', '1544434729');
-INSERT INTO `qp_prod_list` VALUES ('310', '267', '101', null, '201812101544434806267', '4200000235201812108058146304', '0.01', 'wx10174006857859f64bc6c1282965946784', '3', '1544434806');
-INSERT INTO `qp_prod_list` VALUES ('311', '257', '101', null, '201812101544434866257', null, '0.01', 'wx101741068467066fe0c1193f2938339921', '1', '1544434866');
-INSERT INTO `qp_prod_list` VALUES ('312', '257', '101', null, '201812101544434894257', '4200000217201812106742883998', '0.01', 'wx101741345226014633735c011248376258', '2', '1544434894');
-INSERT INTO `qp_prod_list` VALUES ('313', '2678', '107', null, '2018121015444528412678', null, '0.01', 'wx10224042083915eb220e6a542863586657', '1', '1544452841');
-INSERT INTO `qp_prod_list` VALUES ('314', '2678', '107', null, '2018121015444528622678', null, '0.01', 'wx102241031061235eaea8fde42339253629', '1', '1544452862');
-INSERT INTO `qp_prod_list` VALUES ('315', '2678', '107', null, '2018121015444528842678', '4200000221201812106434217152', '0.01', 'wx10224125140130d1b32eff001729902166', '2', '1544452884');
-INSERT INTO `qp_prod_list` VALUES ('316', '2678', '101', null, '2018121115444984412678', null, '0.01', 'wx111120421352498e81f230843439059123', '1', '1544498441');
-INSERT INTO `qp_prod_list` VALUES ('317', '2678', '101', null, '2018121115444984552678', '4200000234201812112840750237', '0.01', 'wx11112055581076bcb0f38df34091946568', '2', '1544498455');
-INSERT INTO `qp_prod_list` VALUES ('318', '267', null, '10', '201812111544522625267', null, '19.89', 'wx11180345602438852e8dc4550551564629', '1', '1544522625');
-INSERT INTO `qp_prod_list` VALUES ('319', '2678', null, '10', '2018121115445248462678', null, '0.02', 'wx11184046323852a1115740fd3317064521', '1', '1544524846');
-INSERT INTO `qp_prod_list` VALUES ('320', '267', null, '10', '201812111544525581267', null, '0.02', 'wx111853014037992bd9218c973424034115', '1', '1544525581');
-INSERT INTO `qp_prod_list` VALUES ('321', '267', null, '10', '201812111544526497267', null, '0.02', 'wx11190817518243cfc65464361839582164', '1', '1544526497');
-INSERT INTO `qp_prod_list` VALUES ('322', '267', null, '10', '201812111544526517267', null, '0.02', 'wx1119083812182234d4125ea52955026089', '1', '1544526517');
-INSERT INTO `qp_prod_list` VALUES ('323', '267', null, '10', '201812111544526522267', null, '0.02', 'wx111908430973785913aabadc2028942490', '1', '1544526522');
-INSERT INTO `qp_prod_list` VALUES ('324', '2679', '104', null, '2018121215445862402679', null, '99.00', 'wx121144009325167446cf156f1862144082', '1', '1544586240');
-INSERT INTO `qp_prod_list` VALUES ('325', '2679', '106', null, '2018121215445862562679', null, '99.00', 'wx12114417029127085e1d7ee01789673992', '1', '1544586256');
-INSERT INTO `qp_prod_list` VALUES ('326', '2679', '104', null, '2018121215445862852679', null, '99.00', 'wx12114445269911736c8620494281375917', '1', '1544586285');
-INSERT INTO `qp_prod_list` VALUES ('327', '2679', '104', null, '2018121215445863012679', null, '99.00', 'wx121145018524430f171b48122602406952', '1', '1544586301');
-INSERT INTO `qp_prod_list` VALUES ('328', '2679', '100', null, '2018121215445863212679', '4200000236201812126196783816', '0.01', 'wx1211452189875811b8d917e73629580480', '3', '1544586321');
+INSERT INTO `qp_prod_list` VALUES ('430', '2721', '310387782721583', '1547106037', '4', '60.00', '61.00', '61.00', null, '2', null, '\"{\\\"appId\\\":\\\"wx6ca7934dacd6334e\\\",\\\"nonceStr\\\":\\\"evrz6gikr4tawij3bdqk8qt28lil7d6m\\\",\\\"package\\\":\\\"prepay_id=wx071117175839284ca488e0d92883959344\\\",\\\"signType\\\":\\\"HMAC-SHA256\\\",\\\"timeStamp\\\":\\\"1546831038\\\",\\\"paySign\\\":\\\"C400E602BFC5D27994A09666989661FC76B2ECA89B288D265AC5121D28232A94\\\"}\"', '2', '1546831038', '1547106037');
+INSERT INTO `qp_prod_list` VALUES ('431', '2721', '326856392721161', null, '3', '15.00', '16.00', '16.00', null, '1', null, '\"{\\\"appId\\\":\\\"wx6ca7934dacd6334e\\\",\\\"nonceStr\\\":\\\"c6mx2y6cm4xuc0qh0975rz7vsos2v9u4\\\",\\\"package\\\":\\\"prepay_id=wx071144450510685777d0f26f2642452076\\\",\\\"signType\\\":\\\"HMAC-SHA256\\\",\\\"timeStamp\\\":\\\"1546832685\\\",\\\"paySign\\\":\\\"397DFBF6CFCC0E6DBF5A02AE9DCB2A0F766C1151A9284AC0BB42A1DAE98F105F\\\"}\"', '2', '1546832685', null);
+INSERT INTO `qp_prod_list` VALUES ('432', '2721', '501568532721314', '143322314332231433223', '0', '0.00', '7.77', '7.77', null, '2', null, '\"{\\\"appId\\\":\\\"wx6ca7934dacd6334e\\\",\\\"nonceStr\\\":\\\"842o9lfzcmmwg2km4du35czafgm7wyz9\\\",\\\"package\\\":\\\"prepay_id=wx071635562197238f866fafd21568615346\\\",\\\"signType\\\":\\\"HMAC-SHA256\\\",\\\"timeStamp\\\":\\\"1546850157\\\",\\\"paySign\\\":\\\"508DA32BE3C2CDE2D8AC59C3BBA1D1A15AF3E9111CAE4F50711935BBE2F42705\\\"}\"', '1', '1546850156', '1547087043');
+INSERT INTO `qp_prod_list` VALUES ('433', '2721', '550518602721279', null, '3', '15.00', '19.44', '19.44', null, '1', null, null, '1', '1546855051', null);
+INSERT INTO `qp_prod_list` VALUES ('434', '2721', '551234112721877', null, '3', '15.00', '19.44', '19.44', null, '1', null, null, '1', '1546855123', null);
+INSERT INTO `qp_prod_list` VALUES ('435', '2721', '551412012721449', null, '3', '15.00', '19.44', '19.44', null, '1', null, null, '1', '1546855141', null);
+INSERT INTO `qp_prod_list` VALUES ('436', '2721', '551648022721908', null, '3', '15.00', '19.44', '19.44', null, '1', null, '\"{\\\"appId\\\":\\\"wx6ca7934dacd6334e\\\",\\\"nonceStr\\\":\\\"lfcnicjc8s9t83xrglh489nhwecb1y8t\\\",\\\"package\\\":\\\"prepay_id=wx071759240136822bd5191f9e3494958795\\\",\\\"signType\\\":\\\"HMAC-SHA256\\\",\\\"timeStamp\\\":\\\"1546855165\\\",\\\"paySign\\\":\\\"478810622C80DF5EDFAD7599473448A07E41B78F0BAB7F134A053B8BC657687A\\\"}\"', '1', '1546855164', null);
+INSERT INTO `qp_prod_list` VALUES ('437', '2721', '160162582721401', null, '2', '0.00', '1.00', '1.00', null, '1', null, '\"{\\\"appId\\\":\\\"wx6ca7934dacd6334e\\\",\\\"nonceStr\\\":\\\"hr85verkcxxsyd8r865eqa9a1z2aheo3\\\",\\\"package\\\":\\\"prepay_id=wx09144015702876e7cf88ffc13110623160\\\",\\\"signType\\\":\\\"HMAC-SHA256\\\",\\\"timeStamp\\\":\\\"1547016017\\\",\\\"paySign\\\":\\\"BDA0B00B3C61858C55C2775F994A376B7CB211413C9D03C7F17DBED27A2C5DC7\\\"}\"', '2', '1547016016', null);
+INSERT INTO `qp_prod_list` VALUES ('438', '2721', '170611812721729', null, '0', '0.00', '3.33', '1.33', '2.00', '1', '399', '\"{\\\"appId\\\":\\\"wx6ca7934dacd6334e\\\",\\\"nonceStr\\\":\\\"965u1y866yueeezah2ypatw1wd8ubk1h\\\",\\\"package\\\":\\\"prepay_id=wx0914574029651076401814641472640583\\\",\\\"signType\\\":\\\"HMAC-SHA256\\\",\\\"timeStamp\\\":\\\"1547017061\\\",\\\"paySign\\\":\\\"C9E56BDA5B8C87CEACA12BB6147A4D2BFC28ADA7CB66AF4CE5B2FC2805E13D6A\\\"}\"', '1', '1547017061', null);
+INSERT INTO `qp_prod_list` VALUES ('439', '2721', '257357452721623', '143322314332231433223', '2', '0.00', '1.00', '1.00', null, '2', null, '\"{\\\"appId\\\":\\\"wx6ca7934dacd6334e\\\",\\\"nonceStr\\\":\\\"e35oodg2760n0q39vhs0kph3czfsfeqw\\\",\\\"package\\\":\\\"prepay_id=wx09172215335136ca3f0fdfeb3437037079\\\",\\\"signType\\\":\\\"HMAC-SHA256\\\",\\\"timeStamp\\\":\\\"1547025736\\\",\\\"paySign\\\":\\\"12F7DB33BB02F06E4E93258D8B2A277AA3F8DFD7A9052A22F638860926E2845B\\\"}\"', '2', '1547025735', '1547109507');
+INSERT INTO `qp_prod_list` VALUES ('440', '2721', '906288152721160', null, '2', '0.00', '1.00', '1.00', null, '1', null, '\"{\\\"appId\\\":\\\"wx6ca7934dacd6334e\\\",\\\"nonceStr\\\":\\\"osrvx9ru1hqklsp47unl9k559evelqu4\\\",\\\"package\\\":\\\"prepay_id=wx11151026947996fe4f6dd9220894721550\\\",\\\"signType\\\":\\\"HMAC-SHA256\\\",\\\"timeStamp\\\":\\\"1547190629\\\",\\\"paySign\\\":\\\"E1DBBF979A0D2EF1A395DCA6D26F79F3452F05A726E42955B59FAF897BCB1353\\\"}\"', '2', '1547190628', null);
+INSERT INTO `qp_prod_list` VALUES ('441', '2721', '624813212721160', null, '0', '0.00', '3.33', '3.33', null, '1', null, '\"{\\\"appId\\\":\\\"wx6ca7934dacd6334e\\\",\\\"nonceStr\\\":\\\"2wzyfzt0h06hjq5vuf0knru7mb4cnrxe\\\",\\\"package\\\":\\\"prepay_id=wx12110801193841ea9286846d2173678357\\\",\\\"signType\\\":\\\"HMAC-SHA256\\\",\\\"timeStamp\\\":\\\"1547262482\\\",\\\"paySign\\\":\\\"7300BBA48BF78E461D9975F588E965C3E24D3EDF4CA1A2C2B3653EFB9A8E36EC\\\"}\"', '1', '1547262481', null);
+INSERT INTO `qp_prod_list` VALUES ('442', '2721', '297879392721309', null, '0', '0.00', '1.00', '1.00', null, '1', null, '\"{\\\"appId\\\":\\\"wx6ca7934dacd6334e\\\",\\\"nonceStr\\\":\\\"6e1thly3ki96h1yu9mknyprofnm1evow\\\",\\\"package\\\":\\\"prepay_id=wx14093627255713143f8b1e070578852880\\\",\\\"signType\\\":\\\"HMAC-SHA256\\\",\\\"timeStamp\\\":\\\"1547429788\\\",\\\"paySign\\\":\\\"1939D46AF66B1D483A13BCCA70B973EC43A069D8D536A7401F543FB826FF6702\\\"}\"', '2', '1547429787', null);
+
+-- ----------------------------
+-- Table structure for `qp_prod_list_between`
+-- ----------------------------
+DROP TABLE IF EXISTS `qp_prod_list_between`;
+CREATE TABLE `qp_prod_list_between` (
+  `between_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '订单商品中间表',
+  `get_id` int(10) DEFAULT NULL COMMENT '得表表主键ID',
+  `user_id` int(10) NOT NULL,
+  `list_id` int(10) NOT NULL,
+  `transaction_id` char(30) DEFAULT NULL,
+  `order_number` char(30) NOT NULL,
+  `product_id` int(10) NOT NULL,
+  `product_info` text NOT NULL COMMENT '商品信息',
+  `result_money` decimal(10,2) NOT NULL COMMENT '成交价格（不含服务费）',
+  `server_money` decimal(10,2) NOT NULL COMMENT '服务费',
+  `total_price` decimal(10,2) NOT NULL COMMENT '应付总价（不含邮费）',
+  `pay_money` decimal(10,2) NOT NULL COMMENT '单件商品最终实付金额（含邮费）',
+  `express_id` int(10) DEFAULT NULL COMMENT '快递邮费ID',
+  `express_money` decimal(10,2) DEFAULT NULL COMMENT '邮费价格',
+  `is_pay` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1、未支付；2、已支付',
+  `list_type` tinyint(1) NOT NULL COMMENT '订单类型（1、竞拍订单；2、一口价订单）',
+  `tracking_number` char(20) DEFAULT NULL COMMENT '物流单号',
+  `on_hand_time` int(10) DEFAULT NULL COMMENT '到手时间',
+  `pay_time` int(10) DEFAULT NULL,
+  `add_time` int(10) NOT NULL,
+  PRIMARY KEY (`between_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of qp_prod_list_between
+-- ----------------------------
+INSERT INTO `qp_prod_list_between` VALUES ('62', null, '2721', '430', null, '310383712721306130', '130', 'O:24:\"app\\common\\model\\Product\":34:{s:13:\"\0*\0connection\";a:0:{}s:9:\"\0*\0parent\";N;s:8:\"\0*\0query\";N;s:7:\"\0*\0name\";s:7:\"Product\";s:8:\"\0*\0table\";N;s:8:\"\0*\0class\";s:24:\"app\\common\\model\\Product\";s:8:\"\0*\0error\";N;s:11:\"\0*\0validate\";N;s:5:\"\0*\0pk\";N;s:8:\"\0*\0field\";a:0:{}s:9:\"\0*\0except\";a:0:{}s:9:\"\0*\0disuse\";a:0:{}s:11:\"\0*\0readonly\";a:0:{}s:10:\"\0*\0visible\";a:0:{}s:9:\"\0*\0hidden\";a:0:{}s:9:\"\0*\0append\";a:0:{}s:7:\"\0*\0data\";a:23:{s:10:\"product_id\";i:130;s:12:\"product_name\";s:12:\"民国邮票\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/eb3566bac47c9c766c20133b41335ca6.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:23:\"<p>1&nbsp; &nbsp; 1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:45;s:13:\"cate_id_third\";i:47;s:13:\"collection_id\";i:51;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:1011:\"[{\"money\":\"999\",\"name\":\"\\u987a\\u4e30\\u5230\\u4ed8\",\"description\":\"\\u8bf7\\u586b\\u5199\\u987a\\u4e30\\u5230\\u4ed8\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"12\",\"name\":\"Ems\",\"description\":\"\\u8bf7\\u586b\\u5199Ems\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"0\",\"name\":\"\\u4e0a\\u95e8\\u81ea\\u63d0\",\"description\":\"\\u8bf7\\u586b\\u5199\\u4e0a\\u95e8\\u81ea\\u63d0\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"15\",\"name\":\"\\u5176\\u4ed6\\u5feb\\u9012\",\"description\":\"\\u8bf7\\u586b\\u5199\\u5176\\u4ed6\\u5feb\\u9012\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"60\",\"name\":\"\\u6682\\u5b58\",\"description\":\"\\u8bf7\\u586b\\u5199\\u6682\\u5b58\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null}]\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";N;s:12:\"product_sort\";i:1;s:12:\"product_type\";i:2;s:14:\"product_status\";i:1;s:11:\"product_end\";i:1;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";N;s:16:\"product_end_time\";N;s:12:\"product_time\";i:1546065696;}s:9:\"\0*\0origin\";a:23:{s:10:\"product_id\";i:130;s:12:\"product_name\";s:12:\"民国邮票\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/eb3566bac47c9c766c20133b41335ca6.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:23:\"<p>1&nbsp; &nbsp; 1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:45;s:13:\"cate_id_third\";i:47;s:13:\"collection_id\";i:51;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:1011:\"[{\"money\":\"999\",\"name\":\"\\u987a\\u4e30\\u5230\\u4ed8\",\"description\":\"\\u8bf7\\u586b\\u5199\\u987a\\u4e30\\u5230\\u4ed8\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"12\",\"name\":\"Ems\",\"description\":\"\\u8bf7\\u586b\\u5199Ems\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"0\",\"name\":\"\\u4e0a\\u95e8\\u81ea\\u63d0\",\"description\":\"\\u8bf7\\u586b\\u5199\\u4e0a\\u95e8\\u81ea\\u63d0\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"15\",\"name\":\"\\u5176\\u4ed6\\u5feb\\u9012\",\"description\":\"\\u8bf7\\u586b\\u5199\\u5176\\u4ed6\\u5feb\\u9012\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"60\",\"name\":\"\\u6682\\u5b58\",\"description\":\"\\u8bf7\\u586b\\u5199\\u6682\\u5b58\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null}]\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";N;s:12:\"product_sort\";i:1;s:12:\"product_type\";i:2;s:14:\"product_status\";i:1;s:11:\"product_end\";i:1;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";N;s:16:\"product_end_time\";N;s:12:\"product_time\";i:1546065696;}s:11:\"\0*\0relation\";a:0:{}s:7:\"\0*\0auto\";a:0:{}s:9:\"\0*\0insert\";a:0:{}s:9:\"\0*\0update\";a:0:{}s:21:\"\0*\0autoWriteTimestamp\";b:0;s:13:\"\0*\0createTime\";s:11:\"create_time\";s:13:\"\0*\0updateTime\";s:11:\"update_time\";s:13:\"\0*\0dateFormat\";s:11:\"Y-m-d H:i:s\";s:7:\"\0*\0type\";a:0:{}s:11:\"\0*\0isUpdate\";b:1;s:14:\"\0*\0updateWhere\";N;s:16:\"\0*\0failException\";b:0;s:17:\"\0*\0useGlobalScope\";b:1;s:16:\"\0*\0batchValidate\";b:0;s:16:\"\0*\0resultSetType\";s:17:\"\\think\\Collection\";s:16:\"\0*\0relationWrite\";N;}', '1.00', '0.00', '1.00', '61.00', '4', '60.00', '1', '2', null, null, null, '1546831038');
+INSERT INTO `qp_prod_list_between` VALUES ('63', null, '2721', '431', null, '326853762721116130', '130', 'O:24:\"app\\common\\model\\Product\":34:{s:13:\"\0*\0connection\";a:0:{}s:9:\"\0*\0parent\";N;s:8:\"\0*\0query\";N;s:7:\"\0*\0name\";s:7:\"Product\";s:8:\"\0*\0table\";N;s:8:\"\0*\0class\";s:24:\"app\\common\\model\\Product\";s:8:\"\0*\0error\";N;s:11:\"\0*\0validate\";N;s:5:\"\0*\0pk\";N;s:8:\"\0*\0field\";a:0:{}s:9:\"\0*\0except\";a:0:{}s:9:\"\0*\0disuse\";a:0:{}s:11:\"\0*\0readonly\";a:0:{}s:10:\"\0*\0visible\";a:0:{}s:9:\"\0*\0hidden\";a:0:{}s:9:\"\0*\0append\";a:0:{}s:7:\"\0*\0data\";a:23:{s:10:\"product_id\";i:130;s:12:\"product_name\";s:12:\"民国邮票\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/eb3566bac47c9c766c20133b41335ca6.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:23:\"<p>1&nbsp; &nbsp; 1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:45;s:13:\"cate_id_third\";i:47;s:13:\"collection_id\";i:51;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:1011:\"[{\"money\":\"999\",\"name\":\"\\u987a\\u4e30\\u5230\\u4ed8\",\"description\":\"\\u8bf7\\u586b\\u5199\\u987a\\u4e30\\u5230\\u4ed8\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"12\",\"name\":\"Ems\",\"description\":\"\\u8bf7\\u586b\\u5199Ems\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"0\",\"name\":\"\\u4e0a\\u95e8\\u81ea\\u63d0\",\"description\":\"\\u8bf7\\u586b\\u5199\\u4e0a\\u95e8\\u81ea\\u63d0\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"15\",\"name\":\"\\u5176\\u4ed6\\u5feb\\u9012\",\"description\":\"\\u8bf7\\u586b\\u5199\\u5176\\u4ed6\\u5feb\\u9012\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"60\",\"name\":\"\\u6682\\u5b58\",\"description\":\"\\u8bf7\\u586b\\u5199\\u6682\\u5b58\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null}]\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";N;s:12:\"product_sort\";i:1;s:12:\"product_type\";i:2;s:14:\"product_status\";i:1;s:11:\"product_end\";i:1;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";N;s:16:\"product_end_time\";N;s:12:\"product_time\";i:1546065696;}s:9:\"\0*\0origin\";a:23:{s:10:\"product_id\";i:130;s:12:\"product_name\";s:12:\"民国邮票\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/eb3566bac47c9c766c20133b41335ca6.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:23:\"<p>1&nbsp; &nbsp; 1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:45;s:13:\"cate_id_third\";i:47;s:13:\"collection_id\";i:51;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:1011:\"[{\"money\":\"999\",\"name\":\"\\u987a\\u4e30\\u5230\\u4ed8\",\"description\":\"\\u8bf7\\u586b\\u5199\\u987a\\u4e30\\u5230\\u4ed8\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"12\",\"name\":\"Ems\",\"description\":\"\\u8bf7\\u586b\\u5199Ems\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"0\",\"name\":\"\\u4e0a\\u95e8\\u81ea\\u63d0\",\"description\":\"\\u8bf7\\u586b\\u5199\\u4e0a\\u95e8\\u81ea\\u63d0\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"15\",\"name\":\"\\u5176\\u4ed6\\u5feb\\u9012\",\"description\":\"\\u8bf7\\u586b\\u5199\\u5176\\u4ed6\\u5feb\\u9012\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"60\",\"name\":\"\\u6682\\u5b58\",\"description\":\"\\u8bf7\\u586b\\u5199\\u6682\\u5b58\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null}]\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";N;s:12:\"product_sort\";i:1;s:12:\"product_type\";i:2;s:14:\"product_status\";i:1;s:11:\"product_end\";i:1;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";N;s:16:\"product_end_time\";N;s:12:\"product_time\";i:1546065696;}s:11:\"\0*\0relation\";a:0:{}s:7:\"\0*\0auto\";a:0:{}s:9:\"\0*\0insert\";a:0:{}s:9:\"\0*\0update\";a:0:{}s:21:\"\0*\0autoWriteTimestamp\";b:0;s:13:\"\0*\0createTime\";s:11:\"create_time\";s:13:\"\0*\0updateTime\";s:11:\"update_time\";s:13:\"\0*\0dateFormat\";s:11:\"Y-m-d H:i:s\";s:7:\"\0*\0type\";a:0:{}s:11:\"\0*\0isUpdate\";b:1;s:14:\"\0*\0updateWhere\";N;s:16:\"\0*\0failException\";b:0;s:17:\"\0*\0useGlobalScope\";b:1;s:16:\"\0*\0batchValidate\";b:0;s:16:\"\0*\0resultSetType\";s:17:\"\\think\\Collection\";s:16:\"\0*\0relationWrite\";N;}', '1.00', '0.00', '1.00', '16.00', '3', '15.00', '3', '2', null, '1547430785', null, '1546832685');
+INSERT INTO `qp_prod_list_between` VALUES ('64', '6', '2721', '432', '143322314332231433223', '501567472721811127', '127', 'a:23:{s:10:\"product_id\";i:127;s:12:\"product_name\";s:9:\"拍卖中\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/ed52dc41becdfc062eaa0764595d482c.jpg\";s:15:\"cover_introduce\";s:1:\"2\";s:17:\"product_introduce\";s:8:\"<p>2</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:57;s:13:\"cate_id_third\";i:58;s:13:\"collection_id\";i:52;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:0:\"\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";s:4:\"1.00\";s:12:\"product_sort\";i:1;s:12:\"product_type\";i:1;s:14:\"product_status\";i:1;s:11:\"product_end\";i:2;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";i:1545840000;s:16:\"product_end_time\";i:1546012800;s:12:\"product_time\";i:1545962366;}', '3.00', '0.33', '3.33', '3.33', '0', '0.00', '5', '1', '669549436693', '1547430785', '1547087043', '1546850156');
+INSERT INTO `qp_prod_list_between` VALUES ('65', '7', '2721', '432', '143322314332231433223', '501568562721993128', '128', 'a:23:{s:10:\"product_id\";i:128;s:12:\"product_name\";s:18:\"元旦预览专场\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/9c7a2fc6adc725516f4a92fbdc116f8a.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:8:\"<p>1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:57;s:13:\"cate_id_third\";i:58;s:13:\"collection_id\";i:52;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";N;s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";s:4:\"1.00\";s:12:\"product_sort\";i:1;s:12:\"product_type\";i:1;s:14:\"product_status\";i:1;s:11:\"product_end\";i:2;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";i:1546272000;s:16:\"product_end_time\";i:1546444800;s:12:\"product_time\";i:1545962411;}', '4.00', '0.44', '4.44', '4.44', '0', '0.00', '5', '1', '123123123', '1547430785', '1547087043', '1546850156');
+INSERT INTO `qp_prod_list_between` VALUES ('66', '7', '2721', '436', null, '551648822721249130', '130', 'a:23:{s:10:\"product_id\";i:130;s:12:\"product_name\";s:12:\"民国邮票\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/eb3566bac47c9c766c20133b41335ca6.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:23:\"<p>1&nbsp; &nbsp; 1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:45;s:13:\"cate_id_third\";i:47;s:13:\"collection_id\";i:51;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:1011:\"[{\"money\":\"999\",\"name\":\"\\u987a\\u4e30\\u5230\\u4ed8\",\"description\":\"\\u8bf7\\u586b\\u5199\\u987a\\u4e30\\u5230\\u4ed8\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"12\",\"name\":\"Ems\",\"description\":\"\\u8bf7\\u586b\\u5199Ems\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"0\",\"name\":\"\\u4e0a\\u95e8\\u81ea\\u63d0\",\"description\":\"\\u8bf7\\u586b\\u5199\\u4e0a\\u95e8\\u81ea\\u63d0\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"15\",\"name\":\"\\u5176\\u4ed6\\u5feb\\u9012\",\"description\":\"\\u8bf7\\u586b\\u5199\\u5176\\u4ed6\\u5feb\\u9012\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"60\",\"name\":\"\\u6682\\u5b58\",\"description\":\"\\u8bf7\\u586b\\u5199\\u6682\\u5b58\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null}]\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";N;s:12:\"product_sort\";i:1;s:12:\"product_type\";i:2;s:14:\"product_status\";i:1;s:11:\"product_end\";i:1;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";N;s:16:\"product_end_time\";N;s:12:\"product_time\";i:1546065696;}', '4.00', '0.44', '4.44', '19.44', '3', '15.00', '3', '1', '213123231', null, null, '1546855164');
+INSERT INTO `qp_prod_list_between` VALUES ('67', null, '2721', '437', null, '160166702721835130', '130', 'O:24:\"app\\common\\model\\Product\":34:{s:13:\"\0*\0connection\";a:0:{}s:9:\"\0*\0parent\";N;s:8:\"\0*\0query\";N;s:7:\"\0*\0name\";s:7:\"Product\";s:8:\"\0*\0table\";N;s:8:\"\0*\0class\";s:24:\"app\\common\\model\\Product\";s:8:\"\0*\0error\";N;s:11:\"\0*\0validate\";N;s:5:\"\0*\0pk\";N;s:8:\"\0*\0field\";a:0:{}s:9:\"\0*\0except\";a:0:{}s:9:\"\0*\0disuse\";a:0:{}s:11:\"\0*\0readonly\";a:0:{}s:10:\"\0*\0visible\";a:0:{}s:9:\"\0*\0hidden\";a:0:{}s:9:\"\0*\0append\";a:0:{}s:7:\"\0*\0data\";a:23:{s:10:\"product_id\";i:130;s:12:\"product_name\";s:12:\"民国邮票\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/eb3566bac47c9c766c20133b41335ca6.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:23:\"<p>1&nbsp; &nbsp; 1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:45;s:13:\"cate_id_third\";i:47;s:13:\"collection_id\";i:51;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:1011:\"[{\"money\":\"999\",\"name\":\"\\u987a\\u4e30\\u5230\\u4ed8\",\"description\":\"\\u8bf7\\u586b\\u5199\\u987a\\u4e30\\u5230\\u4ed8\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"12\",\"name\":\"Ems\",\"description\":\"\\u8bf7\\u586b\\u5199Ems\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"0\",\"name\":\"\\u4e0a\\u95e8\\u81ea\\u63d0\",\"description\":\"\\u8bf7\\u586b\\u5199\\u4e0a\\u95e8\\u81ea\\u63d0\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"15\",\"name\":\"\\u5176\\u4ed6\\u5feb\\u9012\",\"description\":\"\\u8bf7\\u586b\\u5199\\u5176\\u4ed6\\u5feb\\u9012\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"60\",\"name\":\"\\u6682\\u5b58\",\"description\":\"\\u8bf7\\u586b\\u5199\\u6682\\u5b58\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null}]\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";N;s:12:\"product_sort\";i:1;s:12:\"product_type\";i:2;s:14:\"product_status\";i:1;s:11:\"product_end\";i:1;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";N;s:16:\"product_end_time\";N;s:12:\"product_time\";i:1546065696;}s:9:\"\0*\0origin\";a:23:{s:10:\"product_id\";i:130;s:12:\"product_name\";s:12:\"民国邮票\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/eb3566bac47c9c766c20133b41335ca6.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:23:\"<p>1&nbsp; &nbsp; 1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:45;s:13:\"cate_id_third\";i:47;s:13:\"collection_id\";i:51;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:1011:\"[{\"money\":\"999\",\"name\":\"\\u987a\\u4e30\\u5230\\u4ed8\",\"description\":\"\\u8bf7\\u586b\\u5199\\u987a\\u4e30\\u5230\\u4ed8\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"12\",\"name\":\"Ems\",\"description\":\"\\u8bf7\\u586b\\u5199Ems\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"0\",\"name\":\"\\u4e0a\\u95e8\\u81ea\\u63d0\",\"description\":\"\\u8bf7\\u586b\\u5199\\u4e0a\\u95e8\\u81ea\\u63d0\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"15\",\"name\":\"\\u5176\\u4ed6\\u5feb\\u9012\",\"description\":\"\\u8bf7\\u586b\\u5199\\u5176\\u4ed6\\u5feb\\u9012\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"60\",\"name\":\"\\u6682\\u5b58\",\"description\":\"\\u8bf7\\u586b\\u5199\\u6682\\u5b58\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null}]\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";N;s:12:\"product_sort\";i:1;s:12:\"product_type\";i:2;s:14:\"product_status\";i:1;s:11:\"product_end\";i:1;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";N;s:16:\"product_end_time\";N;s:12:\"product_time\";i:1546065696;}s:11:\"\0*\0relation\";a:0:{}s:7:\"\0*\0auto\";a:0:{}s:9:\"\0*\0insert\";a:0:{}s:9:\"\0*\0update\";a:0:{}s:21:\"\0*\0autoWriteTimestamp\";b:0;s:13:\"\0*\0createTime\";s:11:\"create_time\";s:13:\"\0*\0updateTime\";s:11:\"update_time\";s:13:\"\0*\0dateFormat\";s:11:\"Y-m-d H:i:s\";s:7:\"\0*\0type\";a:0:{}s:11:\"\0*\0isUpdate\";b:1;s:14:\"\0*\0updateWhere\";N;s:16:\"\0*\0failException\";b:0;s:17:\"\0*\0useGlobalScope\";b:1;s:16:\"\0*\0batchValidate\";b:0;s:16:\"\0*\0resultSetType\";s:17:\"\\think\\Collection\";s:16:\"\0*\0relationWrite\";N;}', '1.00', '0.00', '1.00', '1.00', '2', '0.00', '3', '2', null, null, null, '1547016016');
+INSERT INTO `qp_prod_list_between` VALUES ('68', '6', '2721', '438', null, '170615822721222127', '127', 'a:23:{s:10:\"product_id\";i:127;s:12:\"product_name\";s:9:\"拍卖中\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/ed52dc41becdfc062eaa0764595d482c.jpg\";s:15:\"cover_introduce\";s:1:\"2\";s:17:\"product_introduce\";s:8:\"<p>2</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:57;s:13:\"cate_id_third\";i:58;s:13:\"collection_id\";i:52;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:0:\"\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";s:4:\"1.00\";s:12:\"product_sort\";i:1;s:12:\"product_type\";i:1;s:14:\"product_status\";i:1;s:11:\"product_end\";i:2;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";i:1545840000;s:16:\"product_end_time\";i:1546012800;s:12:\"product_time\";i:1545962366;}', '3.00', '0.33', '3.33', '3.33', '0', '0.00', '3', '1', null, null, null, '1547017061');
+INSERT INTO `qp_prod_list_between` VALUES ('69', '7', '2721', '439', '143322314332231433223', '257357382721849130', '130', 'O:24:\"app\\common\\model\\Product\":34:{s:13:\"\0*\0connection\";a:0:{}s:9:\"\0*\0parent\";N;s:8:\"\0*\0query\";N;s:7:\"\0*\0name\";s:7:\"Product\";s:8:\"\0*\0table\";N;s:8:\"\0*\0class\";s:24:\"app\\common\\model\\Product\";s:8:\"\0*\0error\";N;s:11:\"\0*\0validate\";N;s:5:\"\0*\0pk\";N;s:8:\"\0*\0field\";a:0:{}s:9:\"\0*\0except\";a:0:{}s:9:\"\0*\0disuse\";a:0:{}s:11:\"\0*\0readonly\";a:0:{}s:10:\"\0*\0visible\";a:0:{}s:9:\"\0*\0hidden\";a:0:{}s:9:\"\0*\0append\";a:0:{}s:7:\"\0*\0data\";a:23:{s:10:\"product_id\";i:130;s:12:\"product_name\";s:12:\"民国邮票\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/eb3566bac47c9c766c20133b41335ca6.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:23:\"<p>1&nbsp; &nbsp; 1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:45;s:13:\"cate_id_third\";i:47;s:13:\"collection_id\";i:51;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:1011:\"[{\"money\":\"999\",\"name\":\"\\u987a\\u4e30\\u5230\\u4ed8\",\"description\":\"\\u8bf7\\u586b\\u5199\\u987a\\u4e30\\u5230\\u4ed8\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"12\",\"name\":\"Ems\",\"description\":\"\\u8bf7\\u586b\\u5199Ems\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"0\",\"name\":\"\\u4e0a\\u95e8\\u81ea\\u63d0\",\"description\":\"\\u8bf7\\u586b\\u5199\\u4e0a\\u95e8\\u81ea\\u63d0\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"15\",\"name\":\"\\u5176\\u4ed6\\u5feb\\u9012\",\"description\":\"\\u8bf7\\u586b\\u5199\\u5176\\u4ed6\\u5feb\\u9012\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"60\",\"name\":\"\\u6682\\u5b58\",\"description\":\"\\u8bf7\\u586b\\u5199\\u6682\\u5b58\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null}]\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";N;s:12:\"product_sort\";i:1;s:12:\"product_type\";i:2;s:14:\"product_status\";i:1;s:11:\"product_end\";i:1;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";N;s:16:\"product_end_time\";N;s:12:\"product_time\";i:1546065696;}s:9:\"\0*\0origin\";a:23:{s:10:\"product_id\";i:130;s:12:\"product_name\";s:12:\"民国邮票\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/eb3566bac47c9c766c20133b41335ca6.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:23:\"<p>1&nbsp; &nbsp; 1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:45;s:13:\"cate_id_third\";i:47;s:13:\"collection_id\";i:51;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:1011:\"[{\"money\":\"999\",\"name\":\"\\u987a\\u4e30\\u5230\\u4ed8\",\"description\":\"\\u8bf7\\u586b\\u5199\\u987a\\u4e30\\u5230\\u4ed8\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"12\",\"name\":\"Ems\",\"description\":\"\\u8bf7\\u586b\\u5199Ems\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"0\",\"name\":\"\\u4e0a\\u95e8\\u81ea\\u63d0\",\"description\":\"\\u8bf7\\u586b\\u5199\\u4e0a\\u95e8\\u81ea\\u63d0\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"15\",\"name\":\"\\u5176\\u4ed6\\u5feb\\u9012\",\"description\":\"\\u8bf7\\u586b\\u5199\\u5176\\u4ed6\\u5feb\\u9012\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"60\",\"name\":\"\\u6682\\u5b58\",\"description\":\"\\u8bf7\\u586b\\u5199\\u6682\\u5b58\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null}]\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";N;s:12:\"product_sort\";i:1;s:12:\"product_type\";i:2;s:14:\"product_status\";i:1;s:11:\"product_end\";i:1;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";N;s:16:\"product_end_time\";N;s:12:\"product_time\";i:1546065696;}s:11:\"\0*\0relation\";a:0:{}s:7:\"\0*\0auto\";a:0:{}s:9:\"\0*\0insert\";a:0:{}s:9:\"\0*\0update\";a:0:{}s:21:\"\0*\0autoWriteTimestamp\";b:0;s:13:\"\0*\0createTime\";s:11:\"create_time\";s:13:\"\0*\0updateTime\";s:11:\"update_time\";s:13:\"\0*\0dateFormat\";s:11:\"Y-m-d H:i:s\";s:7:\"\0*\0type\";a:0:{}s:11:\"\0*\0isUpdate\";b:1;s:14:\"\0*\0updateWhere\";N;s:16:\"\0*\0failException\";b:0;s:17:\"\0*\0useGlobalScope\";b:1;s:16:\"\0*\0batchValidate\";b:0;s:16:\"\0*\0resultSetType\";s:17:\"\\think\\Collection\";s:16:\"\0*\0relationWrite\";N;}', '1.00', '0.00', '1.00', '1.00', '2', '0.00', '6', '2', null, null, '1547109267', '1547025735');
+INSERT INTO `qp_prod_list_between` VALUES ('70', null, '2721', '440', null, '906284682721850130', '130', 'O:24:\"app\\common\\model\\Product\":34:{s:13:\"\0*\0connection\";a:0:{}s:9:\"\0*\0parent\";N;s:8:\"\0*\0query\";N;s:7:\"\0*\0name\";s:7:\"Product\";s:8:\"\0*\0table\";N;s:8:\"\0*\0class\";s:24:\"app\\common\\model\\Product\";s:8:\"\0*\0error\";N;s:11:\"\0*\0validate\";N;s:5:\"\0*\0pk\";N;s:8:\"\0*\0field\";a:0:{}s:9:\"\0*\0except\";a:0:{}s:9:\"\0*\0disuse\";a:0:{}s:11:\"\0*\0readonly\";a:0:{}s:10:\"\0*\0visible\";a:0:{}s:9:\"\0*\0hidden\";a:0:{}s:9:\"\0*\0append\";a:0:{}s:7:\"\0*\0data\";a:23:{s:10:\"product_id\";i:130;s:12:\"product_name\";s:12:\"民国邮票\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/eb3566bac47c9c766c20133b41335ca6.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:23:\"<p>1&nbsp; &nbsp; 1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:45;s:13:\"cate_id_third\";i:47;s:13:\"collection_id\";i:51;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:1011:\"[{\"money\":\"999\",\"name\":\"\\u987a\\u4e30\\u5230\\u4ed8\",\"description\":\"\\u8bf7\\u586b\\u5199\\u987a\\u4e30\\u5230\\u4ed8\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"12\",\"name\":\"Ems\",\"description\":\"\\u8bf7\\u586b\\u5199Ems\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"0\",\"name\":\"\\u4e0a\\u95e8\\u81ea\\u63d0\",\"description\":\"\\u8bf7\\u586b\\u5199\\u4e0a\\u95e8\\u81ea\\u63d0\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"15\",\"name\":\"\\u5176\\u4ed6\\u5feb\\u9012\",\"description\":\"\\u8bf7\\u586b\\u5199\\u5176\\u4ed6\\u5feb\\u9012\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"60\",\"name\":\"\\u6682\\u5b58\",\"description\":\"\\u8bf7\\u586b\\u5199\\u6682\\u5b58\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null}]\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";N;s:12:\"product_sort\";i:1;s:12:\"product_type\";i:2;s:14:\"product_status\";i:1;s:11:\"product_end\";i:1;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";N;s:16:\"product_end_time\";N;s:12:\"product_time\";i:1546065696;}s:9:\"\0*\0origin\";a:23:{s:10:\"product_id\";i:130;s:12:\"product_name\";s:12:\"民国邮票\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/eb3566bac47c9c766c20133b41335ca6.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:23:\"<p>1&nbsp; &nbsp; 1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:45;s:13:\"cate_id_third\";i:47;s:13:\"collection_id\";i:51;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:1011:\"[{\"money\":\"999\",\"name\":\"\\u987a\\u4e30\\u5230\\u4ed8\",\"description\":\"\\u8bf7\\u586b\\u5199\\u987a\\u4e30\\u5230\\u4ed8\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"12\",\"name\":\"Ems\",\"description\":\"\\u8bf7\\u586b\\u5199Ems\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"0\",\"name\":\"\\u4e0a\\u95e8\\u81ea\\u63d0\",\"description\":\"\\u8bf7\\u586b\\u5199\\u4e0a\\u95e8\\u81ea\\u63d0\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":true},{\"money\":\"15\",\"name\":\"\\u5176\\u4ed6\\u5feb\\u9012\",\"description\":\"\\u8bf7\\u586b\\u5199\\u5176\\u4ed6\\u5feb\\u9012\\u5bc4\\u4ef6\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null},{\"money\":\"60\",\"name\":\"\\u6682\\u5b58\",\"description\":\"\\u8bf7\\u586b\\u5199\\u6682\\u5b58\\u7684\\u4ef7\\u683c\\uff0c\\u514d\\u8d39\\u5219\\u586b0\\uff0c\\u5355\\u4f4d\\uff08\\u5143\\uff09\",\"current\":null}]\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";N;s:12:\"product_sort\";i:1;s:12:\"product_type\";i:2;s:14:\"product_status\";i:1;s:11:\"product_end\";i:1;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";N;s:16:\"product_end_time\";N;s:12:\"product_time\";i:1546065696;}s:11:\"\0*\0relation\";a:0:{}s:7:\"\0*\0auto\";a:0:{}s:9:\"\0*\0insert\";a:0:{}s:9:\"\0*\0update\";a:0:{}s:21:\"\0*\0autoWriteTimestamp\";b:0;s:13:\"\0*\0createTime\";s:11:\"create_time\";s:13:\"\0*\0updateTime\";s:11:\"update_time\";s:13:\"\0*\0dateFormat\";s:11:\"Y-m-d H:i:s\";s:7:\"\0*\0type\";a:0:{}s:11:\"\0*\0isUpdate\";b:1;s:14:\"\0*\0updateWhere\";N;s:16:\"\0*\0failException\";b:0;s:17:\"\0*\0useGlobalScope\";b:1;s:16:\"\0*\0batchValidate\";b:0;s:16:\"\0*\0resultSetType\";s:17:\"\\think\\Collection\";s:16:\"\0*\0relationWrite\";N;}', '1.00', '0.00', '1.00', '1.00', '2', '0.00', '1', '2', null, null, null, '1547190628');
+INSERT INTO `qp_prod_list_between` VALUES ('71', '6', '2721', '441', null, '624812412721499127', '127', 'a:23:{s:10:\"product_id\";i:127;s:12:\"product_name\";s:9:\"拍卖中\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/ed52dc41becdfc062eaa0764595d482c.jpg\";s:15:\"cover_introduce\";s:1:\"2\";s:17:\"product_introduce\";s:8:\"<p>2</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:57;s:13:\"cate_id_third\";i:58;s:13:\"collection_id\";i:52;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:0:\"\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";s:4:\"1.00\";s:12:\"product_sort\";i:1;s:12:\"product_type\";i:1;s:14:\"product_status\";i:1;s:11:\"product_end\";i:2;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";i:1545840000;s:16:\"product_end_time\";i:1546012800;s:12:\"product_time\";i:1545962366;}', '3.00', '0.33', '3.33', '3.33', '0', '0.00', '1', '1', null, null, null, '1547262481');
+INSERT INTO `qp_prod_list_between` VALUES ('72', null, '2721', '442', null, '297879602721755129', '129', 'O:24:\"app\\common\\model\\Product\":34:{s:13:\"\0*\0connection\";a:0:{}s:9:\"\0*\0parent\";N;s:8:\"\0*\0query\";N;s:7:\"\0*\0name\";s:7:\"Product\";s:8:\"\0*\0table\";N;s:8:\"\0*\0class\";s:24:\"app\\common\\model\\Product\";s:8:\"\0*\0error\";N;s:11:\"\0*\0validate\";N;s:5:\"\0*\0pk\";N;s:8:\"\0*\0field\";a:0:{}s:9:\"\0*\0except\";a:0:{}s:9:\"\0*\0disuse\";a:0:{}s:11:\"\0*\0readonly\";a:0:{}s:10:\"\0*\0visible\";a:0:{}s:9:\"\0*\0hidden\";a:0:{}s:9:\"\0*\0append\";a:0:{}s:7:\"\0*\0data\";a:23:{s:10:\"product_id\";i:129;s:12:\"product_name\";s:15:\"一口价柚子\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/4889f254cafba86dd3dc954fd4abf18a.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:8:\"<p>1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:57;s:13:\"cate_id_third\";i:58;s:13:\"collection_id\";i:52;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:0:\"\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";N;s:12:\"product_sort\";i:1;s:12:\"product_type\";i:2;s:14:\"product_status\";i:1;s:11:\"product_end\";i:1;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";N;s:16:\"product_end_time\";N;s:12:\"product_time\";i:1545962445;}s:9:\"\0*\0origin\";a:23:{s:10:\"product_id\";i:129;s:12:\"product_name\";s:15:\"一口价柚子\";s:13:\"product_cover\";s:64:\"uploads/productCover/201812/4889f254cafba86dd3dc954fd4abf18a.jpg\";s:15:\"cover_introduce\";s:1:\"1\";s:17:\"product_introduce\";s:8:\"<p>1</p>\";s:13:\"product_money\";s:4:\"1.00\";s:13:\"cate_id_first\";i:34;s:14:\"cate_id_second\";i:57;s:13:\"cate_id_third\";i:58;s:13:\"collection_id\";i:52;s:24:\"product_collection_share\";i:1;s:12:\"express_info\";s:0:\"\";s:12:\"product_face\";i:1;s:12:\"product_zysx\";s:1:\"1\";s:13:\"product_times\";N;s:12:\"product_sort\";i:1;s:12:\"product_type\";i:2;s:14:\"product_status\";i:1;s:11:\"product_end\";i:1;s:19:\"product_share_index\";i:1;s:18:\"product_start_time\";N;s:16:\"product_end_time\";N;s:12:\"product_time\";i:1545962445;}s:11:\"\0*\0relation\";a:0:{}s:7:\"\0*\0auto\";a:0:{}s:9:\"\0*\0insert\";a:0:{}s:9:\"\0*\0update\";a:0:{}s:21:\"\0*\0autoWriteTimestamp\";b:0;s:13:\"\0*\0createTime\";s:11:\"create_time\";s:13:\"\0*\0updateTime\";s:11:\"update_time\";s:13:\"\0*\0dateFormat\";s:11:\"Y-m-d H:i:s\";s:7:\"\0*\0type\";a:0:{}s:11:\"\0*\0isUpdate\";b:1;s:14:\"\0*\0updateWhere\";N;s:16:\"\0*\0failException\";b:0;s:17:\"\0*\0useGlobalScope\";b:1;s:16:\"\0*\0batchValidate\";b:0;s:16:\"\0*\0resultSetType\";s:17:\"\\think\\Collection\";s:16:\"\0*\0relationWrite\";N;}', '1.00', '0.00', '1.00', '1.00', '0', '0.00', '6', '2', null, null, null, '1547429787');
 
 -- ----------------------------
 -- Table structure for `qp_prod_list_comment`
@@ -533,24 +660,71 @@ INSERT INTO `qp_prod_list_comment_img` VALUES ('41', '137', '2679', 'uploads/pro
 INSERT INTO `qp_prod_list_comment_img` VALUES ('42', '76', '267', 'uploads/productcomment/201812/22cf77981e6fda84abe9084e7843125c.png', '1', '1');
 
 -- ----------------------------
+-- Table structure for `qp_prod_list_copy`
+-- ----------------------------
+DROP TABLE IF EXISTS `qp_prod_list_copy`;
+CREATE TABLE `qp_prod_list_copy` (
+  `list_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '订单id',
+  `user_id` int(10) NOT NULL COMMENT '用户id',
+  `product_id` int(10) DEFAULT '0' COMMENT '产品ID',
+  `order_number` char(30) NOT NULL COMMENT '订单号',
+  `transaction_id` char(28) DEFAULT NULL COMMENT '微信支付凭证',
+  `pay_money` decimal(10,2) NOT NULL COMMENT '实际支付金额',
+  `prepay_id` text,
+  `is_pay` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否支付（1、未支付；2、已支付（未评价）；3、已评价）',
+  `pay_requset_info` text COMMENT '拉起支付的信息',
+  `list_type` tinyint(1) DEFAULT NULL COMMENT '订单类型（1、竞拍订单；2、一口价订单）',
+  `list_add_time` int(10) NOT NULL COMMENT '订单生成时间',
+  PRIMARY KEY (`list_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=332 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of qp_prod_list_copy
+-- ----------------------------
+INSERT INTO `qp_prod_list_copy` VALUES ('309', '2678', '100', '2018121015444347292678', '4200000230201812101617258604', '0.01', 'wx10173849539273e11ce2c29f0608977623', '2', null, null, '1544434729');
+INSERT INTO `qp_prod_list_copy` VALUES ('310', '267', '101', '201812101544434806267', '4200000235201812108058146304', '0.01', 'wx10174006857859f64bc6c1282965946784', '3', null, null, '1544434806');
+INSERT INTO `qp_prod_list_copy` VALUES ('311', '257', '101', '201812101544434866257', null, '0.01', 'wx101741068467066fe0c1193f2938339921', '1', null, null, '1544434866');
+INSERT INTO `qp_prod_list_copy` VALUES ('312', '257', '101', '201812101544434894257', '4200000217201812106742883998', '0.01', 'wx101741345226014633735c011248376258', '2', null, null, '1544434894');
+INSERT INTO `qp_prod_list_copy` VALUES ('313', '2678', '107', '2018121015444528412678', null, '0.01', 'wx10224042083915eb220e6a542863586657', '1', null, null, '1544452841');
+INSERT INTO `qp_prod_list_copy` VALUES ('314', '2678', '107', '2018121015444528622678', null, '0.01', 'wx102241031061235eaea8fde42339253629', '1', null, null, '1544452862');
+INSERT INTO `qp_prod_list_copy` VALUES ('315', '2678', '107', '2018121015444528842678', '4200000221201812106434217152', '0.01', 'wx10224125140130d1b32eff001729902166', '2', null, null, '1544452884');
+INSERT INTO `qp_prod_list_copy` VALUES ('316', '2678', '101', '2018121115444984412678', null, '0.01', 'wx111120421352498e81f230843439059123', '1', null, null, '1544498441');
+INSERT INTO `qp_prod_list_copy` VALUES ('317', '2678', '101', '2018121115444984552678', '4200000234201812112840750237', '0.01', 'wx11112055581076bcb0f38df34091946568', '2', null, null, '1544498455');
+INSERT INTO `qp_prod_list_copy` VALUES ('318', '267', null, '201812111544522625267', null, '19.89', 'wx11180345602438852e8dc4550551564629', '1', null, null, '1544522625');
+INSERT INTO `qp_prod_list_copy` VALUES ('319', '2678', null, '2018121115445248462678', null, '0.02', 'wx11184046323852a1115740fd3317064521', '1', null, null, '1544524846');
+INSERT INTO `qp_prod_list_copy` VALUES ('320', '267', null, '201812111544525581267', null, '0.02', 'wx111853014037992bd9218c973424034115', '1', null, null, '1544525581');
+INSERT INTO `qp_prod_list_copy` VALUES ('321', '267', null, '201812111544526497267', null, '0.02', 'wx11190817518243cfc65464361839582164', '1', null, null, '1544526497');
+INSERT INTO `qp_prod_list_copy` VALUES ('322', '267', null, '201812111544526517267', null, '0.02', 'wx1119083812182234d4125ea52955026089', '1', null, null, '1544526517');
+INSERT INTO `qp_prod_list_copy` VALUES ('323', '267', null, '201812111544526522267', null, '0.02', 'wx111908430973785913aabadc2028942490', '1', null, null, '1544526522');
+INSERT INTO `qp_prod_list_copy` VALUES ('324', '2679', '104', '2018121215445862402679', null, '99.00', 'wx121144009325167446cf156f1862144082', '1', null, null, '1544586240');
+INSERT INTO `qp_prod_list_copy` VALUES ('325', '2679', '106', '2018121215445862562679', null, '99.00', 'wx12114417029127085e1d7ee01789673992', '1', null, null, '1544586256');
+INSERT INTO `qp_prod_list_copy` VALUES ('326', '2679', '104', '2018121215445862852679', null, '99.00', 'wx12114445269911736c8620494281375917', '1', null, null, '1544586285');
+INSERT INTO `qp_prod_list_copy` VALUES ('327', '2679', '104', '2018121215445863012679', null, '99.00', 'wx121145018524430f171b48122602406952', '1', null, null, '1544586301');
+INSERT INTO `qp_prod_list_copy` VALUES ('328', '2679', '100', '2018121215445863212679', '4200000236201812126196783816', '0.01', 'wx1211452189875811b8d917e73629580480', '3', null, null, '1544586321');
+INSERT INTO `qp_prod_list_copy` VALUES ('329', '2721', '116', '', null, '127.00', null, '1', null, null, '0');
+INSERT INTO `qp_prod_list_copy` VALUES ('330', '2721', '116', '', null, '127.00', null, '1', null, null, '1545806039');
+INSERT INTO `qp_prod_list_copy` VALUES ('331', '2721', '116', '', null, '127.00', null, '1', null, null, '1545806121');
+
+-- ----------------------------
 -- Table structure for `qp_setting`
 -- ----------------------------
 DROP TABLE IF EXISTS `qp_setting`;
 CREATE TABLE `qp_setting` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '分销设置表',
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '数据设置表',
   `default_lines` decimal(10,2) NOT NULL DEFAULT '1000.00' COMMENT '用户注册获得的竞拍额度',
   `lines_default_proportion` int(10) NOT NULL DEFAULT '1000' COMMENT '竞拍额度充值比例；1元=?额度',
   `lines_bad_proportion` int(10) NOT NULL DEFAULT '50' COMMENT '违规之后的竞拍额度充值比例',
   `server_rate` int(3) NOT NULL DEFAULT '11' COMMENT '服务费率%',
   `postage_proportion` decimal(10,2) NOT NULL DEFAULT '1.00' COMMENT '积分抵邮费；1元=x积分',
   `save_day` int(10) NOT NULL DEFAULT '60' COMMENT '竞品暂存天数',
+  `valid_day` int(10) NOT NULL DEFAULT '3' COMMENT '订单支付有效天数',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_setting
 -- ----------------------------
-INSERT INTO `qp_setting` VALUES ('1', '1000.00', '1000', '50', '11', '1.00', '60');
+INSERT INTO `qp_setting` VALUES ('1', '1000.00', '1000', '50', '11', '1.00', '60', '3');
 
 -- ----------------------------
 -- Table structure for `qp_state`
@@ -577,19 +751,21 @@ CREATE TABLE `qp_user` (
   `user_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '用户表',
   `nick_name` varchar(50) DEFAULT NULL COMMENT '用户昵称',
   `user_sex` tinyint(1) DEFAULT '0' COMMENT '会员性别 0女 1男',
-  `openid` varchar(100) NOT NULL,
+  `openid` char(50) NOT NULL,
   `face` varchar(300) DEFAULT NULL COMMENT '头像',
   `user_mobile` char(11) DEFAULT NULL COMMENT '手机号',
+  `grand_total` decimal(10,2) DEFAULT NULL COMMENT '累计订单消费',
+  `user_level` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1、正常用户；2、违规用户',
+  `user_lines` decimal(10,2) NOT NULL COMMENT '用户可用竞拍额度（元）',
   `user_is_lock` tinyint(1) DEFAULT '1',
   `user_add_time` int(10) DEFAULT NULL COMMENT '用户注册时间',
-  `lines` decimal(10,2) NOT NULL COMMENT '用户可用竞拍额度（元）',
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2722 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2826 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_user
 -- ----------------------------
-INSERT INTO `qp_user` VALUES ('2721', 'Y_Lin', '1', 'oXXyo5aN4ePWCKg-k5OPVxP-4Ops', 'https://wx.qlogo.cn/mmopen/vi_32/2TdZ2bbwCNxfj0UPicQMiaBtFq7ibbVte3RS6kXk2FIr3Dkd4Ie7DX0EjFy10VjibSbEIibsPdCvDJqCh6QjxcVfd1A/132', null, '1', '1544758831', '1000.00');
+INSERT INTO `qp_user` VALUES ('2721', 'Y_Lin', '1', 'opUgV0RfEy_keN4JFrJGunIjAZdY', 'https://wx.qlogo.cn/mmopen/vi_32/AibaQn2JppZY9Ac9sYpVKnhOnZNgwuONWDh3uX49ECickfwdicHx3Gwh7YJN34ibYmSbeCAcHopgDkA9jCWO7FrOFg/132', null, '139.00', '2', '1023.00', '1', '1546934458');
 
 -- ----------------------------
 -- Table structure for `qp_user_address`
@@ -612,7 +788,7 @@ CREATE TABLE `qp_user_address` (
 -- ----------------------------
 -- Records of qp_user_address
 -- ----------------------------
-INSERT INTO `qp_user_address` VALUES ('37', '2721', '张三', '15163444790', '广东省', '广州市', '海珠区', '新港中路397号', '2', '1545207412');
+INSERT INTO `qp_user_address` VALUES ('37', '2721', '张三', '15163444790', '广东省', '广州市', '海珠区', '新港中路397号', '1', '1545207412');
 INSERT INTO `qp_user_address` VALUES ('38', '2721', '池艺林', '17600604219', '北京市', '北京市', '朝阳区', '123', '2', '1545272088');
 
 -- ----------------------------
@@ -764,11 +940,30 @@ CREATE TABLE `qp_user_collection` (
   `user_id` int(11) NOT NULL COMMENT '用户id',
   `collection_time` int(11) NOT NULL COMMENT '收藏时间',
   PRIMARY KEY (`collection_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=379 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=399 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_user_collection
 -- ----------------------------
+INSERT INTO `qp_user_collection` VALUES ('397', '127', '2721', '1547610252');
+INSERT INTO `qp_user_collection` VALUES ('396', '129', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('390', '129', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('389', '130', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('388', '129', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('387', '130', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('386', '129', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('385', '130', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('384', '129', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('383', '129', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('380', '130', '2721', '1546073777');
+INSERT INTO `qp_user_collection` VALUES ('381', '129', '2721', '1546073849');
+INSERT INTO `qp_user_collection` VALUES ('395', '130', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('394', '129', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('393', '130', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('392', '129', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('391', '130', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('382', '129', '2721', '0');
+INSERT INTO `qp_user_collection` VALUES ('398', '128', '2721', '1547798456');
 
 -- ----------------------------
 -- Table structure for `qp_user_deposit`
@@ -789,6 +984,44 @@ CREATE TABLE `qp_user_deposit` (
 INSERT INTO `qp_user_deposit` VALUES ('21', '267', '0.20', '3', '1544515006');
 
 -- ----------------------------
+-- Table structure for `qp_user_get_prod`
+-- ----------------------------
+DROP TABLE IF EXISTS `qp_user_get_prod`;
+CREATE TABLE `qp_user_get_prod` (
+  `get_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '用户得标表',
+  `user_id` int(10) NOT NULL,
+  `product_id` int(10) NOT NULL,
+  `result_money` decimal(10,2) NOT NULL COMMENT '成交价格（不含服务费）',
+  `server_money` decimal(10,2) DEFAULT NULL COMMENT '服务费',
+  `total_price` decimal(10,2) NOT NULL COMMENT '应付总价（不含邮费）',
+  `is_pay` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否支付1、未支付；2、已经支付；3、超时未支付',
+  `add_time` int(10) NOT NULL,
+  PRIMARY KEY (`get_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of qp_user_get_prod
+-- ----------------------------
+INSERT INTO `qp_user_get_prod` VALUES ('6', '2721', '127', '3.00', '0.33', '3.33', '3', '1546584061');
+INSERT INTO `qp_user_get_prod` VALUES ('7', '2721', '130', '4.00', '0.44', '4.44', '3', '1546584061');
+INSERT INTO `qp_user_get_prod` VALUES ('8', '2721', '128', '57.00', '6.27', '63.27', '1', '1547877136');
+INSERT INTO `qp_user_get_prod` VALUES ('9', '2721', '128', '57.00', '6.27', '63.27', '1', '1547877184');
+INSERT INTO `qp_user_get_prod` VALUES ('10', '2721', '128', '57.00', '6.27', '63.27', '1', '1547877196');
+INSERT INTO `qp_user_get_prod` VALUES ('11', '2721', '128', '57.00', '6.27', '63.27', '1', '1547877271');
+INSERT INTO `qp_user_get_prod` VALUES ('12', '2721', '128', '57.00', '6.27', '63.27', '1', '1547877291');
+INSERT INTO `qp_user_get_prod` VALUES ('13', '2721', '128', '57.00', '6.27', '63.27', '1', '1547877975');
+INSERT INTO `qp_user_get_prod` VALUES ('14', '2721', '128', '57.00', '6.27', '63.27', '1', '1547878031');
+INSERT INTO `qp_user_get_prod` VALUES ('15', '2721', '128', '57.00', '6.27', '63.27', '1', '1547878208');
+INSERT INTO `qp_user_get_prod` VALUES ('16', '2721', '128', '57.00', '6.27', '63.27', '1', '1547878303');
+INSERT INTO `qp_user_get_prod` VALUES ('17', '2721', '128', '57.00', '6.27', '63.27', '1', '1547878344');
+INSERT INTO `qp_user_get_prod` VALUES ('18', '2721', '128', '57.00', '6.27', '63.27', '1', '1547878380');
+INSERT INTO `qp_user_get_prod` VALUES ('19', '2721', '128', '57.00', '6.27', '63.27', '1', '1547878403');
+INSERT INTO `qp_user_get_prod` VALUES ('20', '2721', '128', '57.00', '6.27', '63.27', '1', '1547878740');
+INSERT INTO `qp_user_get_prod` VALUES ('21', '2721', '128', '57.00', '6.27', '63.27', '1', '1547882822');
+INSERT INTO `qp_user_get_prod` VALUES ('22', '2721', '128', '57.00', '6.27', '63.27', '1', '1547883271');
+INSERT INTO `qp_user_get_prod` VALUES ('23', '2721', '128', '57.00', '6.27', '63.27', '1', '1547883310');
+
+-- ----------------------------
 -- Table structure for `qp_user_idea`
 -- ----------------------------
 DROP TABLE IF EXISTS `qp_user_idea`;
@@ -803,6 +1036,87 @@ CREATE TABLE `qp_user_idea` (
 -- ----------------------------
 -- Records of qp_user_idea
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `qp_user_lines_record`
+-- ----------------------------
+DROP TABLE IF EXISTS `qp_user_lines_record`;
+CREATE TABLE `qp_user_lines_record` (
+  `lines_record_id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) NOT NULL,
+  `offer_id` int(10) NOT NULL,
+  `product_id` int(10) NOT NULL,
+  `type` tinyint(1) NOT NULL COMMENT '1：充值；2：消费；3：竞拍结束退会',
+  `money` decimal(10,2) NOT NULL,
+  `record_add_time` int(10) NOT NULL,
+  PRIMARY KEY (`lines_record_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of qp_user_lines_record
+-- ----------------------------
+INSERT INTO `qp_user_lines_record` VALUES ('1', '1', '0', '0', '2', '0.00', '0');
+INSERT INTO `qp_user_lines_record` VALUES ('2', '2721', '35', '128', '2', '7.00', '1547864900');
+INSERT INTO `qp_user_lines_record` VALUES ('3', '2721', '36', '128', '2', '-8.00', '1547864943');
+INSERT INTO `qp_user_lines_record` VALUES ('4', '2721', '37', '128', '2', '-9.00', '1547865053');
+INSERT INTO `qp_user_lines_record` VALUES ('5', '2721', '38', '128', '2', '-11.00', '1547865387');
+INSERT INTO `qp_user_lines_record` VALUES ('6', '2721', '39', '128', '2', '-11.00', '1547865387');
+INSERT INTO `qp_user_lines_record` VALUES ('7', '2721', '40', '128', '2', '-25.00', '1547865480');
+INSERT INTO `qp_user_lines_record` VALUES ('8', '2721', '41', '128', '2', '-30.00', '1547865480');
+INSERT INTO `qp_user_lines_record` VALUES ('9', '2721', '42', '128', '2', '-40.00', '1547865578');
+INSERT INTO `qp_user_lines_record` VALUES ('10', '2721', '43', '128', '2', '-45.00', '1547865578');
+INSERT INTO `qp_user_lines_record` VALUES ('11', '2721', '44', '128', '2', '-50.00', '1547865656');
+INSERT INTO `qp_user_lines_record` VALUES ('12', '2721', '45', '128', '2', '-51.00', '1547865677');
+INSERT INTO `qp_user_lines_record` VALUES ('13', '2721', '46', '128', '2', '-54.00', '1547865785');
+INSERT INTO `qp_user_lines_record` VALUES ('14', '2721', '47', '128', '2', '-57.00', '1547865820');
+INSERT INTO `qp_user_lines_record` VALUES ('15', '2721', '46', '0', '3', '54.00', '1547878303');
+INSERT INTO `qp_user_lines_record` VALUES ('52', '2721', '35', '0', '3', '7.00', '1547878740');
+INSERT INTO `qp_user_lines_record` VALUES ('53', '2721', '36', '0', '3', '8.00', '1547878740');
+INSERT INTO `qp_user_lines_record` VALUES ('54', '2721', '37', '0', '3', '9.00', '1547878740');
+INSERT INTO `qp_user_lines_record` VALUES ('55', '2721', '38', '0', '3', '11.00', '1547878740');
+INSERT INTO `qp_user_lines_record` VALUES ('56', '2721', '39', '0', '3', '11.00', '1547878740');
+INSERT INTO `qp_user_lines_record` VALUES ('57', '2721', '40', '0', '3', '25.00', '1547878740');
+INSERT INTO `qp_user_lines_record` VALUES ('58', '2721', '41', '0', '3', '30.00', '1547878740');
+INSERT INTO `qp_user_lines_record` VALUES ('59', '2721', '42', '0', '3', '40.00', '1547878740');
+INSERT INTO `qp_user_lines_record` VALUES ('60', '2721', '43', '0', '3', '45.00', '1547878740');
+INSERT INTO `qp_user_lines_record` VALUES ('61', '2721', '44', '0', '3', '50.00', '1547878740');
+INSERT INTO `qp_user_lines_record` VALUES ('62', '2721', '45', '0', '3', '51.00', '1547878740');
+INSERT INTO `qp_user_lines_record` VALUES ('63', '2721', '46', '0', '3', '54.00', '1547878740');
+INSERT INTO `qp_user_lines_record` VALUES ('64', '2721', '35', '0', '3', '7.00', '1547882822');
+INSERT INTO `qp_user_lines_record` VALUES ('65', '2721', '36', '0', '3', '8.00', '1547882822');
+INSERT INTO `qp_user_lines_record` VALUES ('66', '2721', '37', '0', '3', '9.00', '1547882822');
+INSERT INTO `qp_user_lines_record` VALUES ('67', '2721', '38', '0', '3', '11.00', '1547882822');
+INSERT INTO `qp_user_lines_record` VALUES ('68', '2721', '39', '0', '3', '11.00', '1547882822');
+INSERT INTO `qp_user_lines_record` VALUES ('69', '2721', '40', '0', '3', '25.00', '1547882822');
+INSERT INTO `qp_user_lines_record` VALUES ('70', '2721', '41', '0', '3', '30.00', '1547882822');
+INSERT INTO `qp_user_lines_record` VALUES ('71', '2721', '42', '0', '3', '40.00', '1547882822');
+INSERT INTO `qp_user_lines_record` VALUES ('72', '2721', '43', '0', '3', '45.00', '1547882822');
+INSERT INTO `qp_user_lines_record` VALUES ('73', '2721', '44', '0', '3', '50.00', '1547882822');
+INSERT INTO `qp_user_lines_record` VALUES ('74', '2721', '45', '0', '3', '51.00', '1547882822');
+INSERT INTO `qp_user_lines_record` VALUES ('75', '2721', '46', '0', '3', '54.00', '1547882822');
+INSERT INTO `qp_user_lines_record` VALUES ('76', '2721', '35', '0', '3', '7.00', '1547883271');
+INSERT INTO `qp_user_lines_record` VALUES ('77', '2721', '36', '0', '3', '8.00', '1547883271');
+INSERT INTO `qp_user_lines_record` VALUES ('78', '2721', '37', '0', '3', '9.00', '1547883271');
+INSERT INTO `qp_user_lines_record` VALUES ('79', '2721', '38', '0', '3', '11.00', '1547883271');
+INSERT INTO `qp_user_lines_record` VALUES ('80', '2721', '39', '0', '3', '11.00', '1547883271');
+INSERT INTO `qp_user_lines_record` VALUES ('81', '2721', '40', '0', '3', '25.00', '1547883271');
+INSERT INTO `qp_user_lines_record` VALUES ('82', '2721', '41', '0', '3', '30.00', '1547883271');
+INSERT INTO `qp_user_lines_record` VALUES ('83', '2721', '42', '0', '3', '40.00', '1547883271');
+INSERT INTO `qp_user_lines_record` VALUES ('84', '2721', '43', '0', '3', '45.00', '1547883271');
+INSERT INTO `qp_user_lines_record` VALUES ('85', '2721', '44', '0', '3', '50.00', '1547883271');
+INSERT INTO `qp_user_lines_record` VALUES ('86', '2721', '45', '0', '3', '51.00', '1547883271');
+INSERT INTO `qp_user_lines_record` VALUES ('87', '2721', '46', '0', '3', '54.00', '1547883271');
+INSERT INTO `qp_user_lines_record` VALUES ('88', '2721', '35', '0', '3', '7.00', '1547883310');
+INSERT INTO `qp_user_lines_record` VALUES ('89', '2721', '36', '0', '3', '8.00', '1547883310');
+INSERT INTO `qp_user_lines_record` VALUES ('91', '2721', '38', '0', '3', '11.00', '1547883310');
+INSERT INTO `qp_user_lines_record` VALUES ('92', '2721', '39', '0', '3', '11.00', '1547883310');
+INSERT INTO `qp_user_lines_record` VALUES ('93', '2721', '40', '0', '3', '25.00', '1547883310');
+INSERT INTO `qp_user_lines_record` VALUES ('94', '2721', '41', '0', '3', '30.00', '1547883310');
+INSERT INTO `qp_user_lines_record` VALUES ('95', '2721', '42', '0', '3', '40.00', '1547883310');
+INSERT INTO `qp_user_lines_record` VALUES ('96', '2721', '43', '0', '3', '45.00', '1547883310');
+INSERT INTO `qp_user_lines_record` VALUES ('97', '2721', '44', '0', '3', '50.00', '1547883310');
+INSERT INTO `qp_user_lines_record` VALUES ('98', '2721', '45', '0', '3', '51.00', '1547883310');
+INSERT INTO `qp_user_lines_record` VALUES ('99', '2721', '46', '0', '3', '54.00', '1547883310');
 
 -- ----------------------------
 -- Table structure for `qp_user_message`
@@ -866,12 +1180,14 @@ CREATE TABLE `qp_user_offer_agent` (
   `offer_money` decimal(10,2) NOT NULL,
   `offer_add_time` int(10) NOT NULL,
   PRIMARY KEY (`offer_agent_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_user_offer_agent
 -- ----------------------------
-INSERT INTO `qp_user_offer_agent` VALUES ('3', '10086', '116', '121.00', '1545463655');
+INSERT INTO `qp_user_offer_agent` VALUES ('4', '2721', '127', '100.00', '1546503897');
+INSERT INTO `qp_user_offer_agent` VALUES ('5', '2721', '128', '20.00', '1547865358');
+INSERT INTO `qp_user_offer_agent` VALUES ('6', '2721', '128', '50.00', '1547865474');
 
 -- ----------------------------
 -- Table structure for `qp_user_offer_price`
@@ -885,28 +1201,28 @@ CREATE TABLE `qp_user_offer_price` (
   `offer_money` decimal(10,2) NOT NULL COMMENT '出价金额',
   `offer_add_time` int(10) NOT NULL,
   PRIMARY KEY (`offer_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qp_user_offer_price
 -- ----------------------------
-INSERT INTO `qp_user_offer_price` VALUES ('5', '2721', '116', '1', '100.00', '1545463626');
-INSERT INTO `qp_user_offer_price` VALUES ('13', '2721', '116', '1', '101.00', '1545464081');
-INSERT INTO `qp_user_offer_price` VALUES ('14', '10086', '116', '1', '121.00', '1545464081');
-INSERT INTO `qp_user_offer_price` VALUES ('15', '2721', '124', '1', '1.00', '1545720042');
-INSERT INTO `qp_user_offer_price` VALUES ('16', '2721', '124', '1', '2.00', '1545720051');
-INSERT INTO `qp_user_offer_price` VALUES ('17', '2721', '124', '1', '3.00', '1545720054');
-INSERT INTO `qp_user_offer_price` VALUES ('18', '2721', '124', '1', '4.00', '1545720055');
-INSERT INTO `qp_user_offer_price` VALUES ('19', '2721', '124', '1', '5.00', '1545720057');
-INSERT INTO `qp_user_offer_price` VALUES ('20', '2721', '124', '1', '6.00', '1545720060');
-INSERT INTO `qp_user_offer_price` VALUES ('21', '2721', '124', '1', '7.00', '1545720062');
-INSERT INTO `qp_user_offer_price` VALUES ('22', '2721', '124', '1', '8.00', '1545720064');
-INSERT INTO `qp_user_offer_price` VALUES ('23', '2721', '124', '1', '9.00', '1545720065');
-INSERT INTO `qp_user_offer_price` VALUES ('24', '2721', '124', '1', '10.00', '1545720067');
-INSERT INTO `qp_user_offer_price` VALUES ('25', '2721', '116', '1', '122.00', '1545723930');
-INSERT INTO `qp_user_offer_price` VALUES ('26', '2721', '116', '1', '123.00', '1545723934');
-INSERT INTO `qp_user_offer_price` VALUES ('27', '2721', '116', '1', '124.00', '1545723936');
-INSERT INTO `qp_user_offer_price` VALUES ('28', '2721', '116', '1', '127.00', '1545724058');
+INSERT INTO `qp_user_offer_price` VALUES ('30', '2721', '127', '1', '1.00', '1546503878');
+INSERT INTO `qp_user_offer_price` VALUES ('32', '2721', '127', '1', '3.00', '1546504050');
+INSERT INTO `qp_user_offer_price` VALUES ('33', '2721', '128', '2', '4.00', '1546504050');
+INSERT INTO `qp_user_offer_price` VALUES ('34', '2721', '128', '1', '6.00', '1547798523');
+INSERT INTO `qp_user_offer_price` VALUES ('35', '2721', '128', '1', '7.00', '1547864900');
+INSERT INTO `qp_user_offer_price` VALUES ('36', '2721', '128', '1', '8.00', '1547864943');
+INSERT INTO `qp_user_offer_price` VALUES ('37', '2721', '128', '1', '9.00', '1547865053');
+INSERT INTO `qp_user_offer_price` VALUES ('38', '2721', '128', '1', '11.00', '1547865387');
+INSERT INTO `qp_user_offer_price` VALUES ('39', '2721', '128', '2', '11.00', '1547865387');
+INSERT INTO `qp_user_offer_price` VALUES ('40', '2721', '128', '1', '25.00', '1547865480');
+INSERT INTO `qp_user_offer_price` VALUES ('41', '2721', '128', '2', '30.00', '1547865480');
+INSERT INTO `qp_user_offer_price` VALUES ('42', '2721', '128', '1', '40.00', '1547865578');
+INSERT INTO `qp_user_offer_price` VALUES ('43', '2721', '128', '2', '45.00', '1547865578');
+INSERT INTO `qp_user_offer_price` VALUES ('44', '2721', '128', '1', '50.00', '1547865656');
+INSERT INTO `qp_user_offer_price` VALUES ('45', '2721', '128', '1', '51.00', '1547865677');
+INSERT INTO `qp_user_offer_price` VALUES ('46', '2721', '128', '1', '54.00', '1547865785');
+INSERT INTO `qp_user_offer_price` VALUES ('47', '2721', '128', '1', '57.00', '1547865820');
 
 -- ----------------------------
 -- Table structure for `qp_user_offer_settime`
@@ -926,37 +1242,27 @@ CREATE TABLE `qp_user_offer_settime` (
 -- ----------------------------
 -- Records of qp_user_offer_settime
 -- ----------------------------
-INSERT INTO `qp_user_offer_settime` VALUES ('1', '2721', '116', '141.00', '1544975975', '1', '1545468244');
 
 -- ----------------------------
--- Table structure for `qp_user_record`
+-- Table structure for `qp_user_recharge`
 -- ----------------------------
-DROP TABLE IF EXISTS `qp_user_record`;
-CREATE TABLE `qp_user_record` (
-  `user_record_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '会员充值记录ID',
+DROP TABLE IF EXISTS `qp_user_recharge`;
+CREATE TABLE `qp_user_recharge` (
+  `user_recharge_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '竞拍额度充值记录',
   `order_number` char(20) NOT NULL COMMENT '订单号',
-  `member_price_id` int(10) NOT NULL,
   `transaction_id` char(28) DEFAULT NULL COMMENT '微信支付单号',
   `user_id` int(10) NOT NULL COMMENT '用户ID',
-  `member_pay_money` decimal(10,2) NOT NULL COMMENT '实付金额',
   `is_pay` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否支付(1、未支付；2、已经支付）',
-  `service_name` varchar(20) NOT NULL COMMENT '服务名称',
-  `begin_time` int(10) DEFAULT NULL COMMENT '生效时间',
-  `end_time` int(10) DEFAULT NULL COMMENT '到期时间',
-  `service_time` int(10) DEFAULT NULL COMMENT '服务时间（月）',
-  `user_record_add_time` int(10) NOT NULL COMMENT '操作时间',
-  PRIMARY KEY (`user_record_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=131 DEFAULT CHARSET=utf8;
+  `lines` decimal(10,2) NOT NULL COMMENT '竞拍额度充值数量',
+  `total_price` decimal(10,2) NOT NULL COMMENT '付款金额',
+  `pay_time` int(10) NOT NULL,
+  `add_time` int(10) NOT NULL COMMENT '操作时间',
+  PRIMARY KEY (`user_recharge_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of qp_user_record
+-- Records of qp_user_recharge
 -- ----------------------------
-INSERT INTO `qp_user_record` VALUES ('130', '20181211154452144777', '14', '4200000235201812113499220602', '2678', '0.03', '2', 'VIP3', null, null, null, '1544521447');
-INSERT INTO `qp_user_record` VALUES ('129', '20181211154452143488', '13', '4200000236201812110690314509', '2678', '0.01', '2', 'VIP2', null, null, null, '1544521434');
-INSERT INTO `qp_user_record` VALUES ('128', '20181211154452142351', '13', null, '2678', '0.01', '1', 'VIP2', null, null, null, '1544521423');
-INSERT INTO `qp_user_record` VALUES ('127', '20181211154452118034', '14', '4200000218201812118355127160', '2678', '0.03', '2', 'VIP3', null, null, null, '1544521180');
-INSERT INTO `qp_user_record` VALUES ('126', '20181211154452113138', '14', null, '2678', '0.03', '1', 'VIP3', null, null, null, '1544521131');
-INSERT INTO `qp_user_record` VALUES ('125', '20181211154452052737', '13', '4200000220201812119255838488', '267', '0.01', '2', 'vip3', null, null, null, '1544520527');
-INSERT INTO `qp_user_record` VALUES ('124', '20181211154452033341', '12', '4200000225201812118449956433', '2678', '0.02', '2', 'vip2', null, null, null, '1544520333');
-INSERT INTO `qp_user_record` VALUES ('123', '20181211154452026330', '13', null, '267', '3.00', '1', 'vip3', null, null, null, '1544520263');
-INSERT INTO `qp_user_record` VALUES ('122', '20181208154425656830', '12', '4200000231201812083577235440', '267', '0.01', '2', 'vip2', null, null, null, '1544256568');
+INSERT INTO `qp_user_recharge` VALUES ('149', '907209432721826', null, '2721', '1', '11000.00', '11.00', '0', '1547190719');
+INSERT INTO `qp_user_recharge` VALUES ('150', '911803072721684', null, '2721', '1', '99999999.99', '123123.00', '0', '1547191180');
+INSERT INTO `qp_user_recharge` VALUES ('151', '912135092721970', null, '2721', '1', '99999999.99', '121132.00', '0', '1547191213');
